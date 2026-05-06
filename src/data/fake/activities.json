@@ -1,0 +1,56 @@
+[
+  {
+    "id": "1",
+    "title": "Respiração consciente",
+    "description": "Exercício guiado para reduzir a ansiedade e focar no momento presente.",
+    "category": "Calma",
+    "durationMinutes": 5,
+    "icon": "leaf-outline",
+    "recommended": true
+  },
+  {
+    "id": "2",
+    "title": "Pausa de 5 minutos",
+    "description": "Desconecte-se brevemente para recarregar sua energia mental.",
+    "category": "Pausa",
+    "durationMinutes": 5,
+    "icon": "pause-circle-outline",
+    "recommended": true
+  },
+  {
+    "id": "3",
+    "title": "Escrita reflexiva",
+    "description": "Organize seus pensamentos e sentimentos em um diário seguro.",
+    "category": "Reflexão",
+    "durationMinutes": 10,
+    "icon": "create-outline",
+    "recommended": false
+  },
+  {
+    "id": "4",
+    "title": "Alongamento leve",
+    "description": "Solte a tensão muscular com movimentos suaves e controlados.",
+    "category": "Movimento",
+    "durationMinutes": 8,
+    "icon": "body-outline",
+    "recommended": false
+  },
+  {
+    "id": "5",
+    "title": "Hidratação",
+    "description": "Beba um copo de água agora mesmo para manter seu corpo funcionando bem.",
+    "category": "Hábitos",
+    "durationMinutes": 1,
+    "icon": "water-outline",
+    "recommended": false
+  },
+  {
+    "id": "6",
+    "title": "Autocuidado",
+    "description": "Reserve um tempo para cuidar da sua pele ou ouvir sua música favorita.",
+    "category": "Bem-estar",
+    "durationMinutes": 15,
+    "icon": "heart-outline",
+    "recommended": false
+  }
+]

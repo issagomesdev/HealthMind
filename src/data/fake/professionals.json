@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1",
+    "name": "Dra. Ana Silva",
+    "specialty": "Psicóloga Clínica",
+    "description": "Especialista em ansiedade, autoestima e desenvolvimento emocional com abordagem acolhedora e humanizada.",
+    "tags": ["Ansiedade", "Autoestima", "Autoconhecimento"],
+    "rating": 4.9,
+    "appointmentsCount": 312
+  },
+  {
+    "id": "2",
+    "name": "Dr. Lucas Andrade",
+    "specialty": "Psicólogo Cognitivo-Comportamental",
+    "description": "Atua no tratamento de estresse, burnout e organização emocional para jovens e adultos.",
+    "tags": ["Burnout", "Estresse", "Organização emocional"],
+    "rating": 4.8,
+    "appointmentsCount": 247
+  },
+  {
+    "id": "3",
+    "name": "Dra. Mariana Costa",
+    "specialty": "Psicóloga de Relacionamentos",
+    "description": "Ajuda pessoas a desenvolver vínculos saudáveis e melhorar sua comunicação emocional.",
+    "tags": ["Relacionamentos", "Dependência emocional"],
+    "rating": 4.7,
+    "appointmentsCount": 189
+  },
+  {
+    "id": "4",
+    "name": "Dr. Rafael Mendes",
+    "specialty": "Psicólogo Especialista em Sono",
+    "description": "Focado em qualidade do sono, ansiedade noturna e construção de hábitos saudáveis.",
+    "tags": ["Insônia", "Sono", "Rotina saudável"],
+    "rating": 4.8,
+    "appointmentsCount": 156
+  },
+  {
+    "id": "5",
+    "name": "Dra. Beatriz Lima",
+    "specialty": "Psicóloga Integrativa",
+    "description": "Abordagem voltada ao equilíbrio emocional, autoconhecimento e inteligência emocional.",
+    "tags": ["Inteligência emocional", "Autoconhecimento"],
+    "rating": 4.9,
+    "appointmentsCount": 203
+  }
+]

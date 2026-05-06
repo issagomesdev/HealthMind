@@ -1,0 +1,73 @@
+import React from "react";
+import { View, TouchableOpacity, Image, Alert } from "react-native";
+import * as ImagePicker from "expo-image-picker";
+import { Ionicons } from "@expo/vector-icons";
+import { AppText } from "../ui/AppText";
+import { useTheme } from "../../../core/theme";
+
+interface ImagePickerFieldProps {
+  value: string | null;
+  onChange: (uri: string | null) => void;
+}
+
+export function ImagePickerField({ value, onChange }: ImagePickerFieldProps) {
+  const { colors } = useTheme();
+
+  const pickImage = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== "granted") {
+      Alert.alert("Permissão necessária", "Precisamos de acesso à galeria para adicionar fotos.");
+      return;
+    }
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 0.8,
+    });
+    if (!result.canceled && result.assets[0]) {
+      onChange(result.assets[0].uri);
+    }
+  };
+
+  const removeImage = () => onChange(null);
+
+  if (value) {
+    return (
+      <View className="rounded-2xl overflow-hidden">
+        <Image
+          source={{ uri: value }}
+          className="w-full h-48"
+          resizeMode="cover"
+        />
+        <TouchableOpacity
+          onPress={removeImage}
+          className="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/50 items-center justify-center"
+          activeOpacity={0.8}
+        >
+          <Ionicons name="close" size={16} color="#fff" />
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  return (
+    <TouchableOpacity
+      onPress={pickImage}
+      activeOpacity={0.75}
+      className="flex-row items-center gap-3 border-2 border-dashed border-border dark:border-border-dark rounded-2xl px-4 py-4"
+    >
+      <View className="w-10 h-10 rounded-full bg-muted dark:bg-muted-dark items-center justify-center">
+        <Ionicons name="image-outline" size={20} color={colors.subtle} />
+      </View>
+      <View className="gap-0.5">
+        <AppText variant="bodyMedium" className="font-medium">
+          Adicionar foto
+        </AppText>
+        <AppText variant="small" color="muted">
+          Opcional — registre um momento do seu dia
+        </AppText>
+      </View>
+    </TouchableOpacity>
+  );
+}

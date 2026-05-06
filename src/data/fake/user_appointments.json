@@ -1,0 +1,122 @@
+{
+  "appointments": [
+    {
+      "id": "appt_001",
+      "professionalName": "Dra. Ana Silva",
+      "specialty": "Terapia Cognitivo-Comportamental",
+      "date": "2026-05-06",
+      "time": "14:30",
+      "status": "scheduled",
+      "type": "Online"
+    },
+    {
+      "id": "appt_002",
+      "professionalName": "Dr. Carlos Mendes",
+      "specialty": "Psicologia Clínica",
+      "date": "2026-05-08",
+      "time": "10:00",
+      "status": "scheduled",
+      "type": "Online"
+    },
+    {
+      "id": "appt_003",
+      "professionalName": "Dra. Ana Silva",
+      "specialty": "Terapia Cognitivo-Comportamental",
+      "date": "2026-05-12",
+      "time": "14:30",
+      "status": "scheduled",
+      "type": "Online"
+    },
+    {
+      "id": "appt_004",
+      "professionalName": "Dra. Fernanda Costa",
+      "specialty": "Psiquiatria",
+      "date": "2026-05-15",
+      "time": "09:00",
+      "status": "scheduled",
+      "type": "Presencial"
+    },
+    {
+      "id": "appt_005",
+      "professionalName": "Dr. Carlos Mendes",
+      "specialty": "Psicologia Clínica",
+      "date": "2026-05-21",
+      "time": "16:30",
+      "status": "scheduled",
+      "type": "Online"
+    },
+    {
+      "id": "appt_006",
+      "professionalName": "Dra. Ana Silva",
+      "specialty": "Terapia Cognitivo-Comportamental",
+      "date": "2026-05-21",
+      "time": "18:00",
+      "status": "scheduled",
+      "type": "Online"
+    },
+    {
+      "id": "appt_007",
+      "professionalName": "Dra. Ana Silva",
+      "specialty": "Terapia Cognitivo-Comportamental",
+      "date": "2026-04-22",
+      "time": "14:30",
+      "status": "completed",
+      "type": "Online"
+    },
+    {
+      "id": "appt_008",
+      "professionalName": "Dr. Carlos Mendes",
+      "specialty": "Psicologia Clínica",
+      "date": "2026-04-10",
+      "time": "10:00",
+      "status": "completed",
+      "type": "Online"
+    },
+    {
+      "id": "appt_009",
+      "professionalName": "Dra. Fernanda Costa",
+      "specialty": "Psiquiatria",
+      "date": "2026-03-28",
+      "time": "09:00",
+      "status": "completed",
+      "type": "Presencial"
+    }
+  ],
+  "dailyActivities": [
+    {
+      "id": "act_001",
+      "title": "Meditação Guiada",
+      "description": "10 minutos • Foco na respiração",
+      "icon": "body-outline",
+      "completed": false
+    },
+    {
+      "id": "act_002",
+      "title": "Diário de Humor",
+      "description": "Registro da noite",
+      "icon": "document-text-outline",
+      "completed": false
+    },
+    {
+      "id": "act_003",
+      "title": "Exercício de Gratidão",
+      "description": "5 minutos • 3 pontos positivos",
+      "icon": "heart-outline",
+      "completed": true
+    }
+  ],
+  "reminders": [
+    {
+      "id": "rem_001",
+      "title": "Hidratação",
+      "description": "Você atingiu apenas 40% da sua meta diária de água.",
+      "type": "hydration"
+    },
+    {
+      "id": "rem_002",
+      "title": "Check-in emocional pendente",
+      "description": "Você ainda não registrou seu humor hoje.",
+      "type": "mood"
+    }
+  ]
+}

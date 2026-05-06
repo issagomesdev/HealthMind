@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1",
+    "title": "Dominando a Ansiedade no Ambiente de Trabalho",
+    "description": "Uma jornada de 5 passos para entender gatilhos e desenvolver mecanismos de enfrentamento saudáveis no escritório.",
+    "category": "trabalho",
+    "type": "trilha",
+    "durationMinutes": 45,
+    "featured": true,
+    "recommended": false
+  },
+  {
+    "id": "2",
+    "title": "Construindo Autoestima",
+    "description": "Exercícios práticos diários para fortalecer a sua autoimagem e confiança.",
+    "category": "autoestima",
+    "type": "leitura",
+    "durationMinutes": 8,
+    "featured": false,
+    "recommended": false
+  },
+  {
+    "id": "3",
+    "title": "Pressão na Faculdade",
+    "description": "Como organizar os estudos sem abrir mão da saúde mental.",
+    "category": "faculdade",
+    "type": "áudio",
+    "durationMinutes": 15,
+    "featured": false,
+    "recommended": false
+  },
+  {
+    "id": "4",
+    "title": "Comunicação na Família",
+    "description": "Estabelecendo limites saudáveis.",
+    "category": "família",
+    "type": "leitura",
+    "durationMinutes": 5,
+    "featured": false,
+    "recommended": true
+  },
+  {
+    "id": "5",
+    "title": "Fim de Relacionamento",
+    "description": "Guia para passar pelo luto emocional de uma ruptura.",
+    "category": "relacionamentos",
+    "type": "trilha",
+    "durationMinutes": 0,
+    "featured": false,
+    "recommended": true
+  },
+  {
+    "id": "6",
+    "title": "Higiene do Sono",
+    "description": "Técnicas para dormir melhor e acordar com mais energia.",
+    "category": "todos",
+    "type": "prática",
+    "durationMinutes": 10,
+    "featured": false,
+    "recommended": true
+  }
+]

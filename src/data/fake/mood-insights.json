@@ -1,0 +1,48 @@
+{
+  "summary": {
+    "summary": "Você apresentou maior estabilidade emocional nas últimas semanas, com redução de registros associados à ansiedade e aumento de emoções relacionadas a calma e foco. Seus check-ins demonstram uma jornada consistente de autoconsciência.",
+    "conclusion": "Você está desenvolvendo maior consciência emocional e criando hábitos importantes de autocuidado. Continue nesse caminho — cada pequeno passo importa."
+  },
+  "emotions": [
+    { "emotion": "Calmo", "count": 14, "color": "#2A9D8F" },
+    { "emotion": "Focado", "count": 10, "color": "#4C78D9" },
+    { "emotion": "Ansioso", "count": 7, "color": "#F97316" },
+    { "emotion": "Motivado", "count": 9, "color": "#8B5CF6" },
+    { "emotion": "Cansado", "count": 5, "color": "#94A3B8" },
+    { "emotion": "Grato", "count": 8, "color": "#10B981" }
+  ],
+  "positiveInsights": [
+    {
+      "title": "Constância nos check-ins",
+      "description": "Você manteve constância nos registros emocionais, com mais de 80% dos dias cobertos no último mês."
+    },
+    {
+      "title": "Impacto da respiração",
+      "description": "Seu padrão de humor apresentou melhora perceptível após sessões de respiração guiada."
+    },
+    {
+      "title": "Evolução do sono",
+      "description": "Seu sono apresentou sinais positivos nos últimos dias, com menos registros associados a exaustão."
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "rec_001",
+      "text": "Continue utilizando pausas respiratórias em momentos de estresse para manter o equilíbrio emocional."
+    },
+    {
+      "id": "rec_002",
+      "text": "Você responde bem a atividades de autocuidado. Tente incluir ao menos uma prática diária."
+    },
+    {
+      "id": "rec_003",
+      "text": "Manter uma rotina de sono consistente pode melhorar ainda mais seu equilíbrio emocional."
+    }
+  ],
+  "weeklyTrend": [
+    { "weekLabel": "Sem 1", "value": 0.52 },
+    { "weekLabel": "Sem 2", "value": 0.61 },
+    { "weekLabel": "Sem 3", "value": 0.58 },
+    { "weekLabel": "Sem 4", "value": 0.74 }
+  ]
+}

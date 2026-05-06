@@ -1,0 +1,146 @@
+{
+  "topics": [
+    {
+      "id": "1",
+      "title": "Ansiedade",
+      "description": "Estratégias de enfrentamento diário.",
+      "icon": "pulse-outline"
+    },
+    {
+      "id": "2",
+      "title": "Sono",
+      "description": "Rotinas e dicas para higiene do sono.",
+      "icon": "moon-outline"
+    },
+    {
+      "id": "3",
+      "title": "Autoestima",
+      "description": "Construindo uma imagem positiva de si.",
+      "icon": "heart-outline"
+    },
+    {
+      "id": "4",
+      "title": "Relacionamentos",
+      "description": "Conexões saudáveis e comunicação assertiva.",
+      "icon": "people-outline"
+    },
+    {
+      "id": "5",
+      "title": "Trabalho",
+      "description": "Equilíbrio entre vida profissional e pessoal.",
+      "icon": "briefcase-outline"
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "user": { "id": "u1", "name": "Maria Silva" },
+      "topic": "Ansiedade",
+      "categories": ["experiencia", "reflexao"],
+      "content": "Hoje consegui fazer 15 minutos de meditação guiada antes do trabalho. Parece pouco, mas fez uma diferença enorme no meu nível de estresse durante a manhã. Alguém mais tenta meditar no período da manhã?",
+      "likes": 24,
+      "comments": 5,
+      "liked": false,
+      "createdAt": "2026-05-06T04:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "user": { "id": "u2", "name": "Carlos Eduardo" },
+      "topic": "Sono",
+      "categories": ["dica", "rotina"],
+      "content": "Estou tentando largar o celular uma hora antes de dormir, mas a tentação de checar as redes sociais é muito forte. Que estratégias vocês usam para manter o 'detox digital' à noite?",
+      "likes": 12,
+      "comments": 8,
+      "liked": false,
+      "createdAt": "2026-05-06T01:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "user": { "id": "u3", "name": "Ana Beatriz" },
+      "topic": "Autoestima",
+      "categories": ["motivacao", "experiencia"],
+      "content": "Depois de meses lutando com baixa autoestima, comecei a escrever 3 coisas que gosto em mim todos os dias. Parece simples, mas está transformando como me vejo. Compartilho isso para quem também está nessa jornada. 💚",
+      "likes": 47,
+      "comments": 13,
+      "liked": true,
+      "createdAt": "2026-05-05T20:00:00.000Z"
+    },
+    {
+      "id": "4",
+      "user": { "id": "u4", "name": "Lucas Mendes" },
+      "topic": "Trabalho",
+      "categories": ["dica", "rotina"],
+      "content": "Dica que mudou minha relação com o trabalho remoto: criei um ritual de 'fim de expediente'. Às 18h desligo o computador, faço uma caminhada curta e coloco uma música específica. Meu cérebro aprendeu que é hora de descansar.",
+      "likes": 31,
+      "comments": 7,
+      "liked": false,
+      "createdAt": "2026-05-05T16:00:00.000Z"
+    },
+    {
+      "id": "5",
+      "user": { "id": "u5", "name": "Fernanda Costa" },
+      "topic": "Ansiedade",
+      "categories": ["apoio", "saude_mental"],
+      "content": "Passei por um episódio de ansiedade muito forte essa semana. O que me ajudou foi a técnica do 5-4-3-2-1: identificar 5 coisas que vejo, 4 que toco, 3 que ouço, 2 que cheiro e 1 que provo. Alguém mais usa isso?",
+      "likes": 56,
+      "comments": 19,
+      "liked": false,
+      "createdAt": "2026-05-05T12:00:00.000Z"
+    },
+    {
+      "id": "6",
+      "user": { "id": "u6", "name": "Rafael Santos" },
+      "topic": "Relacionamentos",
+      "categories": ["reflexao", "experiencia"],
+      "content": "Aprendi que comunicação não é só falar — é saber ouvir sem julgamentos. Comecei terapia há 3 meses e perceber como eu não ouvia as pessoas de verdade foi chocante e libertador ao mesmo tempo.",
+      "likes": 38,
+      "comments": 11,
+      "liked": false,
+      "createdAt": "2026-05-04T22:00:00.000Z"
+    },
+    {
+      "id": "7",
+      "user": { "id": "u7", "name": "Juliana Alves" },
+      "topic": "Sono",
+      "categories": ["dica", "saude_mental"],
+      "content": "Descobri que minha insônia estava ligada à temperatura do quarto. Desde que coloquei um ventilador e deixei o ambiente mais fresco, durmo muito melhor. Às vezes a solução é simples!",
+      "likes": 22,
+      "comments": 4,
+      "liked": false,
+      "createdAt": "2026-05-04T18:00:00.000Z"
+    },
+    {
+      "id": "8",
+      "user": { "id": "u8", "name": "Pedro Oliveira" },
+      "topic": "Trabalho",
+      "categories": ["apoio", "experiencia"],
+      "content": "Síndrome do impostor é real. Passei anos achando que não merecia o meu lugar. O que me ajudou foi listar minhas conquistas reais, por menores que fossem. Vocês também passam por isso?",
+      "likes": 65,
+      "comments": 23,
+      "liked": true,
+      "createdAt": "2026-05-04T14:00:00.000Z"
+    },
+    {
+      "id": "9",
+      "user": { "id": "u9", "name": "Camila Rodrigues" },
+      "topic": "Autoestima",
+      "categories": ["motivacao", "rotina"],
+      "content": "Comecei a praticar gratidão no banho — 5 minutinhos pensando em 3 coisas boas que aconteceram. Não precisa de caderno nem app, só um momento de pausa consciente. Já notou diferença no dia-a-dia!",
+      "likes": 41,
+      "comments": 9,
+      "liked": false,
+      "createdAt": "2026-05-04T08:00:00.000Z"
+    },
+    {
+      "id": "10",
+      "user": { "id": "u10", "name": "Thiago Ferreira" },
+      "topic": "Ansiedade",
+      "categories": ["dica", "reflexao"],
+      "content": "Uma coisa que ninguém te conta sobre ansiedade: ela nem sempre é ruim. Às vezes é o sinal de que você se importa com algo. A questão é aprender a ouvi-la sem deixar que ela controle suas decisões.",
+      "likes": 89,
+      "comments": 31,
+      "liked": false,
+      "createdAt": "2026-05-03T20:00:00.000Z"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "notifications": [
+    {
+      "id": "notif_001",
+      "type": "mood",
+      "title": "Como você está se sentindo hoje?",
+      "description": "Seu check-in emocional diário está disponível.",
+      "createdAt": "2026-05-06T09:00:00.000Z",
+      "read": false
+    },
+    {
+      "id": "notif_002",
+      "type": "breathing",
+      "title": "Hora de desacelerar",
+      "description": "Reserve 5 minutos para sua respiração guiada.",
+      "createdAt": "2026-05-06T08:30:00.000Z",
+      "read": false
+    },
+    {
+      "id": "notif_003",
+      "type": "appointment",
+      "title": "Consulta hoje às 14:30",
+      "description": "Você possui sessão com Dra. Ana Silva.",
+      "createdAt": "2026-05-06T08:00:00.000Z",
+      "read": false
+    },
+    {
+      "id": "notif_004",
+      "type": "hydration",
+      "title": "Lembrete de hidratação",
+      "description": "Você atingiu apenas 40% da sua meta diária de água.",
+      "createdAt": "2026-05-05T20:00:00.000Z",
+      "read": false
+    },
+    {
+      "id": "notif_005",
+      "type": "community",
+      "title": "Responderam sua publicação",
+      "description": "Maria comentou no seu post sobre ansiedade.",
+      "createdAt": "2026-05-05T14:00:00.000Z",
+      "read": true
+    },
+    {
+      "id": "notif_006",
+      "type": "activity",
+      "title": "Nova atividade para você",
+      "description": "Encontramos uma prática rápida para aliviar estresse.",
+      "createdAt": "2026-05-04T18:00:00.000Z",
+      "read": true
+    },
+    {
+      "id": "notif_007",
+      "type": "mood",
+      "title": "Check-in pendente",
+      "description": "Você não registrou seu humor ontem. Que tal fazê-lo agora?",
+      "createdAt": "2026-05-03T10:00:00.000Z",
+      "read": true
+    },
+    {
+      "id": "notif_008",
+      "type": "premium",
+      "title": "Descubra recursos Premium",
+      "description": "Desbloqueie relatórios emocionais avançados e sessões ilimitadas.",
+      "createdAt": "2026-05-02T09:00:00.000Z",
+      "read": true
+    },
+    {
+      "id": "notif_009",
+      "type": "appointment",
+      "title": "Consulta confirmada",
+      "description": "Dr. Carlos Mendes confirmou sua sessão para 08/05 às 10:00.",
+      "createdAt": "2026-05-01T16:00:00.000Z",
+      "read": true
+    },
+    {
+      "id": "notif_010",
+      "type": "breathing",
+      "title": "Sessão concluída!",
+      "description": "Você completou 5 minutos de respiração guiada. Parabéns!",
+      "createdAt": "2026-04-30T11:00:00.000Z",
+      "read": true
+    }
+  ]
+}

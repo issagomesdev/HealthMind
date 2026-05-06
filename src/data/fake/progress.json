@@ -1,0 +1,27 @@
+{
+  "checkInStreak": 14,
+  "weeklyMood": [
+    { "day": "Seg", "value": 0.6 },
+    { "day": "Ter", "value": 0.75 },
+    { "day": "Qua", "value": 0.5 },
+    { "day": "Qui", "value": 0.65 },
+    { "day": "Sex", "value": 0.8 },
+    { "day": "Sáb", "value": 0.9 },
+    { "day": "Dom", "value": 0.85 }
+  ],
+  "frequentEmotions": [
+    { "label": "Calmo",    "color": "#2A9D8F" },
+    { "label": "Focado",   "color": "#4C78D9" },
+    { "label": "Produtivo","color": "#2A9D8F" },
+    { "label": "Ansioso",  "color": "#EF4444" },
+    { "label": "Cansado",  "color": "#9CA3AF" }
+  ],
+  "achievements": [
+    { "id": "1", "title": "Hidratação", "icon": "water",        "completed": true  },
+    { "id": "2", "title": "Atividade",  "icon": "body",         "completed": true  },
+    { "id": "3", "title": "Sono 8h",    "icon": "moon",         "completed": false },
+    { "id": "4", "title": "Meditação",  "icon": "leaf-outline", "completed": false }
+  ],
+  "insight": "Você está construindo consciência emocional.",
+  "insightSubtext": "Pequenos passos todos os dias levam a grandes transformações. Continue observando e cuidando de si."
+}
