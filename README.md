@@ -1,230 +1,327 @@
-<h1 align="center">
-  HealthMind
-</h1>
+# HealthMind — Aplicativo de Apoio à Saúde Mental
+
+![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white)
+![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![NativeWind](https://img.shields.io/badge/NativeWind-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Status](https://img.shields.io/badge/status-em_desenvolvimento-yellow?style=for-the-badge)
 
 <p align="center">
-  <img alt="Expo" src="https://img.shields.io/badge/Expo-54.0-000020?style=flat-square&logo=expo&logoColor=white" />
-  <img alt="React Native" src="https://img.shields.io/badge/React_Native-0.81-61DAFB?style=flat-square&logo=react&logoColor=black" />
-  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.9-3178C6?style=flat-square&logo=typescript&logoColor=white" />
-  <img alt="NativeWind" src="https://img.shields.io/badge/NativeWind-4.2-38BDF8?style=flat-square&logo=tailwindcss&logoColor=white" />
+  <a href="#sobre">Sobre</a> •
+  <a href="#roadmap">Roadmap</a> •
+  <a href="#tecnologias">Tecnologias</a> •
+  <a href="#arquitetura">Arquitetura</a> •
+  <a href="#estrutura">Estrutura</a> •
+  <a href="#funcionalidades">Funcionalidades</a> •
+  <a href="#getting-started">Getting Started</a>
 </p>
 
-<p align="center">
-  Companion de saúde mental · cuidado diário em um só lugar
-</p>
+O **HealthMind** é um aplicativo mobile de apoio à saúde mental desenvolvido para auxiliar usuários em sua jornada emocional, funcionando como suporte complementar ao acompanhamento psicológico.
 
----
+O app combina:
+- monitoramento emocional
+- diário emocional
+- atividades terapêuticas
+- respiração guiada
+- comunidade
+- acompanhamento de consultas
+- análise comportamental
+- recomendações inteligentes
 
-## Sobre o projeto
+Tudo isso através de uma experiência acolhedora, moderna e emocionalmente segura.
 
-O **HealthMind** é um aplicativo mobile de saúde mental desenvolvido com Expo e React Native. Ele conecta pacientes e profissionais de saúde em uma experiência unificada — registro de humor, diário terapêutico, exercícios guiados de respiração, agendamento de consultas, comunidade de apoio e muito mais.
+<h2 id="sobre">📌 Sobre</h2>
 
-A arquitetura segue os princípios de **Clean Architecture** e **SOLID**, com camadas bem definidas (Screen → Controller → Service → Data) que permitem a substituição dos dados fake por uma API real sem impacto nas telas.
+O HealthMind foi idealizado como uma plataforma focada em continuidade terapêutica, incentivando:
+- autocuidado
+- consciência emocional
+- constância em hábitos saudáveis
+- acompanhamento diário do bem-estar
 
-### Funcionalidades implementadas
+O aplicativo possui dois tipos principais de usuários:
+- **Paciente**
+- **Profissional**
 
-- [x] Onboarding de boas-vindas
-- [x] Autenticação (login / cadastro) com persistência segura via `expo-secure-store`
-- [x] Dashboard adaptativo por perfil (Paciente / Profissional)
-- [x] Menu lateral animado (SideMenu) com navegação global
-- [x] Check-in de humor diário com 5 níveis
-- [x] Diário terapêutico — criação, filtros e listagem
-- [x] Hub de atividades com conteúdos em cards
-- [x] Comunidade — feed de posts e criação de publicação
-- [x] Respiração guiada — 4 presets, animação de círculo, timer preciso, vibração e conclusão
-- [x] Consultas — calendário customizado, lista de consultas, detalhes e reagendamento
-- [x] Busca de profissionais — wizard em 3 etapas (filtros → lista → perfil)
-- [x] Notificações — feed agrupado por período, badge ao vivo via subscriber pattern
-- [x] Insights de humor — análise dos últimos 30 dias com gráfico de linhas e AI summary
-- [x] Configurações — tema claro/escuro, navegação para subseções, logout com confirmação
-- [x] Perfil — edição de conta, privacidade, notificações, plano e central de ajuda
-- [x] Suporte completo a dark mode via NativeWind
+Cada perfil possui dashboard e funcionalidades específicas.
 
----
+<h2 id="roadmap">🚧 Roadmap</h2>
 
-## Tecnologias
+### ✅ Implementado
 
-| Camada | Tecnologia | Versão |
-|--------|-----------|--------|
-| Runtime | Expo | ~54.0.33 |
-| Framework | React Native | 0.81.5 |
-| Linguagem | TypeScript | ~5.9.2 |
-| Roteamento | expo-router | ~6.0.23 |
-| Estilização | NativeWind (Tailwind CSS) | ^4.2.3 |
-| Animações | react-native-reanimated | ~4.1.1 |
-| Gráficos | react-native-svg | ^15.15.4 |
-| Gradientes | expo-linear-gradient | ~15.0.8 |
-| Ícones | @expo/vector-icons (Ionicons) | ^15.0.3 |
-| Armazenamento | expo-secure-store | ~15.0.8 |
-| Imagens | expo-image-picker | ~17.0.11 |
+- Splash Screen adaptável para light/dark mode
+- Sistema de autenticação
+- Login e cadastro
+- Controle de sessão
+- Tema global (light/dark/system)
+- BottomTabBar dinâmica por role
+- SideMenu/Drawer
+- Dashboard do paciente
+- Dashboard do profissional
+- Check-in emocional
+- Diário emocional
+- Upload de imagem no diário
+- Biblioteca de conteúdos
+- Atividades terapêuticas
+- Respiração guiada interativa
+- Comunidade com feed
+- Sistema de notificações
+- Perfil/configurações
+- Controle de privacidade do diário
+- Sistema de planos Premium
+- Central de ajuda
+- Encontrar profissional
+- Fluxo de agendamento de consultas
+- Calendário de consultas
+- Arquitetura preparada para API real
 
----
+### 🔄 Planejado
 
-## Estrutura do projeto
+- Integração real com IA
+- Videochamada nas consultas
+- Chat entre paciente e profissional
+- Gamificação emocional
+- Integração com smartwatch
+- Sistema avançado de insights emocionais
+- Recomendações baseadas em IA
+- Push notifications reais
+- Sincronização em nuvem
+- Modo offline
+- Integração com pagamentos
 
-```
-HealthMind/
-├── app/                              # expo-router — rotas baseadas em arquivos
-│   ├── _layout.tsx                   # Root layout (SplashScreen + AuthContext)
-│   ├── index.tsx                     # Redirect inteligente (auth → onboarding → home)
-│   ├── onboarding.tsx
-│   ├── (auth)/
-│   │   ├── _layout.tsx
-│   │   ├── login.tsx
-│   │   └── register.tsx
-│   └── (protected)/
-│       ├── _layout.tsx               # Stack + SideMenu global
-│       ├── (tabs)/                   # Bottom tab navigation
-│       │   ├── home.tsx
-│       │   ├── diary.tsx
-│       │   ├── activities.tsx
-│       │   ├── community.tsx
-│       │   ├── profile.tsx
-│       │   ├── calendar.tsx          # Tab exclusivo: profissional
-│       │   └── patients.tsx          # Tab exclusivo: profissional
-│       ├── settings.tsx
-│       ├── checkin.tsx
-│       ├── breathing.tsx
-│       ├── appointments.tsx
-│       ├── notifications.tsx
-│       ├── mood-insights.tsx
-│       ├── find-professional.tsx
-│       ├── diary-create.tsx
-│       ├── community-create.tsx
-│       ├── profile-account.tsx
-│       ├── profile-privacy.tsx
-│       ├── profile-notifications.tsx
-│       ├── profile-subscription.tsx
-│       └── profile-help.tsx
-│
-├── src/
-│   ├── core/
-│   │   ├── auth/                     # AuthContext + useAuth hook
-│   │   ├── constants/                # ROUTES centralizadas
-│   │   ├── theme/                    # ThemeContext, paleta de cores, dark mode
-│   │   └── types/                    # Tipos globais do domínio (User, MoodType…)
-│   │
-│   ├── domain/
-│   │   ├── entities/
-│   │   ├── repositories/
-│   │   └── usecases/
-│   │
-│   ├── data/
-│   │   └── fake/                     # JSON fake data (API-ready)
-│   │
-│   ├── services/                     # Camada de serviços — um por módulo
-│   │   ├── auth/
-│   │   ├── dashboard/
-│   │   ├── diary/
-│   │   ├── mood/
-│   │   ├── breathing/
-│   │   ├── appointments/
-│   │   ├── notifications/
-│   │   ├── professionals/
-│   │   ├── activities/
-│   │   ├── community/
-│   │   ├── profile/
-│   │   ├── settings/
-│   │   ├── subscription/
-│   │   ├── progress/
-│   │   ├── contents/
-│   │   └── api/
-│   │
-│   └── presentation/
-│       ├── components/               # Componentes reutilizáveis por domínio
-│       │   ├── ui/                   # AppText, AppCard, AppButton, AppInput, AppHeader
-│       │   ├── layout/               # ScreenContainer
-│       │   ├── navigation/           # TopBar, SideMenu, NotificationBell
-│       │   ├── dashboard/            # GreetingHeader, MoodSelector, ActivityCard…
-│       │   ├── breathing/            # BreathingCircle, PhaseLabel, controls
-│       │   ├── appointments/         # AppointmentsCalendar, cards, modais
-│       │   ├── notifications/        # NotificationItem, lista agrupada
-│       │   ├── mood/                 # MoodSummaryCard, gráficos
-│       │   ├── diary/                # DiaryCard, filtros
-│       │   ├── professionals/        # ProfessionalCard, filtros, perfil
-│       │   └── profile/              # SettingsOptionCard, LogoutConfirmationModal
-│       ├── controllers/              # Custom hooks (padrão Controller)
-│       ├── context/                  # NavigationContext (SideMenu state)
-│       └── screens/                  # Telas por domínio
-│
-└── assets/
-    └── images/
-        └── onboarding/
-```
+<h2 id="tecnologias">🧪 Tecnologias</h2>
 
----
+- Expo
+- React Native
+- TypeScript
+- NativeWind
+- Expo Router
+- React Navigation
+- React Native Reanimated
+- Expo Image Picker
+- React Context API
+- JSON Mock Data
+- Clean Architecture
+- SOLID Principles
 
-## Arquitetura
+<h2 id="arquitetura">🏗️ Arquitetura</h2>
 
-O app segue **Clean Architecture** adaptada para React Native:
+O projeto segue:
+- Clean Architecture
+- SOLID
+- Componentização reutilizável
+- Separação clara de responsabilidades
 
-```
-Tela (Screen)
-  └── Controller (custom hook — lógica e estado)
-        └── Service (regras de negócio)
-              └── Data Layer (fake JSON → futuramente API REST)
-```
+<h2 id="estrutura">📁 Estrutura</h2>
 
-- **Screens** — apenas renderização, sem lógica de negócio
-- **Controllers** — `use*Controller.ts` expõem estado e handlers para as telas
-- **Services** — acesso a dados, transformações, subscriber patterns
-- **ROUTES** — todas as navegações passam por `src/core/constants/routes.ts`; trocar uma rota é uma edição em um único lugar
+    src/
+    ├── app/
+    │   ├── routes/
+    │   └── navigation/
+    │
+    ├── assets/
+    │
+    ├── core/
+    │   ├── constants/
+    │   ├── theme/
+    │   │   ├── light.ts
+    │   │   ├── dark.ts
+    │   │   ├── ThemeContext.tsx
+    │   │   └── index.ts
+    │   │
+    │   ├── types/
+    │   └── utils/
+    │
+    ├── data/
+    │   │
+    │   └── repositories/
+    │
+    ├── domain/
+    │   ├── entities/
+    │   ├── repositories/
+    │   └── usecases/
+    │
+    ├── presentation/
+    │   ├── screens/
+    │   │
+    │   ├── controllers/
+    │   │
+    │   └── components/
+    │       ├── ui/
+    │       ├── layout/
+    │       ├── forms/
+    │       ├── navigation/
+    │       ├── mood/
+    │
+    ├── services/
+    │
+    └── hooks/
 
----
+<h2 id="funcionalidades">✨ Funcionalidades</h2>
 
-## Como executar
+### 🧠 Check-in emocional
+
+Registro diário de humor com:
+- emoções
+- nível de estresse
+- observações pessoais
+
+### 📖 Diário emocional
+
+Espaço seguro para:
+- registrar sentimentos
+- anexar imagens
+- acompanhar evolução emocional
+
+Controle de privacidade:
+- apenas você
+- profissionais autorizados
+- público
+
+### 🌬️ Respiração guiada
+
+Sessões terapêuticas interativas com:
+- animação sincronizada
+- presets respiratórios
+- timer
+- experiência imersiva
+
+### 🧘 Atividades terapêuticas
+
+Sugestões de:
+- meditação
+- alongamento
+- hidratação
+- autocuidado
+- escrita reflexiva
+
+### 📊 Insights emocionais
+
+Análise mockada dos últimos 30 dias:
+- emoções mais frequentes
+- evolução emocional
+- recomendações
+- conclusões positivas
+
+### 👩‍⚕️ Encontrar profissional
+
+Fluxo completo:
+- seleção de sintomas
+- análise inteligente
+- recomendação de profissionais
+- agendamento de consulta
+
+### 📅 Consultas e calendário
+
+- calendário interativo
+- datas destacadas
+- horários disponíveis
+- reagendamento
+- cancelamento mockado
+
+### 👥 Comunidade
+
+Feed social focado em apoio emocional:
+- posts
+- comentários
+- tópicos populares
+- ambiente seguro
+
+### 🔔 Notificações
+
+Exemplos:
+- check-in diário
+- lembretes
+- consultas
+- atividades recomendadas
+- respostas da comunidade
+
+### 👤 Perfil e configurações
+
+- edição de perfil
+- preferências
+- privacidade
+- notificações
+- assinatura premium
+- central de ajuda
+
+<h2 id="getting-started">▶️ Getting Started</h2>
 
 ### Pré-requisitos
 
-- [Node.js](https://nodejs.org) >= 18
-- [Expo CLI](https://docs.expo.dev/get-started/installation/) — `npm install -g expo-cli`
-- Para iOS: macOS com Xcode instalado
-- Para Android: Android Studio com emulador configurado, ou dispositivo físico com Expo Go
+- Node.js
+- npm ou yarn
+- Expo CLI
+- Android Studio ou Xcode
+- Expo Go (opcional)
 
 ### Instalação
 
-```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/healthmind.git
-cd healthmind
+Clone o projeto:
 
-# Instale as dependências
-npm install
-```
+    npm install
 
-### Executando
+### Rodando o projeto
 
-```bash
-# Iniciar o servidor de desenvolvimento
-npx expo start
+    npx expo start
 
-# Abrir diretamente no emulador Android
-npx expo start --android
+### Rodando Android
 
-# Abrir diretamente no simulador iOS
-npx expo start --ios
+    npx expo run:android
 
-# Build de produção (EAS Build)
-eas build --platform android
-eas build --platform ios
-```
+### Rodando iOS
 
-Após iniciar, escaneie o QR code com o app **Expo Go** (Android/iOS) ou pressione `a` para abrir no emulador Android / `i` para iOS.
+    npx expo run:ios
 
----
+### Configuração do NativeWind
 
-## Variáveis de ambiente
+Instalar dependências:
 
-O projeto não exige variáveis de ambiente para rodar localmente — os dados são servidos pela camada `data/fake`. Para integrar com uma API real, crie um arquivo `.env` na raiz:
+    npm install nativewind
+    npm install --save-dev tailwindcss
 
-```env
-EXPO_PUBLIC_API_URL=https://sua-api.com
-```
+Gerar config:
 
-E ajuste `src/services/api/ApiService.ts` para usar a URL configurada.
+    npx tailwindcss init
 
----
+### Ambiente
 
-## Licença
+Criar arquivo:
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+    .env
+
+Exemplo:
+
+    EXPO_PUBLIC_API_URL=http://localhost:8080
+
+<h2 id="design-system">🎨 Design System</h2>
+
+### Light Mode
+
+- Primary: #2D3E50
+- Secondary: #2A9D8F
+- Accent: #4C78D9
+- Success: #6DBF7B
+
+### Dark Mode
+
+- Background: #0F172A
+- Surface: #111827
+- Text: #F9FAFB
+
+### Tipografia
+
+- Poppins
+- Inter
+
+### Estilo visual
+
+- Interface acolhedora
+- Cards arredondados
+- Sombras suaves
+- Gradientes teal → azul
+- Muito espaço negativo
+- UI emocionalmente confortável
+
+<h2 id="licenca">📄 Licença</h2>
+
+Projeto desenvolvido para fins acadêmicos, estudos e evolução do produto HealthMind.
