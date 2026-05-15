@@ -11,6 +11,7 @@ interface TopBarProps {
   showMenu?: boolean;
   showNotifications?: boolean;
   onMenuPress?: () => void;
+  onBackPress?: () => void;
 }
 
 export function TopBar({
@@ -18,20 +19,25 @@ export function TopBar({
   showMenu = true,
   showNotifications = true,
   onMenuPress,
+  onBackPress,
 }: TopBarProps) {
   const { colors } = useTheme();
   const insets = useSafeAreaInsets();
+
+  const leftAction = onBackPress ?? (showMenu ? onMenuPress : undefined);
+  const leftIcon = onBackPress ? "chevron-back" : "menu-outline";
+  const leftSize = onBackPress ? 24 : 22;
 
   return (
     <View
       className="bg-background dark:bg-background-dark flex-row items-center justify-between px-4"
       style={{ paddingTop: insets.top + 6, paddingBottom: 12 }}
     >
-      {/* Left — menu */}
+      {/* Left — back or menu */}
       <View className="w-10 items-start">
-        {showMenu && (
+        {leftAction && (
           <TouchableOpacity
-            onPress={onMenuPress}
+            onPress={leftAction}
             activeOpacity={0.7}
             className="w-9 h-9 rounded-full bg-surface dark:bg-surface-dark items-center justify-center"
             style={{
@@ -42,7 +48,7 @@ export function TopBar({
               elevation: 2,
             }}
           >
-            <Ionicons name="menu-outline" size={22} color={colors.content} />
+            <Ionicons name={leftIcon} size={leftSize} color={colors.content} />
           </TouchableOpacity>
         )}
       </View>

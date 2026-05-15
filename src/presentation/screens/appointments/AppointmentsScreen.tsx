@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { View, ScrollView, Alert } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
-import { useFocusEffect } from "expo-router";
+import { useFocusEffect, useRouter } from "expo-router";
 import { TopBar } from "../../components/navigation/TopBar";
 import { AppText } from "../../components/ui/AppText";
 import { AppCard } from "../../components/ui/AppCard";
@@ -14,7 +14,6 @@ import { DailyActivityCard } from "../../components/appointments/DailyActivityCa
 import { ReminderAlertCard } from "../../components/appointments/ReminderAlertCard";
 import { FindProfessionalShortcutCard } from "../../components/appointments/FindProfessionalShortcutCard";
 import { useAppointmentsController } from "../../controllers/useAppointmentsController";
-import { useNavigationContext } from "../../context/NavigationContext";
 import { useTheme } from "../../../core/theme";
 
 interface AppointmentsScreenProps {
@@ -44,7 +43,7 @@ function SectionHeader({ title, badge }: { title: string; badge?: string }) {
 
 export function AppointmentsScreen({ onNavigateToProfessionals }: AppointmentsScreenProps) {
   const insets = useSafeAreaInsets();
-  const { openMenu } = useNavigationContext();
+  const router = useRouter();
   const ctrl = useAppointmentsController();
 
   useFocusEffect(
@@ -64,7 +63,7 @@ export function AppointmentsScreen({ onNavigateToProfessionals }: AppointmentsSc
   if (ctrl.isLoading) {
     return (
       <View className="flex-1 bg-background dark:bg-background-dark">
-        <TopBar title="HealthMind" onMenuPress={openMenu} />
+        <TopBar title="HealthMind" onBackPress={() => router.back()} />
         <LoadingState message="Carregando consultas..." />
       </View>
     );
@@ -74,7 +73,7 @@ export function AppointmentsScreen({ onNavigateToProfessionals }: AppointmentsSc
 
   return (
     <View className="flex-1 bg-background dark:bg-background-dark">
-      <TopBar title="HealthMind" onMenuPress={openMenu} />
+      <TopBar title="HealthMind" onBackPress={() => router.back()} />
 
       <ScrollView
         className="flex-1"
