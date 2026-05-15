@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { Stack, useRouter } from "expo-router";
 import { useAuth } from "../../src/core/auth/AuthContext";
+import { NavigationProvider } from "../../src/presentation/context/NavigationContext";
+import { SideMenu } from "../../src/presentation/components/navigation/SideMenu";
 
 export default function ProtectedLayout() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -13,7 +15,9 @@ export default function ProtectedLayout() {
   }, [isAuthenticated, isLoading]);
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
+    <NavigationProvider>
+      <SideMenu />
+      <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="(tabs)" options={{ animation: "none" }} />
       <Stack.Screen name="settings" options={{ animation: "slide_from_right" }} />
       <Stack.Screen name="checkin" options={{ animation: "slide_from_bottom" }} />
@@ -33,5 +37,6 @@ export default function ProtectedLayout() {
       <Stack.Screen name="professional-onboarding" options={{ animation: "slide_from_right", gestureEnabled: false }} />
       <Stack.Screen name="onboarding-complete"    options={{ animation: "fade", gestureEnabled: false }} />
     </Stack>
+    </NavigationProvider>
   );
 }

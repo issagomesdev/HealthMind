@@ -49,7 +49,7 @@ Cada perfil possui dashboard e funcionalidades específicas.
 
 ### ✅ Implementado
 
-- Splash Screen adaptável para light/dark mode
+- Splash Screen cinematográfica com animações em camadas (glow, ripple, float, wave dots) — light/dark mode
 - Sistema de autenticação
 - Login e cadastro com feedback de erro via toast animado
 - Controle de sessão
@@ -143,6 +143,7 @@ O projeto segue:
     │   │   ├── ui/                    # Design system base
     │   │   │   └── ...
     │   │   └── ...
+    │   ├── context/                   # Contextos React de navegação e estado compartilhado entre telas
     │   ├── controllers/               # Hooks de lógica de tela (estado + handlers)
     │   │   └── ...                   
     │   │

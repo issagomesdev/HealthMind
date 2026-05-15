@@ -7,20 +7,20 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useFocusEffect, useRouter } from "expo-router";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Ionicons } from "@expo/vector-icons";
 import { AppText } from "../../components/ui/AppText";
+import { TopBar } from "../../components/navigation/TopBar";
 import { FloatingActionButton } from "../../components/ui/FloatingActionButton";
 import { CommunityGuidelinesCard } from "../../components/community/CommunityGuidelinesCard";
 import { PopularTopicCard } from "../../components/community/PopularTopicCard";
 import { CommunityPostCard } from "../../components/community/CommunityPostCard";
 import { useCommunityController } from "../../controllers/useCommunityController";
+import { useNavigationContext } from "../../context/NavigationContext";
 import { useTheme } from "../../../core/theme";
 
 export function CommunityScreen() {
   const { colors } = useTheme();
   const router = useRouter();
-  const insets = useSafeAreaInsets();
+  const { openMenu } = useNavigationContext();
   const { topics, posts, loading, refreshing, loadData, refresh, likePost } =
     useCommunityController();
 
@@ -32,6 +32,16 @@ export function CommunityScreen() {
 
   const ListHeader = (
     <View className="gap-4 pb-2">
+      {/* Page header */}
+      <View className="gap-1 pt-2 pb-1">
+        <AppText variant="heading1" className="font-bold">
+          Comunidade
+        </AppText>
+        <AppText variant="body" color="muted">
+          Compartilhe experiências e apoie outras pessoas.
+        </AppText>
+      </View>
+
       {/* Guidelines */}
       <CommunityGuidelinesCard />
 
@@ -67,28 +77,7 @@ export function CommunityScreen() {
 
   return (
     <View className="flex-1 bg-background dark:bg-background-dark">
-      {/* Custom header */}
-      <View
-        className="flex-row items-center justify-between px-5 bg-background dark:bg-background-dark"
-        style={{ paddingTop: insets.top + 8, paddingBottom: 12 }}
-      >
-        <AppText variant="heading2" className="font-bold">
-          Comunidade
-        </AppText>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          className="w-9 h-9 rounded-full bg-surface dark:bg-surface-dark items-center justify-center"
-          style={{
-            shadowColor: "#000",
-            shadowOffset: { width: 0, height: 1 },
-            shadowOpacity: 0.06,
-            shadowRadius: 4,
-            elevation: 2,
-          }}
-        >
-          <Ionicons name="search-outline" size={20} color={colors.subtle} />
-        </TouchableOpacity>
-      </View>
+      <TopBar title="HealthMind" onMenuPress={openMenu} />
 
       {loading && posts.length === 0 ? (
         <View className="flex-1 items-center justify-center">
