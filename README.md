@@ -1,4 +1,4 @@
-# HealthMind — Aplicativo de Apoio à Saúde Mental
+# HealthMind — Conectando pacientes e profissionais de saúde mental
 
 ![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white)
 ![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
@@ -16,23 +16,24 @@
   <a href="#getting-started">Getting Started</a>
 </p>
 
-O **HealthMind** é um aplicativo mobile de apoio à saúde mental desenvolvido para auxiliar usuários em sua jornada emocional, funcionando como suporte complementar ao acompanhamento psicológico.
+O **HealthMind** é uma plataforma mobile de saúde mental que utiliza tecnologia para conectar pacientes e profissionais, promovendo cuidado emocional, bem-estar e acompanhamento psicológico de forma acessível, acolhedora e moderna.
 
-O app combina:
+O aplicativo combina funcionalidades como:
 - monitoramento emocional
 - diário emocional
 - atividades terapêuticas
 - respiração guiada
-- comunidade
+- comunidade de apoio
 - acompanhamento de consultas
 - análise comportamental
 - recomendações inteligentes
 
-Tudo isso através de uma experiência acolhedora, moderna e emocionalmente segura.
+Tudo isso por meio de uma experiência intuitiva, humanizada e emocionalmente segura.
 
 <h2 id="sobre">📌 Sobre</h2>
 
 O HealthMind foi idealizado como uma plataforma focada em continuidade terapêutica, incentivando:
+
 - autocuidado
 - consciência emocional
 - constância em hábitos saudáveis
@@ -50,29 +51,25 @@ Cada perfil possui dashboard e funcionalidades específicas.
 
 - Splash Screen adaptável para light/dark mode
 - Sistema de autenticação
-- Login e cadastro
+- Login e cadastro com feedback de erro via toast animado
 - Controle de sessão
 - Tema global (light/dark/system)
-- BottomTabBar dinâmica por role
-- SideMenu/Drawer
 - Dashboard do paciente
 - Dashboard do profissional
 - Check-in emocional
 - Diário emocional
-- Upload de imagem no diário
 - Biblioteca de conteúdos
 - Atividades terapêuticas
 - Respiração guiada interativa
 - Comunidade com feed
 - Sistema de notificações
-- Perfil/configurações
+- Configurações de perfil
 - Controle de privacidade do diário
 - Sistema de planos Premium
 - Central de ajuda
 - Encontrar profissional
 - Fluxo de agendamento de consultas
 - Calendário de consultas
-- Arquitetura preparada para API real
 
 ### 🔄 Planejado
 
@@ -90,18 +87,22 @@ Cada perfil possui dashboard e funcionalidades específicas.
 
 <h2 id="tecnologias">🧪 Tecnologias</h2>
 
-- Expo
-- React Native
-- TypeScript
-- NativeWind
-- Expo Router
-- React Navigation
-- React Native Reanimated
-- Expo Image Picker
-- React Context API
-- JSON Mock Data
-- Clean Architecture
-- SOLID Principles
+| Tecnologia | Versão | Uso |
+|---|---|---|
+| React Native | 0.81.5 | Framework mobile multiplataforma |
+| Expo | ~54.0 | Toolchain e build |
+| TypeScript | ~5.9 | Tipagem estática |
+| Expo Router | ~6.0 | Navegação file-based |
+| NativeWind | ^4.2 | TailwindCSS para React Native |
+| React | 19.1 | Biblioteca de UI |
+| React Native Reanimated | ~4.1 | Animações de alta performance |
+| React Native `Animated` API | nativa | Animações da barra de progresso e toasts |
+| Expo Image Picker | ~17.0 | Seleção de imagens da galeria |
+| Expo Linear Gradient | ~15.0 | Gradientes nos botões |
+| Expo Secure Store | ~15.0 | Armazenamento seguro do token JWT |
+| AsyncStorage | ^2.2 | Persistência leve de dados locais |
+| React Context API | nativa | Estado global (auth, tema) |
+| ViaCEP | — | Autocomplete de endereço por CEP |
 
 <h2 id="arquitetura">🏗️ Arquitetura</h2>
 
@@ -114,47 +115,47 @@ O projeto segue:
 <h2 id="estrutura">📁 Estrutura</h2>
 
     src/
-    ├── app/
-    │   ├── routes/
-    │   └── navigation/
-    │
-    ├── assets/
-    │
-    ├── core/
+    ├── assets/                        # Assets do projeto
+    ├── config/
+    │   └── env.ts                     # Confguração de URL da API por ambiente (dev/prod)
+    ├── core/                          # Núcleo da aplicação — agnóstico de UI
+    │   ├── auth/
+    │   │   └── AuthContext.tsx        # Contexto global de autenticação e sessão
     │   ├── constants/
+    │   │   ├── api.ts                 # Rotas da API
+    │   │   ├── navigation.ts          # Nomes das rotas de navegação
+    │   │   └── routes.ts              # Constantes de paths
     │   ├── theme/
-    │   │   ├── light.ts
-    │   │   ├── dark.ts
-    │   │   ├── ThemeContext.tsx
+    │   │   ├── colors.ts              # Paleta de cores (light/dark)
+    │   │   ├── spacing.ts             # Escala de espaçamento
+    │   │   ├── ThemeContext.tsx        # Contexto e hook useTheme()
     │   │   └── index.ts
-    │   │
-    │   ├── types/
-    │   └── utils/
-    │
+    │   └── types/
+    │       └── index.ts               # Tipos globais (UserRole, GenderType, AuthResult…)
     ├── data/
-    │   │
-    │   └── repositories/
-    │
-    ├── domain/
+    │   └── fake/                      # JSONs de dados mockados para desenvolvimento
+    ├── domain/                        # Camada de domínio — regras de negócio puras
     │   ├── entities/
     │   ├── repositories/
-    │   └── usecases/
-    │
-    ├── presentation/
-    │   ├── screens/
+    │   └── ...
+    ├── presentation/                  # Camada de UI
+    │   ├── components/                # Componentes reutilizáveis por domínio
+    │   │   ├── ui/                    # Design system base
+    │   │   │   └── ...
+    │   │   └── ...
+    │   ├── controllers/               # Hooks de lógica de tela (estado + handlers)
+    │   │   └── ...                   
     │   │
-    │   ├── controllers/
-    │   │
-    │   └── components/
-    │       ├── ui/
-    │       ├── layout/
-    │       ├── forms/
-    │       ├── navigation/
-    │       ├── mood/
-    │
-    ├── services/
-    │
-    └── hooks/
+    │   └── screens/                   # Telas organizadas por feature
+    │       ├── auth/                  # Login e cadastro
+    │       ├── onboarding/
+    │       │   ├── public/            # Onboarding introdutório (pré-login)
+    │       │   └── profile/           # Onboarding de dados do paciente e profissional
+    │       └── ...
+    └── services/                      # Acesso a dados — API real ou mock
+        ├── auth/                      # AuthService + gerenciamento de token
+        ├── api/                       # ApiService base (fetch com headers JWT)
+        └── ...
 
 <h2 id="funcionalidades">✨ Funcionalidades</h2>
 
@@ -256,21 +257,16 @@ Exemplos:
 
 ### Instalação
 
-Clone o projeto:
+```bash
+git clone https://github.com/issagomesdev/HealthMind
+cd HealthMind
 
-    npm install
+npm install
+```
 
 ### Rodando o projeto
 
     npx expo start
-
-### Rodando Android
-
-    npx expo run:android
-
-### Rodando iOS
-
-    npx expo run:ios
 
 ### Configuração do NativeWind
 
@@ -285,13 +281,41 @@ Gerar config:
 
 ### Ambiente
 
-Criar arquivo:
+Copie o arquivo de exemplo e preencha as variáveis:
 
-    .env
+    cp .env.example .env
 
-Exemplo:
+Variáveis disponíveis:
 
-    EXPO_PUBLIC_API_URL=http://localhost:8080
+    # Ambiente: development | production
+    EXPO_PUBLIC_APP_ENV=development
+
+    # URL da API em desenvolvimento
+    EXPO_PUBLIC_API_URL_DEV=http://SEU_IP_LOCAL:3333
+
+    # URL da API em produção
+    EXPO_PUBLIC_API_URL_PROD=https://api.healthmind.com
+
+#### Como trocar de ambiente
+
+Para desenvolvimento local, mantenha `EXPO_PUBLIC_APP_ENV=development`.
+Para apontar para a API de produção, altere para `EXPO_PUBLIC_APP_ENV=production`.
+A seleção da URL é feita automaticamente em `src/config/env.ts`.
+
+#### Como configurar o IP local (desenvolvimento no celular/emulador)
+
+Nunca use `localhost` no React Native, dentro de um dispositivo físico ou emulador,
+`localhost` aponta para o próprio aparelho, não para a sua máquina.
+
+**Dispositivo físico (Expo Go):** use o IP da sua máquina na rede Wi-Fi:
+
+    # Windows
+    ipconfig | findstr "IPv4"
+
+    # Mac/Linux
+    ifconfig | grep "inet "
+
+    Exemplo: EXPO_PUBLIC_API_URL_DEV=http://192.168.1.100:3333
 
 <h2 id="design-system">🎨 Design System</h2>
 
@@ -322,6 +346,10 @@ Exemplo:
 - Muito espaço negativo
 - UI emocionalmente confortável
 
+<h2 id="related-projects">🔗 Related Projects</h2>
+
+🧱 Repositório da API backend disponível <a href="https://github.com/issagomesdev/HealthMind-api">aqui</a>.
+
 <h2 id="licenca">📄 Licença</h2>
 
-Projeto desenvolvido para fins acadêmicos, estudos e evolução do produto HealthMind.
+Projeto desenvolvido para fins acadêmicos, demonstração técnica e evolução da plataforma HealthMind.

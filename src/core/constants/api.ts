@@ -1,14 +1,27 @@
-export const API_BASE = "https://healthmind-latest.onrender.com/api/v1";
+import { env } from '../../config/env'
+
+export const API_BASE = env.API_BASE_URL
 
 export const API_ROUTES = {
   auth: {
     login: `${API_BASE}/auth/login`,
-    register: `${API_BASE}/auth/cadastro`,
+    register: `${API_BASE}/auth/register`,
+    me: `${API_BASE}/auth/me`,
+    logout: `${API_BASE}/auth/logout`,
   },
-} as const;
+  users: {
+    me: `${API_BASE}/users/me`,
+    password: `${API_BASE}/users/me/password`,
+  },
+  patients: {
+    me: `${API_BASE}/patients/me`,
+  },
+  professionals: {
+    me: `${API_BASE}/professionals/me`,
+  },
+} as const
 
-// Backend role values
 export const ROLE_MAP = {
-  patient: "PACIENTE",
-  professional: "PROFISSIONAL",
-} as const;
+  patient: 'patient',
+  professional: 'professional',
+} as const

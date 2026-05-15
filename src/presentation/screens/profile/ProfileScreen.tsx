@@ -35,7 +35,7 @@ export function ProfileScreen() {
     email: user?.email ?? "",
     badge: "Mindful",
     level: 1,
-    plan: user?.plan === "premium" ? "PREMIUM" : "ESSENTIAL",
+    plan: "ESSENTIAL" as const,
   };
 
   const SETTINGS = [

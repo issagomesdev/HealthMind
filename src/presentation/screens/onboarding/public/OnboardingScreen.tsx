@@ -10,16 +10,16 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
-import { AppText } from "../../components/ui/AppText";
-import { AppButton } from "../../components/ui/AppButton";
-import { useTheme } from "../../../core/theme";
+import { AppText } from "../../../components/ui/AppText";
+import { AppButton } from "../../../components/ui/AppButton";
+import { useTheme } from "../../../../core/theme";
 
 const { width, height } = Dimensions.get("window");
 
 const IMAGES = [
-  require("../../../assets/images/onboarding/1.png"),
-  require("../../../assets/images/onboarding/2.png"),
-  require("../../../assets/images/onboarding/3.png"),
+  require("../../../../assets/images/onboarding/1.png"),
+  require("../../../../assets/images/onboarding/2.png"),
+  require("../../../../assets/images/onboarding/3.png"),
 ];
 
 const features = [
@@ -301,7 +301,7 @@ export function OnboardingScreen({ onFinish, onLogin }: OnboardingScreenProps) {
             )}
 
             <AppButton
-              label={activeIndex === 0 ? "Começar" : "Continuar →"}
+              label={activeIndex === 0 ? "Começar" : "Continuar"}
               onPress={goNext}
               variant="gradient"
               fullWidth={false}

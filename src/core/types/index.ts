@@ -2,19 +2,62 @@ export type UserRole = "patient" | "professional";
 export type PlanType = "free" | "premium";
 export type ThemeMode = "light" | "dark" | "system";
 
+export type GenderType = "female" | "male" | "non_binary" | "other" | "prefer_not_to_say";
+export type RegisterType = "CRP" | "CRM" | "OTHER";
+
+export interface PatientProfile {
+  id: string;
+  user_id: string;
+  birth_date: string | null;
+  gender: GenderType | null;
+  cpf: string | null;
+  phone: string | null;
+  main_complaint: string | null;
+  therapy_goals: string | null;
+  has_previous_therapy: boolean | null;
+  profile_completed: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ProfessionalProfile {
+  id: string;
+  user_id: string;
+  full_name: string | null;
+  cpf: string | null;
+  phone: string | null;
+  birth_date: string | null;
+  gender: GenderType | null;
+  professional_register: string | null;
+  register_type: RegisterType | null;
+  register_state: string | null;
+  specialty: string | null;
+  bio: string | null;
+  experience_years: number | null;
+  profile_completed: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface User {
   id: string;
   name: string;
   email: string;
-  password: string;
+  username: string;
   role: UserRole;
-  avatar?: string | null;
-  plan: PlanType;
-  createdAt: string;
+  avatar_url: string | null;
+  profile_completed: boolean;
+  created_at: string;
+}
+
+export interface AuthResult {
+  user: User;
+  profile: PatientProfile | ProfessionalProfile | null;
 }
 
 export interface AuthState {
   user: User | null;
+  profile: PatientProfile | ProfessionalProfile | null;
   isAuthenticated: boolean;
   isLoading: boolean;
 }
@@ -29,7 +72,6 @@ export interface RegisterData {
   email: string;
   password: string;
   role: UserRole;
-  telefone: string;
 }
 
 export interface AppError {

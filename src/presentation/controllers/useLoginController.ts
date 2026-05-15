@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { useAuth } from "../../core/auth/AuthContext";
+import { AuthResult } from "../../core/types";
 
 interface LoginErrors {
   email?: string;
@@ -8,7 +9,7 @@ interface LoginErrors {
 }
 
 interface UseLoginControllerOptions {
-  onSuccess: () => void;
+  onSuccess: (result: AuthResult) => void;
 }
 
 export function useLoginController({ onSuccess }: UseLoginControllerOptions) {
@@ -33,8 +34,8 @@ export function useLoginController({ onSuccess }: UseLoginControllerOptions) {
     setErrors({});
 
     try {
-      await login({ email: email.trim(), password });
-      onSuccess();
+      const result = await login({ email: email.trim(), password });
+      onSuccess(result);
     } catch (err) {
       setErrors({
         general: err instanceof Error ? err.message : "Erro ao entrar. Tente novamente.",

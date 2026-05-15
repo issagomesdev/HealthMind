@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "expo-router";
-import { OnboardingScreen } from "../src/presentation/screens/onboarding/OnboardingScreen";
+import { OnboardingScreen } from "../src/presentation/screens/onboarding/public/OnboardingScreen";
 
 export default function OnboardingPage() {
   const router = useRouter();

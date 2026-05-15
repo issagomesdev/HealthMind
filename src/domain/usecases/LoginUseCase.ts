@@ -1,10 +1,10 @@
 import { IAuthRepository } from "../repositories/IAuthRepository";
-import { LoginCredentials, User } from "../../core/types";
+import { LoginCredentials, AuthResult } from "../../core/types";
 
 export class LoginUseCase {
   constructor(private readonly authRepository: IAuthRepository) {}
 
-  async execute(credentials: LoginCredentials): Promise<User> {
+  async execute(credentials: LoginCredentials): Promise<AuthResult> {
     if (!credentials.email || !credentials.password) {
       throw new Error("E-mail e senha são obrigatórios.");
     }

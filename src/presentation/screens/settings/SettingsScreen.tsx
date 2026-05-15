@@ -50,10 +50,7 @@ export function SettingsScreen() {
     {
       icon: "star-outline",
       title: "Plano atual",
-      description:
-        user?.plan === "premium"
-          ? "Premium · Renova em 15 dias"
-          : "Essencial · Upgrade disponível",
+      description: "Essencial · Upgrade disponível",
       route: ROUTES.PROFILE_SUBSCRIPTION,
     },
     {
@@ -85,8 +82,7 @@ export function SettingsScreen() {
                 </AppText>
                 <View className="self-start px-2.5 py-1 rounded-full mt-1 bg-secondary/15 dark:bg-secondary-dark/15">
                   <AppText variant="caption" color="secondary" className="font-semibold">
-                    {user?.role === "patient" ? "Paciente" : "Profissional"} ·{" "}
-                    {user?.plan === "premium" ? "Premium" : "Free"}
+                    {user?.role === "patient" ? "Paciente" : "Profissional"}
                   </AppText>
                 </View>
               </View>

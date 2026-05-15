@@ -1,4 +1,6 @@
-const BASE_URL = process.env.EXPO_PUBLIC_API_URL ?? "";
+import { env } from '../../config/env'
+
+const BASE_URL = env.API_BASE_URL
 
 interface RequestOptions {
   method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";

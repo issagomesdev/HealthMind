@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, TouchableOpacity, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { AppText } from "../../components/ui/AppText";
@@ -8,18 +8,23 @@ import { ScreenContainer } from "../../components/layout/ScreenContainer";
 import { useRegisterController } from "../../controllers/useRegisterController";
 import { UserRole } from "../../../core/types";
 
+import { AuthResult } from "../../../core/types";
+import { ErrorToast, useErrorToast } from "../../components/ui/ErrorToast";
+
 interface RegisterScreenProps {
-  onRegisterSuccess: () => void;
+  onRegisterSuccess: (result: AuthResult) => void;
   onNavigateToLogin: () => void;
 }
 
 export function RegisterScreen({ onRegisterSuccess, onNavigateToLogin }: RegisterScreenProps) {
   const {
-    name, email, telefone, password, confirmPassword, role,
+    name, email, password, confirmPassword, role,
     errors, loading,
-    setName, setEmail, setTelefone, setPassword, setConfirmPassword, setRole,
+    setName, setEmail, setPassword, setConfirmPassword, setRole,
     handleRegister,
   } = useRegisterController({ onSuccess: onRegisterSuccess });
+  const { error: toastMessage, showError } = useErrorToast();
+  useEffect(() => { if (errors.general) showError(errors.general); }, [errors.general]);
 
   return (
     <ScreenContainer avoidKeyboard>
@@ -47,39 +52,50 @@ export function RegisterScreen({ onRegisterSuccess, onNavigateToLogin }: Registe
         </View>
 
         {/* Tipo de usuário */}
-        <View className="flex-row gap-2.5 p-1">
-          {(["patient", "professional"] as UserRole[]).map((r) => (
-            <TouchableOpacity
-              key={r}
-              onPress={() => setRole(r)}
-              activeOpacity={0.8}
-              className={`flex-1 h-[46px] rounded-full items-center justify-center border-2 ${role === r
-                ? "bg-secondary dark:bg-secondary-dark border-secondary dark:border-secondary-dark"
-                : "bg-transparent border-muted dark:border-muted-dark"
+        <View className="flex-row gap-3">
+          {([
+            { role: "patient", label: "SOU PACIENTE", icon: "person-outline" },
+            { role: "professional", label: "SOU PROFISSIONAL", icon: "medical-outline" },
+          ] as { role: UserRole; label: string; icon: keyof typeof Ionicons.glyphMap }[]).map((item) => {
+            const selected = role === item.role;
+            const iconName = selected
+              ? (item.icon.replace("-outline", "") as keyof typeof Ionicons.glyphMap)
+              : item.icon;
+            return (
+              <TouchableOpacity
+                key={item.role}
+                onPress={() => setRole(item.role)}
+                activeOpacity={0.8}
+                style={{ flex: 1 }}
+                className={`rounded-2xl py-5 items-center gap-2.5 border-2 ${
+                  selected
+                    ? "bg-transparent border-secondary dark:border-secondary-dark"
+                    : "bg-surface dark:bg-surface-dark border-transparent"
                 }`}
-            >
-              <AppText
-                variant="bodyMedium"
-                className={`font-semibold ${role === r ? "text-white" : "text-subtle dark:text-subtle-dark"
-                  }`}
               >
-                {r === "patient" ? "PACIENTE" : "PROFISSIONAL"}
-              </AppText>
-            </TouchableOpacity>
-          ))}
+                <Ionicons
+                  name={iconName}
+                  size={28}
+                  color={selected ? "#2A9D8F" : "#9CA3AF"}
+                />
+                <AppText
+                  variant="small"
+                  className={`text-center ${
+                    selected
+                      ? "text-secondary dark:text-secondary-dark"
+                      : "text-content dark:text-content-dark"
+                  }`}
+                  style={{ fontWeight: "bold" }}
+                >
+                  {item.label}
+                </AppText>
+              </TouchableOpacity>
+            );
+          })}
         </View>
 
         {/* Formulário */}
         <View className="gap-4">
-          {errors.general && (
-            <View className="flex-row items-center gap-2 p-3.5 rounded-xl border border-error/30 bg-error/10 dark:border-error-dark/30 dark:bg-error-dark/10">
-              <Ionicons name="alert-circle-outline" size={18} color="#EF4444" />
-              <AppText variant="small" color="error" className="flex-1">
-                {errors.general}
-              </AppText>
-            </View>
-          )}
-
           <AppInput
             label="Nome completo"
             placeholder="Ex: João Silva"
@@ -99,16 +115,6 @@ export function RegisterScreen({ onRegisterSuccess, onNavigateToLogin }: Registe
             keyboardType="email-address"
             autoComplete="email"
             error={errors.email}
-          />
-
-          <AppInput
-            label="Telefone"
-            placeholder="(11) 99999-9999"
-            value={telefone}
-            onChangeText={setTelefone}
-            icon="call-outline"
-            keyboardType="phone-pad"
-            error={errors.phone}
           />
 
           <AppInput
@@ -132,7 +138,7 @@ export function RegisterScreen({ onRegisterSuccess, onNavigateToLogin }: Registe
           />
 
           <AppButton
-            label="Criar conta →"
+            label="Criar conta"
             onPress={handleRegister}
             loading={loading}
             variant="secondary"
@@ -144,6 +150,7 @@ export function RegisterScreen({ onRegisterSuccess, onNavigateToLogin }: Registe
           <AppText variant="bodyMedium" color="secondary">Já tenho uma conta</AppText>
         </TouchableOpacity>
       </ScrollView>
+      <ErrorToast message={toastMessage} />
     </ScreenContainer>
   );
 }

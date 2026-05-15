@@ -1,15 +1,17 @@
-import React from "react";
-import { View, Image, TouchableOpacity, ScrollView } from "react-native";
+import React, { useEffect } from "react";
+import { View, TouchableOpacity, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { Ionicons } from "@expo/vector-icons";
 import { AppText } from "../../components/ui/AppText";
 import { AppInput } from "../../components/ui/AppInput";
 import { AppButton } from "../../components/ui/AppButton";
 import { ScreenContainer } from "../../components/layout/ScreenContainer";
 import { useLoginController } from "../../controllers/useLoginController";
+import { ErrorToast, useErrorToast } from "../../components/ui/ErrorToast";
+
+import { AuthResult } from "../../../core/types";
 
 interface LoginScreenProps {
-  onLoginSuccess: () => void;
+  onLoginSuccess: (result: AuthResult) => void;
   onNavigateToRegister: () => void;
   onForgotPassword: () => void;
 }
@@ -17,6 +19,8 @@ interface LoginScreenProps {
 export function LoginScreen({ onLoginSuccess, onNavigateToRegister, onForgotPassword }: LoginScreenProps) {
   const { email, password, errors, loading, setEmail, setPassword, handleLogin } =
     useLoginController({ onSuccess: onLoginSuccess });
+  const { error: toastMessage, showError } = useErrorToast();
+  useEffect(() => { if (errors.general) showError(errors.general); }, [errors.general]);
 
   return (
     <ScreenContainer avoidKeyboard>
@@ -42,13 +46,6 @@ export function LoginScreen({ onLoginSuccess, onNavigateToRegister, onForgotPass
         </View>
 
         <View className="gap-5">
-          {errors.general && (
-            <View className="flex-row items-center gap-2 p-3.5 rounded-xl border border-error/30 bg-error/10 dark:border-error-dark/30 dark:bg-error-dark/10">
-              <Ionicons name="alert-circle-outline" size={18} color="#EF4444" />
-              <AppText variant="small" color="error">{errors.general}</AppText>
-            </View>
-          )}
-
           <AppInput
             label="E-MAIL"
             placeholder="seu@email.com"
@@ -111,6 +108,7 @@ export function LoginScreen({ onLoginSuccess, onNavigateToRegister, onForgotPass
           </TouchableOpacity>
         </View>
       </ScrollView>
+      <ErrorToast message={toastMessage} />
     </ScreenContainer>
   );
 }

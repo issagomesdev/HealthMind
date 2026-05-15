@@ -31,6 +31,11 @@ export const ROUTES = {
   // ── Auth ─────────────────────────────────────────────────────────────────────
   LOGIN:                  "/(auth)/login",
   REGISTER:               "/(auth)/register",
+
+  // ── Onboarding de perfil ─────────────────────────────────────────────────────
+  PATIENT_ONBOARDING:     "/(protected)/patient-onboarding",
+  PROFESSIONAL_ONBOARDING: "/(protected)/professional-onboarding",
+  ONBOARDING_COMPLETE:    "/(protected)/onboarding-complete",
 } as const;
 
 export type AppRoute = (typeof ROUTES)[keyof typeof ROUTES];

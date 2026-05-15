@@ -18,7 +18,7 @@ export function SplashScreen({ onFinish }: SplashScreenProps) {
 
   return (
     <LinearGradient
-      colors={isDark ? ["#0F172A", "#1B263B"] : ["#E8F7F5", "#F2F4F7"]}
+      colors={["#E8F7F5", "#F2F4F7"]}
       className="flex-1 items-center justify-center px-8"
     >
       <View className="items-center gap-4">
@@ -31,11 +31,11 @@ export function SplashScreen({ onFinish }: SplashScreenProps) {
         </View>
       </View>
 
-      <View className="absolute bottom-14 flex-row gap-2 items-center">
+      {/* <View className="absolute bottom-14 flex-row gap-2 items-center">
         <View className="h-2 w-6 rounded-full bg-secondary dark:bg-secondary-dark" />
         <View className="h-2 w-2 rounded-full bg-muted dark:bg-muted-dark" />
         <View className="h-2 w-2 rounded-full bg-muted dark:bg-muted-dark" />
-      </View>
+      </View> */}
     </LinearGradient>
   );
 }

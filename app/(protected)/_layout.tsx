@@ -28,7 +28,10 @@ export default function ProtectedLayout() {
       <Stack.Screen name="appointments"          options={{ animation: "slide_from_right" }} />
       <Stack.Screen name="breathing"             options={{ animation: "fade" }} />
       <Stack.Screen name="notifications"         options={{ animation: "slide_from_right" }} />
-      <Stack.Screen name="mood-insights"         options={{ animation: "slide_from_right" }} />
+      <Stack.Screen name="mood-insights"          options={{ animation: "slide_from_right" }} />
+      <Stack.Screen name="patient-onboarding"     options={{ animation: "slide_from_right", gestureEnabled: false }} />
+      <Stack.Screen name="professional-onboarding" options={{ animation: "slide_from_right", gestureEnabled: false }} />
+      <Stack.Screen name="onboarding-complete"    options={{ animation: "fade", gestureEnabled: false }} />
     </Stack>
   );
 }

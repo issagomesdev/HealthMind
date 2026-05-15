@@ -5,9 +5,10 @@ import { useTheme } from "../../../core/theme";
 
 interface AppTextInputProps extends Omit<TextInputProps, "style"> {
   label?: string;
+  error?: string;
 }
 
-export function AppTextInput({ label, ...rest }: AppTextInputProps) {
+export function AppTextInput({ label, error, ...rest }: AppTextInputProps) {
   const { colors, isDark } = useTheme();
 
   return (
@@ -22,7 +23,7 @@ export function AppTextInput({ label, ...rest }: AppTextInputProps) {
         style={{
           height: 52,
           borderWidth: 1.5,
-          borderColor: isDark ? colors.border : "#E5E7EB",
+          borderColor: error ? "#EF4444" : isDark ? colors.border : "#E5E7EB",
           borderRadius: 14,
           paddingHorizontal: 16,
           fontSize: 15,
@@ -31,6 +32,9 @@ export function AppTextInput({ label, ...rest }: AppTextInputProps) {
         }}
         {...rest}
       />
+      {error && (
+        <AppText variant="caption" color="error">{error}</AppText>
+      )}
     </View>
   );
 }

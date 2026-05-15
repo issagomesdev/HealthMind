@@ -1,39 +1,33 @@
 import { useState, useCallback } from "react";
 import { useAuth } from "../../core/auth/AuthContext";
-import { UserRole } from "../../core/types";
+import { AuthResult, UserRole } from "../../core/types";
 
 interface RegisterErrors {
   name?: string;
   email?: string;
-  phone?: string;
   password?: string;
   confirmPassword?: string;
   general?: string;
 }
 
 interface UseRegisterControllerOptions {
-  onSuccess: () => void;
+  onSuccess: (result: AuthResult) => void;
 }
 
 export function useRegisterController({ onSuccess }: UseRegisterControllerOptions) {
   const { register } = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [telefone, setTelefone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState<UserRole>("patient");
   const [errors, setErrors] = useState<RegisterErrors>({});
   const [loading, setLoading] = useState(false);
 
-  // Recebe os valores atuais como parâmetros para evitar stale closure
-  const validate = (
-    n: string, e: string, t: string, p: string, cp: string
-  ): RegisterErrors => {
+  const validate = (n: string, e: string, p: string, cp: string): RegisterErrors => {
     const next: RegisterErrors = {};
     if (!n.trim()) next.name = "Informe seu nome.";
     if (!e.trim()) next.email = "Informe seu e-mail.";
-    if (!t.trim()) next.phone = "Informe seu telefone.";
     if (!p) next.password = "Informe uma senha.";
     else if (p.length < 8) next.password = "A senha deve ter no mínimo 8 caracteres.";
     if (p !== cp) next.confirmPassword = "As senhas não coincidem.";
@@ -41,7 +35,7 @@ export function useRegisterController({ onSuccess }: UseRegisterControllerOption
   };
 
   const handleRegister = useCallback(async () => {
-    const currentErrors = validate(name, email, telefone, password, confirmPassword);
+    const currentErrors = validate(name, email, password, confirmPassword);
     if (Object.keys(currentErrors).length > 0) {
       setErrors(currentErrors);
       return;
@@ -51,15 +45,13 @@ export function useRegisterController({ onSuccess }: UseRegisterControllerOption
     setErrors({});
 
     try {
-      // Chama apenas o context.register — ele já aciona o AuthService
-      await register({
+      const result = await register({
         name: name.trim(),
-        email: email.trim(),
+        email: email.trim().toLowerCase(),
         password,
         role,
-        telefone: telefone.trim(),
       });
-      onSuccess();
+      onSuccess(result);
     } catch (err) {
       setErrors({
         general: err instanceof Error ? err.message : "Erro ao cadastrar. Tente novamente.",
@@ -67,12 +59,12 @@ export function useRegisterController({ onSuccess }: UseRegisterControllerOption
     } finally {
       setLoading(false);
     }
-  }, [name, email, telefone, password, confirmPassword, role, register, onSuccess]);
+  }, [name, email, password, confirmPassword, role, register, onSuccess]);
 
   return {
-    name, email, telefone, password, confirmPassword, role,
+    name, email, password, confirmPassword, role,
     errors, loading,
-    setName, setEmail, setTelefone, setPassword, setConfirmPassword, setRole,
+    setName, setEmail, setPassword, setConfirmPassword, setRole,
     handleRegister,
   };
 }

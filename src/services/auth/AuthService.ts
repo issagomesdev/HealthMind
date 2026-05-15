@@ -1,116 +1,124 @@
-import * as SecureStore from "expo-secure-store";
-import { LoginCredentials, RegisterData, User, UserRole } from "../../core/types";
+import { LoginCredentials, RegisterData, User, PatientProfile, ProfessionalProfile, AuthResult } from "../../core/types";
 import { IAuthRepository } from "../../domain/repositories/IAuthRepository";
-import { API_ROUTES, ROLE_MAP } from "../../core/constants/api";
+import { API_ROUTES } from "../../core/constants/api";
+import { TokenStorage } from "./token-storage";
 
-const SESSION_KEY = "healthmind_user";
-const TOKEN_KEY = "healthmind_token";
-
-// Estrutura exata retornada pela API
-interface ApiUsuario {
+interface ApiUser {
   id: string;
-  nome: string;
+  name: string;
   email: string;
-  telefone: string;
-  role: string;
-  ativo: boolean;
-  criadoEm: string | null;
+  username: string;
+  type: string;
+  avatar_url: string | null;
+  profile_completed: boolean;
+  is_active: boolean;
+  created_at: string;
 }
 
-interface ApiLoginResponse {
+interface ApiAuthResponse {
   token: string;
-  tipo: string;
-  usuario: ApiUsuario;
+  user: ApiUser;
+  profile_completed: boolean;
 }
 
-function parseRole(role: string): UserRole {
-  if (role === "PSICOLOGO" || role === "PROFISSIONAL") return "professional";
-  return "patient";
+interface ApiMeResponse {
+  user: ApiUser;
+  profile: PatientProfile | ProfessionalProfile | null;
+  profile_completed: boolean;
 }
 
-function buildUserFromResponse(data: ApiLoginResponse): User {
+function mapApiUser(apiUser: ApiUser): User {
   return {
-    id: data.usuario.id,
-    name: data.usuario.nome,
-    email: data.usuario.email,
-    password: "",
-    role: parseRole(data.usuario.role),
-    plan: "free",
-    createdAt: data.usuario.criadoEm ?? new Date().toISOString(),
+    id: apiUser.id,
+    name: apiUser.name,
+    email: apiUser.email,
+    username: apiUser.username,
+    role: apiUser.type === "professional" ? "professional" : "patient",
+    avatar_url: apiUser.avatar_url,
+    profile_completed: apiUser.profile_completed,
+    created_at: typeof apiUser.created_at === "string" ? apiUser.created_at : new Date().toISOString(),
   };
 }
 
+async function callApi<T>(url: string, options: RequestInit = {}): Promise<T> {
+  const response = await fetch(url, {
+    ...options,
+    headers: { "Content-Type": "application/json", ...(options.headers as Record<string, string>) },
+  });
+  const raw = await response.text();
+  if (!response.ok) {
+    const err = JSON.parse(raw || "{}");
+    throw new Error(err.message ?? err.error ?? "Erro desconhecido.");
+  }
+  return JSON.parse(raw) as T;
+}
+
+async function fetchMe(token: string): Promise<ApiMeResponse> {
+  return callApi<ApiMeResponse>(API_ROUTES.auth.me, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+}
+
 class AuthServiceImpl implements IAuthRepository {
-  async login(credentials: LoginCredentials): Promise<User> {
-    const body = { email: credentials.email, senha: credentials.password };
-
-    const response = await fetch(API_ROUTES.auth.login, {
+  async login(credentials: LoginCredentials): Promise<AuthResult> {
+    const data = await callApi<ApiAuthResponse>(API_ROUTES.auth.login, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
+      body: JSON.stringify({ email: credentials.email, password: credentials.password }),
     });
-
-    const raw = await response.text();
-
-    if (!response.ok) {
-      const err = JSON.parse(raw || "{}");
-      const message: string =
-        err.mensagem ?? err.erro ?? err.error ?? "E-mail ou senha incorretos.";
-      throw new Error(message);
-    }
-
-    const data: ApiLoginResponse = JSON.parse(raw);
-    await SecureStore.setItemAsync(TOKEN_KEY, data.token);
-
-    const user = buildUserFromResponse(data);
-    await SecureStore.setItemAsync(SESSION_KEY, JSON.stringify(user));
-    return user;
+    await TokenStorage.save(data.token);
+    const meData = await fetchMe(data.token);
+    return { user: mapApiUser(meData.user), profile: meData.profile };
   }
 
-  async register(data: RegisterData): Promise<User> {
-    const body = {
-      nome: data.name,
-      email: data.email,
-      senha: data.password,
-      telefone: data.telefone,
-      role: ROLE_MAP[data.role],
-    };
-
-    const response = await fetch(API_ROUTES.auth.register, {
+  async register(registerData: RegisterData): Promise<AuthResult> {
+    const data = await callApi<ApiAuthResponse>(API_ROUTES.auth.register, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
+      body: JSON.stringify({
+        name: registerData.name,
+        email: registerData.email,
+        password: registerData.password,
+        type: registerData.role,
+      }),
     });
-
-    const raw = await response.text();
-
-    if (!response.ok) {
-      const err = JSON.parse(raw || "{}");
-      const message: string =
-        err.mensagem ?? err.erro ?? err.error ?? "Erro ao criar conta.";
-      throw new Error(message);
-    }
-
-    return this.login({ email: data.email, password: data.password });
+    await TokenStorage.save(data.token);
+    const meData = await fetchMe(data.token);
+    return { user: mapApiUser(meData.user), profile: meData.profile };
   }
 
-  async logout(): Promise<void> {
-    await SecureStore.deleteItemAsync(SESSION_KEY);
-    await SecureStore.deleteItemAsync(TOKEN_KEY);
-  }
-
-  async getCurrentUser(): Promise<User | null> {
+  async getCurrentUser(): Promise<AuthResult | null> {
     try {
-      const stored = await SecureStore.getItemAsync(SESSION_KEY);
-      if (!stored) return null;
-      return JSON.parse(stored) as User;
+      const token = await TokenStorage.get();
+      if (!token) return null;
+      const meData = await fetchMe(token);
+      return { user: mapApiUser(meData.user), profile: meData.profile };
     } catch {
+      await TokenStorage.remove();
       return null;
     }
   }
 
+  async refreshUser(): Promise<AuthResult | null> {
+    return this.getCurrentUser();
+  }
+
+  async logout(): Promise<void> {
+    try {
+      const token = await TokenStorage.get();
+      if (token) {
+        await fetch(API_ROUTES.auth.logout, {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      }
+    } catch {
+      // best effort — clear token regardless
+    } finally {
+      await TokenStorage.remove();
+    }
+  }
+
   async getToken(): Promise<string | null> {
-    return SecureStore.getItemAsync(TOKEN_KEY);
+    return TokenStorage.get();
   }
 }
 
