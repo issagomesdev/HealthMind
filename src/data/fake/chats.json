@@ -1,0 +1,156 @@
+{
+  "messages": [
+    {
+      "id": "m1",
+      "patientId": "p1",
+      "senderId": "prof1",
+      "senderRole": "professional",
+      "text": "Olá Ana, como você está se sentindo após nossa última sessão?",
+      "sentAt": "2026-05-14T09:00:00"
+    },
+    {
+      "id": "m2",
+      "patientId": "p1",
+      "senderId": "u101",
+      "senderRole": "patient",
+      "text": "Oi! Me senti bem melhor depois de praticar a respiração diafragmática. Dormi mais tranquila essa semana.",
+      "sentAt": "2026-05-14T09:15:00"
+    },
+    {
+      "id": "m3",
+      "patientId": "p1",
+      "senderId": "prof1",
+      "senderRole": "professional",
+      "text": "Fico muito feliz em ouvir isso! A prática consistente faz toda a diferença. Lembra de fazer 3x ao dia como combinamos.",
+      "sentAt": "2026-05-14T09:18:00"
+    },
+    {
+      "id": "m4",
+      "patientId": "p1",
+      "senderId": "u101",
+      "senderRole": "patient",
+      "text": "Sim, estou lembrando! Tenho um alarme no celular. Amanhã tenho uma reunião importante no trabalho e estou um pouco nervosa.",
+      "sentAt": "2026-05-14T10:30:00"
+    },
+    {
+      "id": "m5",
+      "patientId": "p1",
+      "senderId": "prof1",
+      "senderRole": "professional",
+      "text": "Normal sentir isso. Pratique a técnica 4-7-8 antes de entrar na sala. Você tem todos os recursos necessários, Ana. Confie em você!",
+      "sentAt": "2026-05-14T10:45:00"
+    },
+    {
+      "id": "m6",
+      "patientId": "p1",
+      "senderId": "u101",
+      "senderRole": "patient",
+      "text": "Obrigada pelo apoio! Me sinto mais confiante sabendo que tenho você. Até terça!",
+      "sentAt": "2026-05-14T11:00:00"
+    },
+    {
+      "id": "m7",
+      "patientId": "p1",
+      "senderId": "prof1",
+      "senderRole": "professional",
+      "text": "Até terça! Qualquer coisa pode me chamar aqui. Cuide-se! 😊",
+      "sentAt": "2026-05-14T11:02:00"
+    },
+    {
+      "id": "m8",
+      "patientId": "p2",
+      "senderId": "prof1",
+      "senderRole": "professional",
+      "text": "Carlos, vi que você registrou no diário que saiu com um amigo ontem. Como foi?",
+      "sentAt": "2026-05-13T14:00:00"
+    },
+    {
+      "id": "m9",
+      "patientId": "p2",
+      "senderId": "u102",
+      "senderRole": "patient",
+      "text": "Foi bom. Meio estranho no começo porque faz tempo que não saía. Mas fiquei feliz que fui.",
+      "sentAt": "2026-05-13T14:30:00"
+    },
+    {
+      "id": "m10",
+      "patientId": "p2",
+      "senderId": "prof1",
+      "senderRole": "professional",
+      "text": "Isso é uma grande conquista, Carlos! Sair mesmo quando não havia vontade mostra sua força. O que achou do café em si?",
+      "sentAt": "2026-05-13T14:35:00"
+    },
+    {
+      "id": "m11",
+      "patientId": "p2",
+      "senderId": "u102",
+      "senderRole": "patient",
+      "text": "Agradável. Conversamos sobre fotografia, minha hobby favorita. Ele me convidou para uma exposição semana que vem.",
+      "sentAt": "2026-05-13T15:00:00"
+    },
+    {
+      "id": "m12",
+      "patientId": "p2",
+      "senderId": "prof1",
+      "senderRole": "professional",
+      "text": "Excelente! Aceite o convite. Atividades prazerosas são parte fundamental do tratamento. Vamos conversar mais sobre isso na sessão de quinta.",
+      "sentAt": "2026-05-13T15:05:00"
+    },
+    {
+      "id": "m13",
+      "patientId": "p2",
+      "senderId": "u102",
+      "senderRole": "patient",
+      "text": "Vou sim. Até quinta então!",
+      "sentAt": "2026-05-13T15:10:00"
+    },
+    {
+      "id": "m14",
+      "patientId": "p6",
+      "senderId": "prof1",
+      "senderRole": "professional",
+      "text": "Paulo, como foi a noite? Conseguiu dormir depois do flashback que você relatou?",
+      "sentAt": "2026-05-14T08:00:00"
+    },
+    {
+      "id": "m15",
+      "patientId": "p6",
+      "senderId": "u106",
+      "senderRole": "patient",
+      "text": "Demorei mas consegui. Usei a técnica de grounding que você me ensinou. Ajudou.",
+      "sentAt": "2026-05-14T08:30:00"
+    },
+    {
+      "id": "m16",
+      "patientId": "p6",
+      "senderId": "prof1",
+      "senderRole": "professional",
+      "text": "Ótimo que usou o grounding! Isso é exatamente o que precisamos — você tem as ferramentas. Vou verificar se conseguimos adiantar nossa sessão de sexta para amanhã, ok?",
+      "sentAt": "2026-05-14T08:35:00"
+    },
+    {
+      "id": "m17",
+      "patientId": "p6",
+      "senderId": "u106",
+      "senderRole": "patient",
+      "text": "Seria ótimo. Me sinto mais vulnerável essa semana.",
+      "sentAt": "2026-05-14T08:45:00"
+    },
+    {
+      "id": "m18",
+      "patientId": "p6",
+      "senderId": "prof1",
+      "senderRole": "professional",
+      "text": "Entendo. Vou confirmar o horário de amanhã às 10h ainda hoje. Qualquer coisa que aconteça até lá, me contate imediatamente. Você não está sozinho nisto.",
+      "sentAt": "2026-05-14T08:50:00"
+    },
+    {
+      "id": "m19",
+      "patientId": "p6",
+      "senderId": "u106",
+      "senderRole": "patient",
+      "text": "Obrigado. Isso me tranquiliza muito.",
+      "sentAt": "2026-05-14T09:00:00"
+    }
+  ]
+}

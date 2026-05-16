@@ -1,0 +1,124 @@
+{
+  "users": [
+    {
+      "id": "ui1",
+      "name": "Lucas Rodrigues",
+      "email": "lucas.rodrigues@email.com",
+      "username": "lucasrodrigues",
+      "avatarUrl": null,
+      "age": 27,
+      "city": "São Paulo",
+      "state": "SP",
+      "categories": ["Ansiedade", "Foco"],
+      "mainComplaint": "Dificuldade de concentração e ansiedade no trabalho"
+    },
+    {
+      "id": "ui2",
+      "name": "Camila Pereira",
+      "email": "camila.pereira@email.com",
+      "username": "camilapereira",
+      "avatarUrl": null,
+      "age": 32,
+      "city": "Rio de Janeiro",
+      "state": "RJ",
+      "categories": ["Depressão", "Autoestima"],
+      "mainComplaint": "Episódios depressivos e baixa autoestima após término de relacionamento"
+    },
+    {
+      "id": "ui3",
+      "name": "Rafael Nascimento",
+      "email": "rafael.nascimento@email.com",
+      "username": "rafaelnascimento",
+      "avatarUrl": null,
+      "age": 40,
+      "city": "Belo Horizonte",
+      "state": "MG",
+      "categories": ["Estresse", "Burnout"],
+      "mainComplaint": "Burnout relacionado à gestão de equipes numerosas"
+    },
+    {
+      "id": "ui4",
+      "name": "Isabela Martins",
+      "email": "isabela.martins@email.com",
+      "username": "isabelamartins",
+      "avatarUrl": null,
+      "age": 23,
+      "city": "Curitiba",
+      "state": "PR",
+      "categories": ["Ansiedade", "Insônia"],
+      "mainComplaint": "Ansiedade antes de provas e insônia frequente durante a faculdade"
+    },
+    {
+      "id": "ui5",
+      "name": "Thiago Cardoso",
+      "email": "thiago.cardoso@email.com",
+      "username": "thiagocardoso",
+      "avatarUrl": null,
+      "age": 36,
+      "city": "Porto Alegre",
+      "state": "RS",
+      "categories": ["Raiva", "Relacionamentos"],
+      "mainComplaint": "Dificuldade em controlar raiva e conflitos frequentes no casamento"
+    },
+    {
+      "id": "ui6",
+      "name": "Patricia Souza",
+      "email": "patricia.souza@email.com",
+      "username": "patriciasouza",
+      "avatarUrl": null,
+      "age": 44,
+      "city": "Salvador",
+      "state": "BA",
+      "categories": ["Luto", "Depressão"],
+      "mainComplaint": "Luto por perda do cônjuge e dificuldade de reconstruir a vida"
+    },
+    {
+      "id": "ui7",
+      "name": "Diego Lima",
+      "email": "diego.lima@email.com",
+      "username": "diegolima",
+      "avatarUrl": null,
+      "age": 29,
+      "city": "Recife",
+      "state": "PE",
+      "categories": ["Trauma", "Ansiedade"],
+      "mainComplaint": "Episódios de pânico relacionados a trauma de acidente"
+    },
+    {
+      "id": "ui8",
+      "name": "Amanda Gonçalves",
+      "email": "amanda.goncalves@email.com",
+      "username": "amandagonçalves",
+      "avatarUrl": null,
+      "age": 26,
+      "city": "Fortaleza",
+      "state": "CE",
+      "categories": ["Autoestima", "Foco"],
+      "mainComplaint": "Síndrome do impostor e dificuldade de reconhecer próprias conquistas"
+    },
+    {
+      "id": "ui9",
+      "name": "Renato Barbosa",
+      "email": "renato.barbosa@email.com",
+      "username": "renatobarbosa",
+      "avatarUrl": null,
+      "age": 51,
+      "city": "Manaus",
+      "state": "AM",
+      "categories": ["Estresse", "Insônia", "Relacionamentos"],
+      "mainComplaint": "Estresse crônico associado a crise no casamento e insônia severa"
+    },
+    {
+      "id": "ui10",
+      "name": "Juliana Castro",
+      "email": "juliana.castro@email.com",
+      "username": "julianacastro",
+      "avatarUrl": null,
+      "age": 33,
+      "city": "Brasília",
+      "state": "DF",
+      "categories": ["Burnout", "Depressão", "Foco"],
+      "mainComplaint": "Esgotamento profissional com sintomas depressivos em servidor público"
+    }
+  ]
+}

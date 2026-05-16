@@ -1,0 +1,56 @@
+{
+  "payments": [
+    {"id": "pay1", "patientId": "p1", "description": "Sessão mensal — Fevereiro/2026", "amount": 200.00, "date": "2026-02-10", "status": "paid", "type": "regular"},
+    {"id": "pay2", "patientId": "p1", "description": "Sessão mensal — Março/2026", "amount": 200.00, "date": "2026-03-10", "status": "paid", "type": "regular"},
+    {"id": "pay3", "patientId": "p1", "description": "Sessão mensal — Abril/2026", "amount": 200.00, "date": "2026-04-10", "status": "paid", "type": "regular"},
+    {"id": "pay4", "patientId": "p1", "description": "Sessão mensal — Maio/2026", "amount": 200.00, "date": "2026-05-10", "status": "pending", "type": "regular"},
+    {"id": "pay5", "patientId": "p2", "description": "Sessão mensal — Janeiro/2026", "amount": 180.00, "date": "2026-01-15", "status": "paid", "type": "regular"},
+    {"id": "pay6", "patientId": "p2", "description": "Sessão mensal — Fevereiro/2026", "amount": 180.00, "date": "2026-02-15", "status": "paid", "type": "regular"},
+    {"id": "pay7", "patientId": "p2", "description": "Sessão mensal — Março/2026", "amount": 180.00, "date": "2026-03-15", "status": "paid", "type": "regular"},
+    {"id": "pay8", "patientId": "p2", "description": "Sessão mensal — Abril/2026", "amount": 180.00, "date": "2026-04-15", "status": "overdue", "type": "regular"},
+    {"id": "pay9", "patientId": "p2", "description": "Sessão mensal — Maio/2026", "amount": 180.00, "date": "2026-05-15", "status": "pending", "type": "regular"},
+    {"id": "pay10", "patientId": "p3", "description": "Sessão mensal — Março/2026", "amount": 220.00, "date": "2026-03-05", "status": "paid", "type": "regular"},
+    {"id": "pay11", "patientId": "p3", "description": "Sessão mensal — Abril/2026", "amount": 220.00, "date": "2026-04-05", "status": "paid", "type": "regular"},
+    {"id": "pay12", "patientId": "p3", "description": "Sessão mensal — Maio/2026", "amount": 220.00, "date": "2026-05-05", "status": "paid", "type": "regular"},
+    {"id": "pay13", "patientId": "p4", "description": "Sessão mensal — Fevereiro/2026", "amount": 160.00, "date": "2026-02-20", "status": "paid", "type": "regular"},
+    {"id": "pay14", "patientId": "p4", "description": "Sessão mensal — Março/2026", "amount": 160.00, "date": "2026-03-20", "status": "paid", "type": "regular"},
+    {"id": "pay15", "patientId": "p4", "description": "Sessão mensal — Abril/2026", "amount": 160.00, "date": "2026-04-20", "status": "paid", "type": "regular"},
+    {"id": "pay16", "patientId": "p4", "description": "Sessão mensal — Maio/2026", "amount": 160.00, "date": "2026-05-20", "status": "pending", "type": "regular"},
+    {"id": "pay17", "patientId": "p5", "description": "Sessão mensal — Janeiro/2026", "amount": 190.00, "date": "2026-01-28", "status": "paid", "type": "regular"},
+    {"id": "pay18", "patientId": "p5", "description": "Sessão mensal — Fevereiro/2026", "amount": 190.00, "date": "2026-02-28", "status": "paid", "type": "regular"},
+    {"id": "pay19", "patientId": "p5", "description": "Sessão mensal — Março/2026", "amount": 190.00, "date": "2026-03-28", "status": "paid", "type": "regular"},
+    {"id": "pay20", "patientId": "p5", "description": "Sessão mensal — Abril/2026", "amount": 190.00, "date": "2026-04-28", "status": "paid", "type": "regular"},
+    {"id": "pay21", "patientId": "p5", "description": "Sessão mensal — Maio/2026", "amount": 190.00, "date": "2026-05-28", "status": "pending", "type": "regular"},
+    {"id": "pay22", "patientId": "p6", "description": "Sessão mensal — Novembro/2025", "amount": 210.00, "date": "2025-11-10", "status": "paid", "type": "regular"},
+    {"id": "pay23", "patientId": "p6", "description": "Sessão mensal — Dezembro/2025", "amount": 210.00, "date": "2025-12-10", "status": "paid", "type": "regular"},
+    {"id": "pay24", "patientId": "p6", "description": "Sessão mensal — Janeiro/2026", "amount": 210.00, "date": "2026-01-10", "status": "paid", "type": "regular"},
+    {"id": "pay25", "patientId": "p6", "description": "Sessão mensal — Fevereiro/2026", "amount": 210.00, "date": "2026-02-10", "status": "paid", "type": "regular"},
+    {"id": "pay26", "patientId": "p6", "description": "Sessão de emergência — Março/2026", "amount": 210.00, "date": "2026-03-15", "status": "paid", "type": "regular"},
+    {"id": "pay27", "patientId": "p6", "description": "Sessão mensal — Abril/2026", "amount": 210.00, "date": "2026-04-10", "status": "paid", "type": "regular"},
+    {"id": "pay28", "patientId": "p6", "description": "Sessão mensal — Maio/2026", "amount": 210.00, "date": "2026-05-10", "status": "pending", "type": "regular"},
+    {"id": "pay29", "patientId": "p7", "description": "Sessão quinzenal — Set/2025", "amount": 250.00, "date": "2025-09-20", "status": "paid", "type": "regular"},
+    {"id": "pay30", "patientId": "p7", "description": "Sessão quinzenal — Out/2025", "amount": 250.00, "date": "2025-10-05", "status": "paid", "type": "regular"},
+    {"id": "pay31", "patientId": "p7", "description": "Sessão quinzenal — Out/2025 (2)", "amount": 250.00, "date": "2025-10-20", "status": "paid", "type": "regular"},
+    {"id": "pay32", "patientId": "p7", "description": "Sessão quinzenal — Nov/2025", "amount": 250.00, "date": "2025-11-05", "status": "paid", "type": "regular"},
+    {"id": "pay33", "patientId": "p7", "description": "Sessão quinzenal — Mai/2026 (crise)", "amount": 250.00, "date": "2026-05-10", "status": "paid", "type": "regular"},
+    {"id": "pay34", "patientId": "p7", "description": "Sessão quinzenal — Mai/2026", "amount": 250.00, "date": "2026-05-14", "status": "pending", "type": "regular"}
+  ],
+  "extraCharges": [
+    {
+      "id": "ec1",
+      "patientId": "p2",
+      "description": "Material psicoeducativo",
+      "amount": 50.00,
+      "reason": "Apostila de técnicas cognitivo-comportamentais personalizada",
+      "requestedAt": "2026-03-20T10:00:00"
+    },
+    {
+      "id": "ec2",
+      "patientId": "p7",
+      "description": "Sessão de emergência fora do horário",
+      "amount": 300.00,
+      "reason": "Atendimento de crise às 22h solicitado pela paciente",
+      "requestedAt": "2026-05-10T22:30:00"
+    }
+  ]
+}

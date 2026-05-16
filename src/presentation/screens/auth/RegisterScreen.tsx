@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, TouchableOpacity, ScrollView } from "react-native";
+import { View, TouchableOpacity, ScrollView, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { AppText } from "../../components/ui/AppText";
 import { AppInput } from "../../components/ui/AppInput";
@@ -67,11 +67,10 @@ export function RegisterScreen({ onRegisterSuccess, onNavigateToLogin }: Registe
                 onPress={() => setRole(item.role)}
                 activeOpacity={0.8}
                 style={{ flex: 1 }}
-                className={`rounded-2xl py-5 items-center gap-2.5 border-2 ${
-                  selected
+                className={`rounded-2xl py-5 items-center gap-2.5 border-2 ${selected
                     ? "bg-transparent border-secondary dark:border-secondary-dark"
                     : "bg-surface dark:bg-surface-dark border-transparent"
-                }`}
+                  }`}
               >
                 <Ionicons
                   name={iconName}
@@ -80,11 +79,10 @@ export function RegisterScreen({ onRegisterSuccess, onNavigateToLogin }: Registe
                 />
                 <AppText
                   variant="small"
-                  className={`text-center ${
-                    selected
+                  className={`text-center ${selected
                       ? "text-secondary dark:text-secondary-dark"
                       : "text-content dark:text-content-dark"
-                  }`}
+                    }`}
                   style={{ fontWeight: "bold" }}
                 >
                   {item.label}

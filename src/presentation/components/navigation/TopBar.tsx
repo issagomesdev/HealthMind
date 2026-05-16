@@ -12,6 +12,7 @@ interface TopBarProps {
   showNotifications?: boolean;
   onMenuPress?: () => void;
   onBackPress?: () => void;
+  rightAction?: React.ReactNode;
 }
 
 export function TopBar({
@@ -20,6 +21,7 @@ export function TopBar({
   showNotifications = true,
   onMenuPress,
   onBackPress,
+  rightAction,
 }: TopBarProps) {
   const { colors } = useTheme();
   const insets = useSafeAreaInsets();
@@ -62,9 +64,9 @@ export function TopBar({
         <View />
       )}
 
-      {/* Right — notification bell with live badge */}
-      <View className="w-10 items-end">
-        {showNotifications && <NotificationBell />}
+      {/* Right — custom action or notification bell */}
+      <View className="items-end" style={{ minWidth: 40 }}>
+        {rightAction ?? (showNotifications && <NotificationBell />)}
       </View>
     </View>
   );

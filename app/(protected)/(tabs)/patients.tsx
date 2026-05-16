@@ -1,12 +1,10 @@
 import React from "react";
-import { ComingSoonScreen } from "../../../src/presentation/screens/placeholder/ComingSoonScreen";
+import { useAuth } from "../../../src/core/auth/AuthContext";
+import { ProfessionalPatientsScreen } from "../../../src/presentation/screens/professional/patients/ProfessionalPatientsScreen";
+import { RestrictedScreen } from "../../../src/presentation/screens/placeholder/RestrictedScreen";
 
 export default function PatientsPage() {
-  return (
-    <ComingSoonScreen
-      title="Pacientes"
-      icon="people-outline"
-      description="Gerencie seus pacientes e acompanhe seu progresso."
-    />
-  );
+  const { user } = useAuth();
+  if (user?.role !== "professional") return <RestrictedScreen />;
+  return <ProfessionalPatientsScreen />;
 }

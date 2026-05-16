@@ -36,6 +36,11 @@ export default function ProtectedLayout() {
       <Stack.Screen name="patient-onboarding"     options={{ animation: "slide_from_right", gestureEnabled: false }} />
       <Stack.Screen name="professional-onboarding" options={{ animation: "slide_from_right", gestureEnabled: false }} />
       <Stack.Screen name="onboarding-complete"    options={{ animation: "fade", gestureEnabled: false }} />
+      <Stack.Screen name="add-patient"            options={{ animation: "slide_from_right" }} />
+      <Stack.Screen name="service-contract"       options={{ animation: "slide_from_right" }} />
+      <Stack.Screen name="patient-details"        options={{ animation: "slide_from_right" }} />
+      <Stack.Screen name="patient-payment"        options={{ animation: "slide_from_right" }} />
+      <Stack.Screen name="patient-chat"           options={{ animation: "slide_from_bottom" }} />
     </Stack>
     </NavigationProvider>
   );
