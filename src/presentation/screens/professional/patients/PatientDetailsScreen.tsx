@@ -20,6 +20,7 @@ import { patientAppointmentService } from "../../../../services/patients/patient
 import { patientObservationService } from "../../../../services/patients/patientObservationService";
 import { ProfessionalPatient } from "../../../../types/patient";
 import { getInitials, getRiskConfig } from "../../../../utils/patient";
+import { ActionQuickCard } from "../../../components/professional/patients/ActionQuickCard";
 
 function formatDate(dateStr: string): string {
   const d = new Date(dateStr);
@@ -454,35 +455,70 @@ function ActivePatientView({
   router: ReturnType<typeof useRouter>;
   onExtraCharge: () => void;
 }) {
-  const [diaryBadge, setDiaryBadge] = React.useState<string | undefined>(undefined);
-  const [appointmentBadge, setAppointmentBadge] = React.useState<string | undefined>(undefined);
-  const [observationBadge, setObservationBadge] = React.useState<string | undefined>(undefined);
+  type BS = { label: string; tone: "neutral" | "success" | "warning" | "danger" | "info" } | null;
+  const [paymentBS,     setPaymentBS]     = React.useState<BS>(null);
+  const [chatBS,        setChatBS]        = React.useState<BS>(null);
+  const [diaryBS,       setDiaryBS]       = React.useState<BS>(null);
+  const [appointmentBS, setAppointmentBS] = React.useState<BS>(null);
+  const [observationBS, setObservationBS] = React.useState<BS>(null);
+  const [extraChargeBS, setExtraChargeBS] = React.useState<BS>(null);
 
   React.useEffect(() => {
     const pid = patient.id;
-    // Diary: count of alert records
+
+    // Pagamentos + Cobrança extra
+    patientsService.getPatientPaymentHistory(pid).then(({ payments, extraCharges }) => {
+      const overdue  = payments.some((p) => p.status === "overdue");
+      const pending  = payments.some((p) => p.status === "pending");
+      if (overdue)       setPaymentBS({ label: "Em atraso", tone: "danger" });
+      else if (pending)  setPaymentBS({ label: "Pendente",  tone: "warning" });
+      else               setPaymentBS({ label: "Em dia",    tone: "success" });
+
+      if (extraCharges.length > 0) {
+        const latest = [...extraCharges].sort((a, b) => b.requestedAt.localeCompare(a.requestedAt))[0];
+        setExtraChargeBS({
+          label: `R$ ${latest.amount.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`,
+          tone: "warning",
+        });
+      }
+    });
+
+    // Chat: mensagens não lidas
+    patientsService.getUnreadMessageCount(pid).then((count) => {
+      if (count > 0) setChatBS({ label: `${count} nova${count > 1 ? "s" : ""}`, tone: "info" });
+    });
+
+    // Diário: alertas ou total de registros
     patientDiaryService.getPatientDiaries(pid).then((diaries) => {
       const alerts = diaries.filter((d) => d.hasAlert).length;
-      if (alerts > 0) setDiaryBadge(`${alerts} alerta${alerts > 1 ? "s" : ""}`);
-      else if (diaries.length > 0) setDiaryBadge(`${diaries.length} registro${diaries.length > 1 ? "s" : ""}`);
+      if (alerts > 0)           setDiaryBS({ label: `${alerts} alerta${alerts > 1 ? "s" : ""}`, tone: "danger" });
+      else if (diaries.length)  setDiaryBS({ label: `${diaries.length} reg.`, tone: "info" });
     });
-    // Appointments: next appointment label
-    patientAppointmentService.getNextAppointment(pid).then((next) => {
+
+    // Agendamentos: próxima data + contagem
+    Promise.all([
+      patientAppointmentService.getNextAppointment(pid),
+      patientAppointmentService.getUpcomingCount(pid),
+    ]).then(([next, count]) => {
       if (!next) return;
       const d = new Date(next.scheduledAt);
-      const today = new Date();
-      const isToday = d.toDateString() === today.toDateString();
-      setAppointmentBadge(
-        isToday
-          ? `Hoje ${d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })}`
-          : d.toLocaleDateString("pt-BR", { day: "2-digit", month: "short" })
-      );
+      const isToday = d.toDateString() === new Date().toDateString();
+      const timeStr = d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+      const label = isToday
+        ? `Hoje ${timeStr}`
+        : count > 1
+          ? `${count} próx.`
+          : d.toLocaleDateString("pt-BR", { day: "2-digit", month: "short" });
+      setAppointmentBS({ label, tone: isToday ? "warning" : "info" });
     });
-    // Observations: count of important/urgent
+
+    // Observações: urgentes/importantes ou total
     patientObservationService.getPatientObservations(pid).then((obs) => {
-      const important = obs.filter((o) => o.priority === "Urgente" || o.isImportant).length;
-      if (important > 0) setObservationBadge(`${important} import.`);
-      else if (obs.length > 0) setObservationBadge(`${obs.length} nota${obs.length > 1 ? "s" : ""}`);
+      const urgent    = obs.filter((o) => o.priority === "Urgente").length;
+      const important = obs.filter((o) => o.isImportant).length;
+      if (urgent)           setObservationBS({ label: `${urgent} urgente${urgent > 1 ? "s" : ""}`, tone: "danger" });
+      else if (important)   setObservationBS({ label: `${important} import.`, tone: "warning" });
+      else if (obs.length)  setObservationBS({ label: `${obs.length} nota${obs.length > 1 ? "s" : ""}`, tone: "neutral" });
     });
   }, [patient.id]);
 
@@ -686,55 +722,64 @@ function ActivePatientView({
           Ações rápidas
         </AppText>
         <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 10 }}>
-          <ActionButton
+          <ActionQuickCard
             icon="card-outline"
-            label="Pagamentos"
+            title="Pagamentos"
             color={colors.secondary}
+            badgeLabel={paymentBS?.label}
+            badgeTone={paymentBS?.tone}
             onPress={() => router.push(`/(protected)/patient-payment?id=${patient.id}` as never)}
           />
-          <ActionButton
+          <ActionQuickCard
             icon="chatbubble-outline"
-            label="Chat"
+            title="Chat"
             color={colors.accent}
+            badgeLabel={chatBS?.label}
+            badgeTone={chatBS?.tone}
             onPress={() => router.push(`/(protected)/patient-chat?id=${patient.id}` as never)}
           />
-          <ActionButton
+          <ActionQuickCard
             icon="book-outline"
-            label="Diário"
+            title="Diário"
             color="#6DBF7B"
-            badge={diaryBadge}
+            badgeLabel={diaryBS?.label}
+            badgeTone={diaryBS?.tone}
             onPress={() =>
               router.push(
                 `/(protected)/patient-diary?id=${patient.id}&name=${encodeURIComponent(patient.name)}` as never
               )
             }
           />
-          <ActionButton
+          <ActionQuickCard
             icon="calendar-outline"
-            label="Agendamentos"
+            title="Agendamentos"
             color="#F59E0B"
-            badge={appointmentBadge}
+            badgeLabel={appointmentBS?.label}
+            badgeTone={appointmentBS?.tone}
             onPress={() =>
               router.push(
                 `/(protected)/patient-appointments?id=${patient.id}&name=${encodeURIComponent(patient.name)}` as never
               )
             }
           />
-          <ActionButton
+          <ActionQuickCard
             icon="pencil-outline"
-            label="Observações"
+            title="Observações"
             color={colors.primary}
-            badge={observationBadge}
+            badgeLabel={observationBS?.label}
+            badgeTone={observationBS?.tone}
             onPress={() =>
               router.push(
                 `/(protected)/patient-observations?id=${patient.id}&name=${encodeURIComponent(patient.name)}` as never
               )
             }
           />
-          <ActionButton
+          <ActionQuickCard
             icon="cash-outline"
-            label="Cobrança extra"
+            title="Cobrança extra"
             color={colors.error}
+            badgeLabel={extraChargeBS?.label}
+            badgeTone={extraChargeBS?.tone}
             onPress={onExtraCharge}
           />
         </View>
@@ -787,65 +832,3 @@ function ChipTag({
   );
 }
 
-function ActionButton({
-  icon,
-  label,
-  color,
-  badge,
-  onPress,
-}: {
-  icon: keyof typeof Ionicons.glyphMap;
-  label: string;
-  color: string;
-  badge?: string;
-  onPress: () => void;
-}) {
-  return (
-    <TouchableOpacity
-      onPress={onPress}
-      activeOpacity={0.75}
-      style={{
-        width: "47%",
-        padding: 14,
-        borderRadius: 12,
-        borderWidth: 1.5,
-        borderColor: color + "40",
-        backgroundColor: color + "10",
-        gap: 6,
-      }}
-    >
-      <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
-        <View
-          style={{
-            width: 32,
-            height: 32,
-            borderRadius: 16,
-            backgroundColor: color + "20",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Ionicons name={icon} size={16} color={color} />
-        </View>
-        <AppText variant="small" style={{ color, fontWeight: "700", flex: 1 }} numberOfLines={1}>
-          {label}
-        </AppText>
-      </View>
-      {badge && (
-        <View
-          style={{
-            backgroundColor: color + "20",
-            borderRadius: 6,
-            paddingHorizontal: 8,
-            paddingVertical: 3,
-            alignSelf: "flex-start",
-          }}
-        >
-          <AppText style={{ fontSize: 10, color, fontWeight: "700" }} numberOfLines={1}>
-            {badge}
-          </AppText>
-        </View>
-      )}
-    </TouchableOpacity>
-  );
-}

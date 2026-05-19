@@ -1,0 +1,88 @@
+{
+  "reminders": [
+    {
+      "id": "rem-r1",
+      "title": "Revisar diário de Ana Lima antes da consulta",
+      "description": "Verificar entradas recentes no diário para personalizar a sessão das 09h00",
+      "date": "2026-05-18",
+      "time": "08:30",
+      "priority": "high",
+      "category": "patient",
+      "patientId": "p1",
+      "patientName": "Ana Lima",
+      "completed": false
+    },
+    {
+      "id": "rem-r2",
+      "title": "Confirmar reagendamento pendente de Carlos Mendes",
+      "description": "Carlos cancelou sessão de emergência. Entrar em contato para reagendar e verificar estado emocional",
+      "date": "2026-05-18",
+      "time": "09:30",
+      "priority": "high",
+      "category": "schedule",
+      "patientId": "p2",
+      "patientName": "Carlos Mendes",
+      "completed": false
+    },
+    {
+      "id": "rem-r3",
+      "title": "Conferir histórico de pagamento de Paulo Ferreira",
+      "description": "Paulo está com 2 sessões em aberto. Verificar situação financeira antes da próxima sessão",
+      "date": "2026-05-18",
+      "time": "11:00",
+      "priority": "medium",
+      "category": "financial",
+      "patientId": "p6",
+      "patientName": "Paulo Ferreira",
+      "completed": false
+    },
+    {
+      "id": "rem-r4",
+      "title": "Preparar material sobre burnout",
+      "description": "Pesquisar e preparar material psicoeducativo sobre burnout para nova paciente Roberto Alves",
+      "date": "2026-05-18",
+      "time": null,
+      "priority": "medium",
+      "category": "study",
+      "patientId": null,
+      "patientName": null,
+      "completed": false
+    },
+    {
+      "id": "rem-r5",
+      "title": "Ler artigo sobre ansiedade social",
+      "description": "Journal of Anxiety Disorders — abordagens cognitivas integradas para fobia social em adultos",
+      "date": "2026-05-18",
+      "time": null,
+      "priority": "low",
+      "category": "study",
+      "patientId": null,
+      "patientName": null,
+      "completed": false
+    },
+    {
+      "id": "rem-r6",
+      "title": "Atualizar observações do prontuário de Beatriz",
+      "description": "Registrar evolução das últimas 2 sessões intensivas no prontuário oficial",
+      "date": "2026-05-18",
+      "time": "17:00",
+      "priority": "low",
+      "category": "patient",
+      "patientId": "p7",
+      "patientName": "Beatriz Almeida",
+      "completed": false
+    },
+    {
+      "id": "rem-r7",
+      "title": "Enviar resumo pós-sessão para Fernanda",
+      "description": "Enviar via chat o resumo dos pontos trabalhados na sessão de hoje e exercício para casa",
+      "date": "2026-05-18",
+      "time": "18:00",
+      "priority": "low",
+      "category": "administrative",
+      "patientId": "p3",
+      "patientName": "Fernanda Costa",
+      "completed": false
+    }
+  ]
+}

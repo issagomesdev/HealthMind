@@ -1,0 +1,81 @@
+{
+  "plans": [
+    {
+      "id": "basic",
+      "name": "Basic",
+      "monthlyPrice": 0,
+      "annualPrice": 0,
+      "priceLabel": "Grátis",
+      "description": "Para profissionais que estão começando.",
+      "buttonLabel": "Começar grátis",
+      "isRecommended": false,
+      "isCurrent": true,
+      "features": [
+        { "label": "Até 10 pacientes", "included": true },
+        { "label": "Agendamento básico", "included": true },
+        { "label": "Chat básico", "included": true },
+        { "label": "Análise de IA", "included": false },
+        { "label": "Relatórios avançados", "included": false },
+        { "label": "Exportação de dados", "included": false },
+        { "label": "Cobranças extras", "included": false },
+        { "label": "Suporte prioritário", "included": false }
+      ]
+    },
+    {
+      "id": "premium",
+      "name": "Premium",
+      "monthlyPrice": 99,
+      "annualPrice": 79,
+      "priceLabel": "R$ 99/mês",
+      "description": "Para profissionais que querem crescer.",
+      "buttonLabel": "Assinar Premium",
+      "isRecommended": true,
+      "isCurrent": false,
+      "features": [
+        { "label": "Pacientes ilimitados", "included": true },
+        { "label": "Agendamento inteligente", "included": true },
+        { "label": "Chat completo", "included": true },
+        { "label": "Análise de IA básica", "included": true },
+        { "label": "Relatórios e insights", "included": true },
+        { "label": "Exportação de dados", "included": true },
+        { "label": "Cobranças extras", "included": true },
+        { "label": "Suporte prioritário", "included": true }
+      ]
+    },
+    {
+      "id": "clinic",
+      "name": "Clinic",
+      "monthlyPrice": 249,
+      "annualPrice": 199,
+      "priceLabel": "R$ 249/mês",
+      "description": "Para clínicas e equipes.",
+      "buttonLabel": "Contatar vendas",
+      "isRecommended": false,
+      "isCurrent": false,
+      "features": [
+        { "label": "Tudo do Premium", "included": true },
+        { "label": "Análise de IA avançada", "included": true },
+        { "label": "Relatórios personalizados", "included": true },
+        { "label": "Múltiplos profissionais", "included": true },
+        { "label": "Painel administrativo", "included": true },
+        { "label": "Gestão avançada de pacientes", "included": true },
+        { "label": "Suporte 24/7", "included": true }
+      ]
+    }
+  ],
+  "comparison": [
+    { "feature": "Pacientes", "basic": "Até 10", "premium": "Ilimitados", "clinic": "Ilimitados" },
+    { "feature": "Agendamento", "basic": "Básico", "premium": "Inteligente", "clinic": "Inteligente" },
+    { "feature": "Análise de IA", "basic": "—", "premium": "Básica", "clinic": "Avançada" },
+    { "feature": "Relatórios", "basic": "—", "premium": "✓", "clinic": "Personalizados" },
+    { "feature": "Exportação", "basic": "—", "premium": "✓", "clinic": "✓" },
+    { "feature": "Equipe", "basic": "—", "premium": "—", "clinic": "✓" },
+    { "feature": "Suporte", "basic": "Padrão", "premium": "Prioritário", "clinic": "24/7" }
+  ],
+  "testimonial": {
+    "name": "Dra. Camila Rocha",
+    "specialty": "Psicóloga Clínica",
+    "text": "O HealthMind Premium transformou minha prática. Consigo acompanhar meus pacientes com muito mais profundidade e eficiência.",
+    "rating": 5
+  }
+}

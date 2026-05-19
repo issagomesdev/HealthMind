@@ -1,0 +1,316 @@
+[
+  {
+    "id": "pc1",
+    "conversationType": "patient_professional",
+    "participant": {
+      "id": "prof-serenity",
+      "name": "Dra. Serenity",
+      "role": "professional",
+      "subtitle": "Psicóloga Clínica",
+      "avatarInitials": "DS",
+      "avatarUrl": null,
+      "isOnline": true,
+      "lastSeen": null,
+      "isTyping": false
+    },
+    "lastMessage": "Como você está se sentindo após nossa última sessão?",
+    "lastMessageAt": "2026-05-18T09:41:00Z",
+    "lastMessageSenderId": "prof-serenity",
+    "unreadCount": 2,
+    "isPinned": true,
+    "isMuted": false,
+    "isBlocked": false,
+    "blockReason": null,
+    "messages": [
+      {
+        "id": "pc1-m1",
+        "conversationId": "pc1",
+        "senderId": "prof-serenity",
+        "senderRole": "professional",
+        "text": "Olá! Como você passou essa semana?",
+        "sentAt": "2026-05-17T10:00:00Z",
+        "status": "read"
+      },
+      {
+        "id": "pc1-m2",
+        "conversationId": "pc1",
+        "senderId": "u-patient-1",
+        "senderRole": "patient",
+        "text": "Oi, Dra. Serenity! Foi uma semana difícil, mas consegui praticar a respiração que você ensinou.",
+        "sentAt": "2026-05-17T10:15:00Z",
+        "status": "read"
+      },
+      {
+        "id": "pc1-m3",
+        "conversationId": "pc1",
+        "senderId": "prof-serenity",
+        "senderRole": "professional",
+        "text": "Que ótimo! A prática constante faz toda a diferença. O que foi mais desafiador na semana?",
+        "sentAt": "2026-05-17T10:20:00Z",
+        "status": "read"
+      },
+      {
+        "id": "pc1-m4",
+        "conversationId": "pc1",
+        "senderId": "u-patient-1",
+        "senderRole": "patient",
+        "text": "As noites têm sido mais difíceis. Fico com muitos pensamentos antes de dormir.",
+        "sentAt": "2026-05-17T10:35:00Z",
+        "status": "read"
+      },
+      {
+        "id": "pc1-m5",
+        "conversationId": "pc1",
+        "senderId": "prof-serenity",
+        "senderRole": "professional",
+        "text": "Isso é muito comum. Na nossa próxima sessão vamos trabalhar técnicas específicas para isso. Por enquanto, tente escrever três coisas positivas do dia antes de dormir.",
+        "sentAt": "2026-05-17T10:40:00Z",
+        "status": "read"
+      },
+      {
+        "id": "pc1-m6",
+        "conversationId": "pc1",
+        "senderId": "u-patient-1",
+        "senderRole": "patient",
+        "text": "Vou tentar! Obrigada pela dica.",
+        "sentAt": "2026-05-17T10:45:00Z",
+        "status": "read"
+      },
+      {
+        "id": "pc1-m7",
+        "conversationId": "pc1",
+        "senderId": "prof-serenity",
+        "senderRole": "professional",
+        "text": "Como você está se sentindo após nossa última sessão?",
+        "sentAt": "2026-05-18T09:41:00Z",
+        "status": "delivered"
+      },
+      {
+        "id": "pc1-m8",
+        "conversationId": "pc1",
+        "senderId": "prof-serenity",
+        "senderRole": "professional",
+        "text": "Lembre-se de fazer seu registro emocional hoje!",
+        "sentAt": "2026-05-18T09:42:00Z",
+        "status": "delivered"
+      }
+    ]
+  },
+  {
+    "id": "pc2",
+    "conversationType": "patient_professional",
+    "participant": {
+      "id": "prof-marcus",
+      "name": "Dr. Marcus Silva",
+      "role": "professional",
+      "subtitle": "Psiquiatra",
+      "avatarInitials": "MS",
+      "avatarUrl": null,
+      "isOnline": false,
+      "lastSeen": "2026-05-17T18:00:00Z",
+      "isTyping": false
+    },
+    "lastMessage": "Certo, deixei o material de apoio no seu prontuário.",
+    "lastMessageAt": "2026-05-17T18:00:00Z",
+    "lastMessageSenderId": "prof-marcus",
+    "unreadCount": 0,
+    "isPinned": false,
+    "isMuted": false,
+    "isBlocked": false,
+    "blockReason": null,
+    "messages": [
+      {
+        "id": "pc2-m1",
+        "conversationId": "pc2",
+        "senderId": "u-patient-1",
+        "senderRole": "patient",
+        "text": "Dr. Marcus, tenho uma dúvida sobre o medicamento que prescreveu.",
+        "sentAt": "2026-05-17T16:00:00Z",
+        "status": "read"
+      },
+      {
+        "id": "pc2-m2",
+        "conversationId": "pc2",
+        "senderId": "prof-marcus",
+        "senderRole": "professional",
+        "text": "Claro! Pode perguntar. Estou aqui.",
+        "sentAt": "2026-05-17T16:30:00Z",
+        "status": "read"
+      },
+      {
+        "id": "pc2-m3",
+        "conversationId": "pc2",
+        "senderId": "u-patient-1",
+        "senderRole": "patient",
+        "text": "Posso tomar com o suplemento de magnésio que uso?",
+        "sentAt": "2026-05-17T16:35:00Z",
+        "status": "read"
+      },
+      {
+        "id": "pc2-m4",
+        "conversationId": "pc2",
+        "senderId": "prof-marcus",
+        "senderRole": "professional",
+        "text": "Sim, não há contraindicação. Mas deixe sempre um intervalo de pelo menos 2 horas entre os dois.",
+        "sentAt": "2026-05-17T17:50:00Z",
+        "status": "read"
+      },
+      {
+        "id": "pc2-m5",
+        "conversationId": "pc2",
+        "senderId": "prof-marcus",
+        "senderRole": "professional",
+        "text": "Certo, deixei o material de apoio no seu prontuário.",
+        "sentAt": "2026-05-17T18:00:00Z",
+        "status": "read"
+      }
+    ]
+  },
+  {
+    "id": "pc3",
+    "conversationType": "patient_professional",
+    "participant": {
+      "id": "prof-elena",
+      "name": "Dra. Elena Costa",
+      "role": "professional",
+      "subtitle": "Terapeuta Cognitiva",
+      "avatarInitials": "EC",
+      "avatarUrl": null,
+      "isOnline": true,
+      "lastSeen": null,
+      "isTyping": true
+    },
+    "lastMessage": "Digitando...",
+    "lastMessageAt": "2026-05-18T08:00:00Z",
+    "lastMessageSenderId": "prof-elena",
+    "unreadCount": 0,
+    "isPinned": false,
+    "isMuted": false,
+    "isBlocked": false,
+    "blockReason": null,
+    "messages": [
+      {
+        "id": "pc3-m1",
+        "conversationId": "pc3",
+        "senderId": "u-patient-1",
+        "senderRole": "patient",
+        "text": "Bom dia, Dra. Elena! Consegui completar o exercício de reestruturação cognitiva.",
+        "sentAt": "2026-05-18T07:50:00Z",
+        "status": "read"
+      },
+      {
+        "id": "pc3-m2",
+        "conversationId": "pc3",
+        "senderId": "prof-elena",
+        "senderRole": "professional",
+        "text": "Que maravilha! Fico muito feliz em saber disso. Como foi a experiência?",
+        "sentAt": "2026-05-18T07:55:00Z",
+        "status": "read"
+      },
+      {
+        "id": "pc3-m3",
+        "conversationId": "pc3",
+        "senderId": "u-patient-1",
+        "senderRole": "patient",
+        "text": "Foi desafiador no começo, mas depois fez sentido. Consegui identificar o pensamento automático.",
+        "sentAt": "2026-05-18T08:00:00Z",
+        "status": "read"
+      }
+    ]
+  },
+  {
+    "id": "pc4",
+    "conversationType": "support",
+    "participant": {
+      "id": "support-healthmind",
+      "name": "Suporte HealthMind",
+      "role": "support",
+      "subtitle": "Suporte HealthMind",
+      "avatarInitials": "SH",
+      "avatarUrl": null,
+      "isOnline": true,
+      "lastSeen": null,
+      "isTyping": false
+    },
+    "lastMessage": "Sua assinatura foi renovada com sucesso!",
+    "lastMessageAt": "2026-05-12T10:00:00Z",
+    "lastMessageSenderId": "support-healthmind",
+    "unreadCount": 1,
+    "isPinned": false,
+    "isMuted": false,
+    "isBlocked": false,
+    "blockReason": null,
+    "messages": [
+      {
+        "id": "pc4-m1",
+        "conversationId": "pc4",
+        "senderId": "support-healthmind",
+        "senderRole": "support",
+        "text": "Olá! Bem-vindo(a) ao HealthMind. Estamos aqui para ajudar.",
+        "sentAt": "2026-05-01T09:00:00Z",
+        "status": "read"
+      },
+      {
+        "id": "pc4-m2",
+        "conversationId": "pc4",
+        "senderId": "u-patient-1",
+        "senderRole": "patient",
+        "text": "Oi! Tenho uma dúvida sobre minha assinatura.",
+        "sentAt": "2026-05-12T09:55:00Z",
+        "status": "read"
+      },
+      {
+        "id": "pc4-m3",
+        "conversationId": "pc4",
+        "senderId": "support-healthmind",
+        "senderRole": "support",
+        "text": "Sua assinatura foi renovada com sucesso!",
+        "sentAt": "2026-05-12T10:00:00Z",
+        "status": "delivered"
+      }
+    ]
+  },
+  {
+    "id": "pc5",
+    "conversationType": "community",
+    "participant": {
+      "id": "community-lucas",
+      "name": "Lucas",
+      "role": "community",
+      "subtitle": "Membro da Comunidade",
+      "avatarInitials": "LU",
+      "avatarUrl": null,
+      "isOnline": false,
+      "lastSeen": "2026-05-11T14:00:00Z",
+      "isTyping": false
+    },
+    "lastMessage": "Aquela meditação guiada funcionou pra mim também!",
+    "lastMessageAt": "2026-05-11T15:00:00Z",
+    "lastMessageSenderId": "community-lucas",
+    "unreadCount": 0,
+    "isPinned": false,
+    "isMuted": false,
+    "isBlocked": false,
+    "blockReason": null,
+    "messages": [
+      {
+        "id": "pc5-m1",
+        "conversationId": "pc5",
+        "senderId": "u-patient-1",
+        "senderRole": "patient",
+        "text": "Oi Lucas! Você já experimentou a meditação guiada do app?",
+        "sentAt": "2026-05-11T14:30:00Z",
+        "status": "read"
+      },
+      {
+        "id": "pc5-m2",
+        "conversationId": "pc5",
+        "senderId": "community-lucas",
+        "senderRole": "patient",
+        "text": "Aquela meditação guiada funcionou pra mim também!",
+        "sentAt": "2026-05-11T15:00:00Z",
+        "status": "read"
+      }
+    ]
+  }
+]

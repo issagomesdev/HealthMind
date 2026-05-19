@@ -49,6 +49,11 @@ class PatientAppointmentService {
     return appointments.find((a) => a.id === id) ?? null;
   }
 
+  async getUpcomingCount(patientId: string): Promise<number> {
+    await delay(100);
+    return appointments.filter((a) => a.patientId === patientId && isUpcoming(a)).length;
+  }
+
   async getNextAppointment(patientId: string): Promise<PatientAppointment | null> {
     await delay(150);
     const upcoming = appointments

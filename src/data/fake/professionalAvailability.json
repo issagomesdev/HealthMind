@@ -1,0 +1,145 @@
+{
+  "isGenerallyAvailable": true,
+  "defaultDurationMinutes": 50,
+  "weeklySchedule": {
+    "segunda": {
+      "enabled": true,
+      "intervals": [
+        { "id": "1", "start": "08:00", "end": "12:00" },
+        { "id": "2", "start": "14:00", "end": "18:00" }
+      ]
+    },
+    "terca": {
+      "enabled": true,
+      "intervals": [
+        { "id": "3", "start": "08:00", "end": "12:00" },
+        { "id": "4", "start": "14:00", "end": "18:00" }
+      ]
+    },
+    "quarta": {
+      "enabled": true,
+      "intervals": [
+        { "id": "5", "start": "09:00", "end": "13:00" }
+      ]
+    },
+    "quinta": {
+      "enabled": true,
+      "intervals": [
+        { "id": "6", "start": "08:00", "end": "12:00" },
+        { "id": "7", "start": "14:00", "end": "17:00" }
+      ]
+    },
+    "sexta": {
+      "enabled": true,
+      "intervals": [
+        { "id": "8", "start": "08:00", "end": "12:00" }
+      ]
+    },
+    "sabado": {
+      "enabled": false,
+      "intervals": []
+    },
+    "domingo": {
+      "enabled": false,
+      "intervals": []
+    }
+  },
+  "breakConfig": {
+    "breakBetweenMinutes": 15,
+    "lunchStart": "12:00",
+    "lunchEnd": "14:00",
+    "maxPerDay": 6,
+    "maxConsecutive": 3
+  },
+  "formatConfig": {
+    "formats": ["online", "presencial"],
+    "officeAddress": "Rua das Flores, 123 - Sala 201",
+    "hideAddressUntilConfirmed": true,
+    "defaultOnlineLink": "",
+    "autoGenerateLink": true
+  },
+  "appointmentTypes": [
+    {
+      "id": "at1",
+      "type": "avaliacao_inicial",
+      "label": "Avaliação inicial",
+      "durationMinutes": 90,
+      "valueFake": 25000,
+      "formats": ["online", "presencial"],
+      "color": "#6B7EF5"
+    },
+    {
+      "id": "at2",
+      "type": "acompanhamento",
+      "label": "Acompanhamento",
+      "durationMinutes": 50,
+      "valueFake": 18000,
+      "formats": ["online", "presencial"],
+      "color": "#6DBF7B"
+    },
+    {
+      "id": "at3",
+      "type": "retorno",
+      "label": "Retorno",
+      "durationMinutes": 30,
+      "valueFake": 12000,
+      "formats": ["online"],
+      "color": "#60A5FA"
+    },
+    {
+      "id": "at4",
+      "type": "emergencia",
+      "label": "Consulta emergencial",
+      "durationMinutes": 60,
+      "valueFake": 30000,
+      "formats": ["online"],
+      "color": "#EF4444"
+    },
+    {
+      "id": "at5",
+      "type": "orientacao_breve",
+      "label": "Orientação breve",
+      "durationMinutes": 30,
+      "valueFake": 10000,
+      "formats": ["online"],
+      "color": "#F59E0B"
+    },
+    {
+      "id": "at6",
+      "type": "supervisao",
+      "label": "Supervisão",
+      "durationMinutes": 60,
+      "valueFake": 20000,
+      "formats": ["online", "presencial"],
+      "color": "#C084FC"
+    }
+  ],
+  "bookingRules": {
+    "minAdvanceHours": 24,
+    "maxAdvanceDays": 30,
+    "allowPatientReschedule": true,
+    "rescheduleMinHours": 12,
+    "allowPatientCancel": true,
+    "cancelMinHours": 24,
+    "requireManualConfirmation": false,
+    "bookingMode": "auto"
+  },
+  "unavailablePeriods": [
+    {
+      "id": "up1",
+      "startDate": "2026-06-01",
+      "endDate": "2026-06-10",
+      "reason": "ferias",
+      "note": "Férias de inverno"
+    },
+    {
+      "id": "up2",
+      "startDate": "2026-05-20",
+      "endDate": "2026-05-20",
+      "startTime": "14:00",
+      "endTime": "18:00",
+      "reason": "evento",
+      "note": "Congresso de Psicologia"
+    }
+  ]
+}

@@ -13,8 +13,8 @@ interface ConfirmActionModalProps {
   iconColor: string;
   title: string;
   description: React.ReactNode;
-  confirmLabel?: string;
-  cancelLabel?: string;
+  confirmLabel?: string | boolean;
+  cancelLabel?: string | boolean;
   confirmColor?: string;
 }
 
@@ -134,7 +134,8 @@ export function ConfirmActionModal({
           </TouchableOpacity>
 
           {/* Cancel button */}
-          <TouchableOpacity
+          {cancelLabel !== false && (
+            <TouchableOpacity
             onPress={onCancel}
             disabled={isLoading}
             activeOpacity={0.7}
@@ -150,7 +151,7 @@ export function ConfirmActionModal({
             <AppText style={{ color: colors.subtle, fontWeight: "600", fontSize: 16 }}>
               {cancelLabel}
             </AppText>
-          </TouchableOpacity>
+          </TouchableOpacity> )}
         </View>
       </View>
     </Modal>

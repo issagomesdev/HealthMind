@@ -1,0 +1,442 @@
+{
+  "p1": {
+    "id": "p1",
+    "name": "Mariana Costa",
+    "avatarInitials": "MC",
+    "age": 32,
+    "specialty": "Psicologia Clínica",
+    "memberSince": "2025-08-15",
+    "trend": "worsening",
+    "riskLevel": "high_risk",
+    "moodHistory": [
+      { "date": "2026-04-19", "value": 6.0 },
+      { "date": "2026-04-20", "value": 5.5 },
+      { "date": "2026-04-21", "value": 5.8 },
+      { "date": "2026-04-22", "value": 6.2 },
+      { "date": "2026-04-23", "value": 5.9 },
+      { "date": "2026-04-24", "value": 5.3 },
+      { "date": "2026-04-25", "value": 4.8 },
+      { "date": "2026-04-26", "value": 5.1 },
+      { "date": "2026-04-27", "value": 5.4 },
+      { "date": "2026-04-28", "value": 5.0 },
+      { "date": "2026-04-29", "value": 4.6 },
+      { "date": "2026-04-30", "value": 4.9 },
+      { "date": "2026-05-01", "value": 5.2 },
+      { "date": "2026-05-02", "value": 4.7 },
+      { "date": "2026-05-03", "value": 4.3 },
+      { "date": "2026-05-04", "value": 4.5 },
+      { "date": "2026-05-05", "value": 4.8 },
+      { "date": "2026-05-06", "value": 4.2 },
+      { "date": "2026-05-07", "value": 3.9 },
+      { "date": "2026-05-08", "value": 4.1 },
+      { "date": "2026-05-09", "value": 3.7 },
+      { "date": "2026-05-10", "value": 3.5 },
+      { "date": "2026-05-11", "value": 3.8 },
+      { "date": "2026-05-12", "value": 4.0 },
+      { "date": "2026-05-13", "value": 3.6 },
+      { "date": "2026-05-14", "value": 3.4 },
+      { "date": "2026-05-15", "value": 3.2 },
+      { "date": "2026-05-16", "value": 3.5 },
+      { "date": "2026-05-17", "value": 2.9 },
+      { "date": "2026-05-18", "value": 3.1 }
+    ],
+    "weeklyMoodHistory": [
+      { "date": "Sem 1", "value": 5.9 },
+      { "date": "Sem 2", "value": 5.4 },
+      { "date": "Sem 3", "value": 4.9 },
+      { "date": "Sem 4", "value": 4.6 },
+      { "date": "Sem 5", "value": 4.3 },
+      { "date": "Sem 6", "value": 4.0 },
+      { "date": "Sem 7", "value": 3.7 },
+      { "date": "Sem 8", "value": 3.2 }
+    ],
+    "emotionalScore": 28,
+    "stabilityScore": 22,
+    "engagementScore": 55,
+    "therapeuticProgress": 35,
+    "recurringEmotions": [
+      { "label": "Ansiedade", "count": 18 },
+      { "label": "Tristeza", "count": 12 },
+      { "label": "Irritação", "count": 8 },
+      { "label": "Medo", "count": 6 },
+      { "label": "Cansaço", "count": 5 }
+    ],
+    "triggers": ["Trabalho", "Conflitos familiares", "Insônia", "Sobrecarga"],
+    "recurrentTopics": ["Relacionamento com chefe", "Autoestima", "Medo do futuro"],
+    "diaryFrequency": 1.8,
+    "appointmentsAttended": 6,
+    "appointmentsMissed": 2,
+    "activitiesCompleted": 12,
+    "avgTimeBetweenInteractionsDays": 1.4,
+    "insights": [
+      "Padrão de piora do humor durante a semana de trabalho, com leve melhora nos fins de semana.",
+      "Relatos frequentes de pensamentos ruminativos especialmente à noite.",
+      "Técnicas de respiração estão sendo utilizadas, porém com pouca constância."
+    ],
+    "therapeuticGoals": [
+      { "label": "Reduzir episódios de ansiedade", "progress": 30 },
+      { "label": "Melhorar qualidade do sono", "progress": 20 },
+      { "label": "Desenvolver habilidades de regulação emocional", "progress": 40 },
+      { "label": "Fortalecer autoestima", "progress": 25 }
+    ],
+    "lastMonthComparison": {
+      "mood": { "current": 3.8, "previous": 5.5, "pct": -31 },
+      "checkins": { "current": 18, "previous": 24, "pct": -25 },
+      "stress": { "current": 8.2, "previous": 6.1, "pct": 34 }
+    },
+    "alerts": [
+      {
+        "id": "alt-1",
+        "patientId": "p1",
+        "patientName": "Mariana Costa",
+        "type": "mood_drop",
+        "severity": "high",
+        "title": "Queda acentuada de humor",
+        "description": "Mariana registrou humor abaixo de 3 por 3 dias consecutivos.",
+        "triggeredAt": "2026-05-17T19:00:00Z",
+        "isRead": false
+      }
+    ],
+    "importantObservations": [
+      "Paciente relatou episódio de choro sem motivo aparente na sessão de 14/05.",
+      "Sem suporte social adequado no ambiente de trabalho.",
+      "Considerar avaliação psiquiátrica para possível suporte medicamentoso."
+    ],
+    "activities": [
+      { "label": "Respiração guiada", "completedCount": 5, "totalCount": 10 },
+      { "label": "Diário de gratidão", "completedCount": 3, "totalCount": 7 },
+      { "label": "Caminhada diária", "completedCount": 4, "totalCount": 10 }
+    ],
+    "habits": [
+      { "label": "Meditação", "icon": "leaf-outline", "consistency": 30 },
+      { "label": "Exercício físico", "icon": "fitness-outline", "consistency": 40 },
+      { "label": "Leitura", "icon": "book-outline", "consistency": 60 }
+    ]
+  },
+  "p2": {
+    "id": "p2",
+    "name": "Ricardo Alves",
+    "avatarInitials": "RA",
+    "age": 41,
+    "specialty": "Terapia Cognitivo-Comportamental",
+    "memberSince": "2025-11-01",
+    "trend": "worsening",
+    "riskLevel": "critical",
+    "moodHistory": [
+      { "date": "2026-04-19", "value": 4.5 },
+      { "date": "2026-04-20", "value": 4.2 },
+      { "date": "2026-04-21", "value": 3.8 },
+      { "date": "2026-04-22", "value": 4.0 },
+      { "date": "2026-04-23", "value": 3.5 },
+      { "date": "2026-04-24", "value": 3.9 },
+      { "date": "2026-04-25", "value": 3.2 },
+      { "date": "2026-04-26", "value": 3.6 },
+      { "date": "2026-04-27", "value": 3.3 },
+      { "date": "2026-04-28", "value": 2.9 },
+      { "date": "2026-04-29", "value": 3.1 },
+      { "date": "2026-04-30", "value": 2.7 },
+      { "date": "2026-05-01", "value": 3.0 },
+      { "date": "2026-05-02", "value": 2.5 },
+      { "date": "2026-05-03", "value": 2.8 },
+      { "date": "2026-05-04", "value": 3.2 },
+      { "date": "2026-05-05", "value": 2.6 },
+      { "date": "2026-05-06", "value": 2.3 },
+      { "date": "2026-05-07", "value": 2.9 },
+      { "date": "2026-05-08", "value": 2.1 },
+      { "date": "2026-05-09", "value": 1.8 },
+      { "date": "2026-05-10", "value": 2.4 },
+      { "date": "2026-05-11", "value": 2.7 },
+      { "date": "2026-05-12", "value": 2.0 },
+      { "date": "2026-05-13", "value": 1.9 },
+      { "date": "2026-05-14", "value": 2.2 },
+      { "date": "2026-05-15", "value": 1.7 },
+      { "date": "2026-05-16", "value": 2.1 },
+      { "date": "2026-05-17", "value": 1.5 },
+      { "date": "2026-05-18", "value": 1.8 }
+    ],
+    "weeklyMoodHistory": [
+      { "date": "Sem 1", "value": 3.9 },
+      { "date": "Sem 2", "value": 3.4 },
+      { "date": "Sem 3", "value": 3.0 },
+      { "date": "Sem 4", "value": 2.7 },
+      { "date": "Sem 5", "value": 2.5 },
+      { "date": "Sem 6", "value": 2.2 },
+      { "date": "Sem 7", "value": 1.9 },
+      { "date": "Sem 8", "value": 1.7 }
+    ],
+    "emotionalScore": 12,
+    "stabilityScore": 10,
+    "engagementScore": 38,
+    "therapeuticProgress": 18,
+    "recurringEmotions": [
+      { "label": "Pânico", "count": 22 },
+      { "label": "Desesperança", "count": 18 },
+      { "label": "Ansiedade", "count": 16 },
+      { "label": "Raiva", "count": 9 },
+      { "label": "Solidão", "count": 7 }
+    ],
+    "triggers": ["Pressão no trabalho", "Isolamento social", "Pensamentos catastróficos"],
+    "recurrentTopics": ["Crise no trabalho", "Relacionamento rompido", "Sentimentos de inutilidade"],
+    "diaryFrequency": 2.1,
+    "appointmentsAttended": 4,
+    "appointmentsMissed": 3,
+    "activitiesCompleted": 5,
+    "avgTimeBetweenInteractionsDays": 1.1,
+    "insights": [
+      "Padrão de deterioração acelerada do humor nas últimas 3 semanas.",
+      "Alta frequência de pensamentos automáticos negativos relatados.",
+      "Mínima adesão às técnicas de regulação propostas."
+    ],
+    "therapeuticGoals": [
+      { "label": "Reduzir ataques de pânico", "progress": 10 },
+      { "label": "Construir rede de suporte social", "progress": 15 },
+      { "label": "Reestruturação cognitiva", "progress": 20 }
+    ],
+    "lastMonthComparison": {
+      "mood": { "current": 2.1, "previous": 3.8, "pct": -45 },
+      "checkins": { "current": 22, "previous": 19, "pct": 16 },
+      "stress": { "current": 9.5, "previous": 7.2, "pct": 32 }
+    },
+    "alerts": [
+      {
+        "id": "alt-3",
+        "patientId": "p2",
+        "patientName": "Ricardo Alves",
+        "type": "anxiety_spike",
+        "severity": "critical",
+        "title": "Pico de ansiedade detectado",
+        "description": "Ricardo relatou níveis críticos de ansiedade nas últimas 48 horas.",
+        "triggeredAt": "2026-05-18T06:30:00Z",
+        "isRead": false
+      },
+      {
+        "id": "alt-6",
+        "patientId": "p2",
+        "patientName": "Ricardo Alves",
+        "type": "high_risk",
+        "severity": "critical",
+        "title": "Paciente em risco elevado",
+        "description": "Combinação de humor baixo persistente e relatos de desesperança.",
+        "triggeredAt": "2026-05-18T07:00:00Z",
+        "isRead": false
+      }
+    ],
+    "importantObservations": [
+      "URGENTE: Avaliar necessidade de encaminhamento psiquiátrico imediato.",
+      "Paciente relatou pensamentos de autodepreciação na última sessão.",
+      "Rede de suporte social praticamente inexistente."
+    ],
+    "activities": [
+      { "label": "Exercício de relaxamento", "completedCount": 2, "totalCount": 10 },
+      { "label": "Registro de pensamentos", "completedCount": 4, "totalCount": 10 },
+      { "label": "Saídas sociais programadas", "completedCount": 0, "totalCount": 5 }
+    ],
+    "habits": [
+      { "label": "Sono regular", "icon": "moon-outline", "consistency": 20 },
+      { "label": "Alimentação saudável", "icon": "nutrition-outline", "consistency": 35 },
+      { "label": "Exercício físico", "icon": "fitness-outline", "consistency": 10 }
+    ]
+  },
+  "p5": {
+    "id": "p5",
+    "name": "Ana Beatriz",
+    "avatarInitials": "AB",
+    "age": 28,
+    "specialty": "Psicoterapia Humanista",
+    "memberSince": "2025-06-10",
+    "trend": "improving",
+    "riskLevel": "stable",
+    "moodHistory": [
+      { "date": "2026-04-19", "value": 5.8 },
+      { "date": "2026-04-20", "value": 6.1 },
+      { "date": "2026-04-21", "value": 6.4 },
+      { "date": "2026-04-22", "value": 6.8 },
+      { "date": "2026-04-23", "value": 6.5 },
+      { "date": "2026-04-24", "value": 7.0 },
+      { "date": "2026-04-25", "value": 7.2 },
+      { "date": "2026-04-26", "value": 6.9 },
+      { "date": "2026-04-27", "value": 7.3 },
+      { "date": "2026-04-28", "value": 7.5 },
+      { "date": "2026-04-29", "value": 7.1 },
+      { "date": "2026-04-30", "value": 7.6 },
+      { "date": "2026-05-01", "value": 7.8 },
+      { "date": "2026-05-02", "value": 7.4 },
+      { "date": "2026-05-03", "value": 7.9 },
+      { "date": "2026-05-04", "value": 8.0 },
+      { "date": "2026-05-05", "value": 7.7 },
+      { "date": "2026-05-06", "value": 8.1 },
+      { "date": "2026-05-07", "value": 8.3 },
+      { "date": "2026-05-08", "value": 7.9 },
+      { "date": "2026-05-09", "value": 8.2 },
+      { "date": "2026-05-10", "value": 8.0 },
+      { "date": "2026-05-11", "value": 8.4 },
+      { "date": "2026-05-12", "value": 8.1 },
+      { "date": "2026-05-13", "value": 8.5 },
+      { "date": "2026-05-14", "value": 8.3 },
+      { "date": "2026-05-15", "value": 8.6 },
+      { "date": "2026-05-16", "value": 8.2 },
+      { "date": "2026-05-17", "value": 8.7 },
+      { "date": "2026-05-18", "value": 8.5 }
+    ],
+    "weeklyMoodHistory": [
+      { "date": "Sem 1", "value": 6.3 },
+      { "date": "Sem 2", "value": 6.9 },
+      { "date": "Sem 3", "value": 7.3 },
+      { "date": "Sem 4", "value": 7.6 },
+      { "date": "Sem 5", "value": 7.9 },
+      { "date": "Sem 6", "value": 8.1 },
+      { "date": "Sem 7", "value": 8.3 },
+      { "date": "Sem 8", "value": 8.5 }
+    ],
+    "emotionalScore": 84,
+    "stabilityScore": 79,
+    "engagementScore": 92,
+    "therapeuticProgress": 75,
+    "recurringEmotions": [
+      { "label": "Alegria", "count": 24 },
+      { "label": "Gratidão", "count": 20 },
+      { "label": "Esperança", "count": 15 },
+      { "label": "Serenidade", "count": 12 },
+      { "label": "Amor", "count": 8 }
+    ],
+    "triggers": ["Situações sociais novas (positivo)", "Reuniões de trabalho"],
+    "recurrentTopics": ["Crescimento pessoal", "Relacionamentos saudáveis", "Projeto de vida"],
+    "diaryFrequency": 4.5,
+    "appointmentsAttended": 10,
+    "appointmentsMissed": 0,
+    "activitiesCompleted": 38,
+    "avgTimeBetweenInteractionsDays": 0.8,
+    "insights": [
+      "Ana demonstra progresso notável e consistente ao longo de todo o período.",
+      "Alta adesão às atividades terapêuticas — fator determinante na melhora.",
+      "Consolidação de hábitos saudáveis visível nas métricas de engajamento."
+    ],
+    "therapeuticGoals": [
+      { "label": "Consolidar autoimagem positiva", "progress": 80 },
+      { "label": "Estabelecer limites saudáveis", "progress": 70 },
+      { "label": "Desenvolver inteligência emocional", "progress": 75 },
+      { "label": "Fortalecer vínculos sociais", "progress": 85 }
+    ],
+    "lastMonthComparison": {
+      "mood": { "current": 8.2, "previous": 6.5, "pct": 26 },
+      "checkins": { "current": 29, "previous": 22, "pct": 32 },
+      "stress": { "current": 2.1, "previous": 4.3, "pct": -51 }
+    },
+    "alerts": [],
+    "importantObservations": [
+      "Paciente com evolução excepcional — referência positiva para abordagem utilizada.",
+      "Considerar espaçamento das sessões para consolidação do processo."
+    ],
+    "activities": [
+      { "label": "Meditação guiada", "completedCount": 14, "totalCount": 14 },
+      { "label": "Exercício físico", "completedCount": 12, "totalCount": 14 },
+      { "label": "Diário de gratidão", "completedCount": 13, "totalCount": 14 },
+      { "label": "Leitura terapêutica", "completedCount": 10, "totalCount": 14 }
+    ],
+    "habits": [
+      { "label": "Meditação", "icon": "leaf-outline", "consistency": 95 },
+      { "label": "Exercício físico", "icon": "fitness-outline", "consistency": 88 },
+      { "label": "Sono regular", "icon": "moon-outline", "consistency": 90 }
+    ]
+  },
+  "p7": {
+    "id": "p7",
+    "name": "Sofia Lima",
+    "avatarInitials": "SL",
+    "age": 35,
+    "specialty": "Psicologia Clínica",
+    "memberSince": "2025-09-20",
+    "trend": "improving",
+    "riskLevel": "stable",
+    "moodHistory": [
+      { "date": "2026-04-19", "value": 6.0 },
+      { "date": "2026-04-20", "value": 6.3 },
+      { "date": "2026-04-21", "value": 6.1 },
+      { "date": "2026-04-22", "value": 6.5 },
+      { "date": "2026-04-23", "value": 6.8 },
+      { "date": "2026-04-24", "value": 6.4 },
+      { "date": "2026-04-25", "value": 6.9 },
+      { "date": "2026-04-26", "value": 7.0 },
+      { "date": "2026-04-27", "value": 6.7 },
+      { "date": "2026-04-28", "value": 7.1 },
+      { "date": "2026-04-29", "value": 7.3 },
+      { "date": "2026-04-30", "value": 7.0 },
+      { "date": "2026-05-01", "value": 7.2 },
+      { "date": "2026-05-02", "value": 7.4 },
+      { "date": "2026-05-03", "value": 7.1 },
+      { "date": "2026-05-04", "value": 7.5 },
+      { "date": "2026-05-05", "value": 7.7 },
+      { "date": "2026-05-06", "value": 7.3 },
+      { "date": "2026-05-07", "value": 7.8 },
+      { "date": "2026-05-08", "value": 7.6 },
+      { "date": "2026-05-09", "value": 7.4 },
+      { "date": "2026-05-10", "value": 7.9 },
+      { "date": "2026-05-11", "value": 7.7 },
+      { "date": "2026-05-12", "value": 8.0 },
+      { "date": "2026-05-13", "value": 7.8 },
+      { "date": "2026-05-14", "value": 8.1 },
+      { "date": "2026-05-15", "value": 7.9 },
+      { "date": "2026-05-16", "value": 8.0 },
+      { "date": "2026-05-17", "value": 8.2 },
+      { "date": "2026-05-18", "value": 8.0 }
+    ],
+    "weeklyMoodHistory": [
+      { "date": "Sem 1", "value": 6.3 },
+      { "date": "Sem 2", "value": 6.7 },
+      { "date": "Sem 3", "value": 7.0 },
+      { "date": "Sem 4", "value": 7.3 },
+      { "date": "Sem 5", "value": 7.5 },
+      { "date": "Sem 6", "value": 7.6 },
+      { "date": "Sem 7", "value": 7.9 },
+      { "date": "Sem 8", "value": 8.1 }
+    ],
+    "emotionalScore": 78,
+    "stabilityScore": 82,
+    "engagementScore": 88,
+    "therapeuticProgress": 68,
+    "recurringEmotions": [
+      { "label": "Serenidade", "count": 20 },
+      { "label": "Alegria", "count": 16 },
+      { "label": "Leveza", "count": 11 },
+      { "label": "Esperança", "count": 9 },
+      { "label": "Satisfação", "count": 7 }
+    ],
+    "triggers": ["Conflitos menores no trabalho"],
+    "recurrentTopics": ["Equilíbrio vida-trabalho", "Autoconhecimento", "Relacionamentos"],
+    "diaryFrequency": 3.8,
+    "appointmentsAttended": 9,
+    "appointmentsMissed": 1,
+    "activitiesCompleted": 32,
+    "avgTimeBetweenInteractionsDays": 1.0,
+    "insights": [
+      "Sofia apresenta evolução consistente e estável ao longo das últimas semanas.",
+      "Alta regularidade nos check-ins contribui para dados precisos e intervenções efetivas.",
+      "Melhora significativa na gestão de conflitos interpessoais."
+    ],
+    "therapeuticGoals": [
+      { "label": "Desenvolver assertividade", "progress": 72 },
+      { "label": "Melhorar equilíbrio emocional", "progress": 78 },
+      { "label": "Aprofundar autoconhecimento", "progress": 65 }
+    ],
+    "lastMonthComparison": {
+      "mood": { "current": 7.9, "previous": 6.4, "pct": 23 },
+      "checkins": { "current": 27, "previous": 23, "pct": 17 },
+      "stress": { "current": 2.8, "previous": 4.5, "pct": -38 }
+    },
+    "alerts": [],
+    "importantObservations": [
+      "Progresso sólido — manter frequência das sessões.",
+      "Paciente demonstra capacidade crescente de autorregulação emocional."
+    ],
+    "activities": [
+      { "label": "Meditação mindfulness", "completedCount": 12, "totalCount": 14 },
+      { "label": "Exercício de respiração", "completedCount": 10, "totalCount": 14 },
+      { "label": "Diário reflexivo", "completedCount": 13, "totalCount": 14 }
+    ],
+    "habits": [
+      { "label": "Meditação", "icon": "leaf-outline", "consistency": 85 },
+      { "label": "Exercício físico", "icon": "fitness-outline", "consistency": 78 },
+      { "label": "Leitura", "icon": "book-outline", "consistency": 90 }
+    ]
+  }
+}

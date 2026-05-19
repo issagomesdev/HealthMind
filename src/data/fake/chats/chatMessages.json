@@ -1,0 +1,222 @@
+{
+  "pc1": [
+    {
+      "id": "pc1-ext-m1",
+      "conversationId": "pc1",
+      "senderId": "prof-serenity",
+      "senderRole": "professional",
+      "text": "Olá! Quero acompanhar como você está passando essa semana. Conseguiu fazer os exercícios que combinamos?",
+      "sentAt": "2026-05-16T10:00:00Z",
+      "status": "read"
+    },
+    {
+      "id": "pc1-ext-m2",
+      "conversationId": "pc1",
+      "senderId": "u-patient-1",
+      "senderRole": "patient",
+      "text": "Oi, Dra. Serenity! Fiz os exercícios de respiração todos os dias. Mas tive alguns momentos difíceis.",
+      "sentAt": "2026-05-16T10:20:00Z",
+      "status": "read"
+    },
+    {
+      "id": "pc1-ext-m3",
+      "conversationId": "pc1",
+      "senderId": "prof-serenity",
+      "senderRole": "professional",
+      "text": "Que ótimo que manteve a prática! Os momentos difíceis são parte do processo. O que aconteceu?",
+      "sentAt": "2026-05-16T10:25:00Z",
+      "status": "read"
+    },
+    {
+      "id": "pc1-ext-m4",
+      "conversationId": "pc1",
+      "senderId": "u-patient-1",
+      "senderRole": "patient",
+      "text": "Tive uma discussão no trabalho e fiquei muito ansiosa. Tentei respirar, mas demorou para acalmar.",
+      "sentAt": "2026-05-16T10:40:00Z",
+      "status": "read"
+    },
+    {
+      "id": "pc1-ext-m5",
+      "conversationId": "pc1",
+      "senderId": "prof-serenity",
+      "senderRole": "professional",
+      "text": "É normal demorar um pouco. O importante é que você usou a técnica. Cada vez fica mais natural. Você conseguiu se acalmar depois?",
+      "sentAt": "2026-05-16T10:45:00Z",
+      "status": "read"
+    },
+    {
+      "id": "pc1-ext-m6",
+      "conversationId": "pc1",
+      "senderId": "u-patient-1",
+      "senderRole": "patient",
+      "text": "Sim! Depois de uns 10 minutos consegui me tranquilizar. Me senti orgulhosa depois.",
+      "sentAt": "2026-05-16T11:00:00Z",
+      "status": "read"
+    },
+    {
+      "id": "pc1-ext-m7",
+      "conversationId": "pc1",
+      "senderId": "prof-serenity",
+      "senderRole": "professional",
+      "text": "Isso é lindo! Esse sentimento de orgulho é muito importante. Você está percebendo sua própria resiliência.",
+      "sentAt": "2026-05-16T11:05:00Z",
+      "status": "read"
+    },
+    {
+      "id": "pc1-ext-m8",
+      "conversationId": "pc1",
+      "senderId": "u-patient-1",
+      "senderRole": "patient",
+      "text": "Obrigada! Às vezes eu ainda duvido muito de mim mesma.",
+      "sentAt": "2026-05-17T10:00:00Z",
+      "status": "read"
+    },
+    {
+      "id": "pc1-ext-m9",
+      "conversationId": "pc1",
+      "senderId": "prof-serenity",
+      "senderRole": "professional",
+      "text": "Olá! Como você passou essa semana?",
+      "sentAt": "2026-05-17T10:00:00Z",
+      "status": "read"
+    },
+    {
+      "id": "pc1-ext-m10",
+      "conversationId": "pc1",
+      "senderId": "u-patient-1",
+      "senderRole": "patient",
+      "text": "Foi uma semana difícil, mas consegui praticar a respiração que você ensinou.",
+      "sentAt": "2026-05-17T10:15:00Z",
+      "status": "read"
+    },
+    {
+      "id": "pc1-ext-m11",
+      "conversationId": "pc1",
+      "senderId": "prof-serenity",
+      "senderRole": "professional",
+      "text": "Como você está se sentindo após nossa última sessão?",
+      "sentAt": "2026-05-18T09:41:00Z",
+      "status": "delivered"
+    },
+    {
+      "id": "pc1-ext-m12",
+      "conversationId": "pc1",
+      "senderId": "prof-serenity",
+      "senderRole": "professional",
+      "text": "Lembre-se de fazer seu registro emocional hoje!",
+      "sentAt": "2026-05-18T09:42:00Z",
+      "status": "delivered"
+    }
+  ],
+  "prfc1": [
+    {
+      "id": "prfc1-ext-m1",
+      "conversationId": "prfc1",
+      "senderId": "u-prof-1",
+      "senderRole": "professional",
+      "text": "Bom dia, Mariana! Quero checar como foi a semana para você. Fez os exercícios de respiração?",
+      "sentAt": "2026-05-16T09:00:00Z",
+      "status": "read"
+    },
+    {
+      "id": "prfc1-ext-m2",
+      "conversationId": "prfc1",
+      "senderId": "patient-mariana",
+      "senderRole": "patient",
+      "text": "Bom dia! Fiz sim! Estava me sentindo muito ansiosa na quinta, mas a respiração ajudou bastante.",
+      "sentAt": "2026-05-16T09:20:00Z",
+      "status": "read"
+    },
+    {
+      "id": "prfc1-ext-m3",
+      "conversationId": "prfc1",
+      "senderId": "u-prof-1",
+      "senderRole": "professional",
+      "text": "Excelente, Mariana! Fico muito feliz que funcionou. Você registrou isso no seu diário emocional?",
+      "sentAt": "2026-05-16T09:25:00Z",
+      "status": "read"
+    },
+    {
+      "id": "prfc1-ext-m4",
+      "conversationId": "prfc1",
+      "senderId": "patient-mariana",
+      "senderRole": "patient",
+      "text": "Sim! Escrevi sobre o que senti e o que fiz para lidar. Está ficando mais fácil identificar os gatilhos.",
+      "sentAt": "2026-05-16T09:40:00Z",
+      "status": "read"
+    },
+    {
+      "id": "prfc1-ext-m5",
+      "conversationId": "prfc1",
+      "senderId": "u-prof-1",
+      "senderRole": "professional",
+      "text": "Isso é muito positivo! Identificar gatilhos é um passo fundamental. Vamos explorar isso mais na próxima sessão.",
+      "sentAt": "2026-05-16T09:45:00Z",
+      "status": "read"
+    },
+    {
+      "id": "prfc1-ext-m6",
+      "conversationId": "prfc1",
+      "senderId": "patient-mariana",
+      "senderRole": "patient",
+      "text": "Combinado! Tenho uma dúvida: posso usar a técnica antes de reuniões de trabalho também?",
+      "sentAt": "2026-05-17T09:00:00Z",
+      "status": "read"
+    },
+    {
+      "id": "prfc1-ext-m7",
+      "conversationId": "prfc1",
+      "senderId": "u-prof-1",
+      "senderRole": "professional",
+      "text": "Com certeza! A respiração consciente pode ser usada a qualquer momento. Antes de reuniões é uma ótima aplicação.",
+      "sentAt": "2026-05-17T09:10:00Z",
+      "status": "read"
+    },
+    {
+      "id": "prfc1-ext-m8",
+      "conversationId": "prfc1",
+      "senderId": "patient-mariana",
+      "senderRole": "patient",
+      "text": "Ótimo! Vou usar amanhã que tenho uma apresentação.",
+      "sentAt": "2026-05-17T09:20:00Z",
+      "status": "read"
+    },
+    {
+      "id": "prfc1-ext-m9",
+      "conversationId": "prfc1",
+      "senderId": "u-prof-1",
+      "senderRole": "professional",
+      "text": "Você vai se sair muito bem! Confio no seu progresso.",
+      "sentAt": "2026-05-17T09:25:00Z",
+      "status": "read"
+    },
+    {
+      "id": "prfc1-ext-m10",
+      "conversationId": "prfc1",
+      "senderId": "patient-mariana",
+      "senderRole": "patient",
+      "text": "Obrigada, doutor. Isso me dá muita força!",
+      "sentAt": "2026-05-17T09:30:00Z",
+      "status": "read"
+    },
+    {
+      "id": "prfc1-ext-m11",
+      "conversationId": "prfc1",
+      "senderId": "patient-mariana",
+      "senderRole": "patient",
+      "text": "Oi! Me senti bem melhor depois de praticar a respiração.",
+      "sentAt": "2026-05-18T10:00:00Z",
+      "status": "delivered"
+    },
+    {
+      "id": "prfc1-ext-m12",
+      "conversationId": "prfc1",
+      "senderId": "patient-mariana",
+      "senderRole": "patient",
+      "text": "Consegui dormir mais cedo ontem também!",
+      "sentAt": "2026-05-18T10:01:00Z",
+      "status": "delivered"
+    }
+  ]
+}

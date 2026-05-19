@@ -326,7 +326,7 @@ export function AddPatientObservationScreen() {
         confirmColor="#6DBF7B"
         title="Observação salva!"
         confirmLabel="Voltar para a lista"
-        cancelLabel=""
+        cancelLabel={false}
         description="Sua observação foi registrada com sucesso."
       />
     </View>

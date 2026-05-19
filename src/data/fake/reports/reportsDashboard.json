@@ -1,0 +1,69 @@
+{
+  "summary": {
+    "activePatients": 12,
+    "consultationsCompleted": 38,
+    "consultationsScheduled": 14,
+    "averageMood": 6.8,
+    "recentAlerts": 3,
+    "activitiesCompleted": 147,
+    "diaryEntries": 89,
+    "moodTrend": 5,
+    "activityAdherencePct": 72
+  },
+  "moodHistory": [
+    { "date": "01/04", "value": 6.1 },
+    { "date": "02/04", "value": 6.4 },
+    { "date": "03/04", "value": 5.9 },
+    { "date": "04/04", "value": 6.7 },
+    { "date": "05/04", "value": 7.0 },
+    { "date": "06/04", "value": 6.8 },
+    { "date": "07/04", "value": 6.3 },
+    { "date": "08/04", "value": 5.5 },
+    { "date": "09/04", "value": 5.8 },
+    { "date": "10/04", "value": 6.2 },
+    { "date": "11/04", "value": 6.6 },
+    { "date": "12/04", "value": 7.1 },
+    { "date": "13/04", "value": 7.3 },
+    { "date": "14/04", "value": 6.9 },
+    { "date": "15/04", "value": 6.5 },
+    { "date": "16/04", "value": 7.2 },
+    { "date": "17/04", "value": 7.5 },
+    { "date": "18/04", "value": 7.8 },
+    { "date": "19/04", "value": 7.4 },
+    { "date": "20/04", "value": 7.0 },
+    { "date": "21/04", "value": 6.8 },
+    { "date": "22/04", "value": 7.1 },
+    { "date": "23/04", "value": 7.6 },
+    { "date": "24/04", "value": 8.0 },
+    { "date": "25/04", "value": 8.2 },
+    { "date": "26/04", "value": 7.9 },
+    { "date": "27/04", "value": 7.5 },
+    { "date": "28/04", "value": 7.7 },
+    { "date": "29/04", "value": 8.0 },
+    { "date": "30/04", "value": 7.8 }
+  ],
+  "activityAdherence": [
+    { "week": "Sem 1", "completedPct": 58 },
+    { "week": "Sem 2", "completedPct": 65 },
+    { "week": "Sem 3", "completedPct": 71 },
+    { "week": "Sem 4", "completedPct": 78 },
+    { "week": "Sem 5", "completedPct": 82 },
+    { "week": "Sem 6", "completedPct": 85 }
+  ],
+  "diaryFrequency": [
+    { "week": "Sem 1", "count": 9 },
+    { "week": "Sem 2", "count": 12 },
+    { "week": "Sem 3", "count": 11 },
+    { "week": "Sem 4", "count": 15 },
+    { "week": "Sem 5", "count": 18 },
+    { "week": "Sem 6", "count": 22 }
+  ],
+  "emotionDistribution": [
+    { "emotion": "Ansiedade", "count": 42, "pct": 28, "color": "#F59E0B" },
+    { "emotion": "Tristeza", "count": 28, "pct": 19, "color": "#6366F1" },
+    { "emotion": "Calma", "count": 35, "pct": 23, "color": "#10B981" },
+    { "emotion": "Irritação", "count": 18, "pct": 12, "color": "#EF4444" },
+    { "emotion": "Alegria", "count": 15, "pct": 10, "color": "#F97316" },
+    { "emotion": "Outros", "count": 12, "pct": 8, "color": "#9CA3AF" }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "faq": [
+    {
+      "id": "1",
+      "title": "Como adiciono um paciente?",
+      "content": "Acesse a aba Pacientes e toque em 'Adicionar paciente'. Você pode buscar usuários pelo nome, e-mail ou username e enviar uma solicitação de contrato."
+    },
+    {
+      "id": "2",
+      "title": "Como funciona a solicitação de contrato?",
+      "content": "Ao enviar uma solicitação, o paciente recebe uma notificação e pode aceitar ou recusar. Após aceite, ele passa a fazer parte da sua lista de pacientes ativos."
+    },
+    {
+      "id": "3",
+      "title": "O paciente precisa aceitar minha solicitação?",
+      "content": "Sim. O consentimento do paciente é obrigatório. Enquanto ele não aceitar, o status ficará como 'Pendente' na sua lista."
+    },
+    {
+      "id": "4",
+      "title": "Como acompanho o diário do paciente?",
+      "content": "No prontuário do paciente, acesse a aba 'Diário'. Você verá os registros compartilhados pelo paciente e poderá adicionar observações clínicas."
+    },
+    {
+      "id": "5",
+      "title": "Como funcionam os alertas emocionais?",
+      "content": "O sistema monitora padrões de humor e bem-estar. Quando identifica variações significativas ou risco emocional, envia um alerta para que você possa intervir rapidamente."
+    },
+    {
+      "id": "6",
+      "title": "Como registrar uma consulta?",
+      "content": "Acesse a Agenda e toque em 'Nova consulta'. Preencha os dados da sessão, selecione o paciente, data, horário e formato (online/presencial)."
+    },
+    {
+      "id": "7",
+      "title": "Posso cobrar valores extras?",
+      "content": "Sim, no plano Premium ou Clinic. Acesse o prontuário do paciente, vá em 'Financeiro' e toque em 'Cobrança extra'. O paciente receberá uma notificação para aprovação."
+    },
+    {
+      "id": "8",
+      "title": "Como funcionam os planos profissionais?",
+      "content": "O plano Basic é gratuito e permite até 10 pacientes. O Premium (R$ 99/mês) oferece pacientes ilimitados, IA e relatórios. O Clinic (R$ 249/mês) inclui recursos para equipes e clínicas."
+    },
+    {
+      "id": "9",
+      "title": "O HealthMind substitui minha avaliação clínica?",
+      "content": "Não. O HealthMind é uma ferramenta de suporte clínico. Toda avaliação, diagnóstico e conduta terapêutica são de responsabilidade exclusiva do profissional habilitado."
+    },
+    {
+      "id": "10",
+      "title": "Como proteger a privacidade dos pacientes?",
+      "content": "Todas as informações dos pacientes são criptografadas e protegidas. Observações marcadas como 'privadas' são visíveis apenas para você. O paciente controla o que compartilha no diário."
+    }
+  ],
+  "support": {
+    "email": "suporte.profissionais@healthmind.com",
+    "description": "Ainda tem dúvidas?"
+  }
+}

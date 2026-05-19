@@ -1,0 +1,37 @@
+[
+  {
+    "id": "ref-credit-card",
+    "type": "credit_card",
+    "label": "Cartão de Crédito",
+    "icon": "card-outline",
+    "brands": ["Visa", "Mastercard", "Elo", "American Express"],
+    "description": "Aceito pelas principais bandeiras"
+  },
+  {
+    "id": "ref-pix",
+    "type": "pix",
+    "label": "PIX",
+    "icon": "qr-code-outline",
+    "pixKeyTypes": [
+      { "value": "cpf", "label": "CPF" },
+      { "value": "email", "label": "E-mail" },
+      { "value": "phone", "label": "Telefone" },
+      { "value": "random", "label": "Chave aleatória" }
+    ],
+    "description": "Transferência instantânea 24h"
+  },
+  {
+    "id": "ref-bank-transfer",
+    "type": "bank_transfer",
+    "label": "Transferência Bancária (TED/DOC)",
+    "icon": "business-outline",
+    "description": "Processada em dias úteis"
+  },
+  {
+    "id": "ref-platform-balance",
+    "type": "platform_balance",
+    "label": "Saldo da Plataforma",
+    "icon": "wallet-outline",
+    "description": "Use seu saldo disponível na HealthMind"
+  }
+]

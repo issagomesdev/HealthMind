@@ -1,0 +1,178 @@
+{
+  "summary": {
+    "totalPatients": 12,
+    "patientsInAlert": 3,
+    "positiveEvolutionThisMonth": 7,
+    "checkInsThisMonth": 89,
+    "averageMoodScore": 6.8,
+    "completedAppointments": 34,
+    "patientsWithoutRecentInteraction": 2,
+    "weekComparison": {
+      "checkIns": { "current": 24, "previous": 21, "pct": 12 },
+      "mood": { "current": 6.8, "previous": 6.6, "pct": 3 },
+      "engagement": { "current": 72, "previous": 78, "pct": -8 }
+    }
+  },
+  "globalMoodHistory": [
+    { "date": "2026-04-19", "value": 6.2 },
+    { "date": "2026-04-20", "value": 6.5 },
+    { "date": "2026-04-21", "value": 5.9 },
+    { "date": "2026-04-22", "value": 6.8 },
+    { "date": "2026-04-23", "value": 7.1 },
+    { "date": "2026-04-24", "value": 6.4 },
+    { "date": "2026-04-25", "value": 6.0 },
+    { "date": "2026-04-26", "value": 5.7 },
+    { "date": "2026-04-27", "value": 6.3 },
+    { "date": "2026-04-28", "value": 6.9 },
+    { "date": "2026-04-29", "value": 7.2 },
+    { "date": "2026-04-30", "value": 7.0 },
+    { "date": "2026-05-01", "value": 6.6 },
+    { "date": "2026-05-02", "value": 5.8 },
+    { "date": "2026-05-03", "value": 6.1 },
+    { "date": "2026-05-04", "value": 6.7 },
+    { "date": "2026-05-05", "value": 7.3 },
+    { "date": "2026-05-06", "value": 7.5 },
+    { "date": "2026-05-07", "value": 6.9 },
+    { "date": "2026-05-08", "value": 6.4 },
+    { "date": "2026-05-09", "value": 5.5 },
+    { "date": "2026-05-10", "value": 5.8 },
+    { "date": "2026-05-11", "value": 6.2 },
+    { "date": "2026-05-12", "value": 6.8 },
+    { "date": "2026-05-13", "value": 7.1 },
+    { "date": "2026-05-14", "value": 7.4 },
+    { "date": "2026-05-15", "value": 8.0 },
+    { "date": "2026-05-16", "value": 7.8 },
+    { "date": "2026-05-17", "value": 8.2 },
+    { "date": "2026-05-18", "value": 7.6 }
+  ],
+  "weeklyMoodHistory": [
+    { "date": "Sem 1", "value": 6.0 },
+    { "date": "Sem 2", "value": 6.3 },
+    { "date": "Sem 3", "value": 5.9 },
+    { "date": "Sem 4", "value": 6.7 },
+    { "date": "Sem 5", "value": 7.1 },
+    { "date": "Sem 6", "value": 6.8 },
+    { "date": "Sem 7", "value": 7.3 },
+    { "date": "Sem 8", "value": 7.5 }
+  ],
+  "recentInsights": [
+    {
+      "id": "ins-1",
+      "patientId": null,
+      "patientName": null,
+      "category": "improvement",
+      "title": "Progresso coletivo positivo",
+      "text": "Em geral, 7 dos seus 12 pacientes apresentaram melhora emocional significativa este mês, com aumento médio de 12% no humor.",
+      "generatedAt": "2026-05-18T08:00:00Z",
+      "icon": "trending-up-outline"
+    },
+    {
+      "id": "ins-2",
+      "patientId": null,
+      "patientName": null,
+      "category": "warning",
+      "title": "Queda de engajamento detectada",
+      "text": "O engajamento médio dos pacientes caiu 8% em relação à semana anterior. Considere verificar os pacientes com menor interação.",
+      "generatedAt": "2026-05-18T08:01:00Z",
+      "icon": "alert-circle-outline"
+    },
+    {
+      "id": "ins-3",
+      "patientId": null,
+      "patientName": null,
+      "category": "pattern",
+      "title": "Padrão de ansiedade às segundas",
+      "text": "Dados de check-in indicam que o humor dos pacientes tende a ser mais baixo nas segundas-feiras, possivelmente relacionado ao início da semana de trabalho.",
+      "generatedAt": "2026-05-17T14:30:00Z",
+      "icon": "analytics-outline"
+    },
+    {
+      "id": "ins-4",
+      "patientId": null,
+      "patientName": null,
+      "category": "engagement",
+      "title": "Alta adesão a atividades",
+      "text": "Pacientes que completam mais de 3 atividades semanais apresentam humor médio 18% superior aos demais.",
+      "generatedAt": "2026-05-17T09:00:00Z",
+      "icon": "checkmark-circle-outline"
+    },
+    {
+      "id": "ins-5",
+      "patientId": null,
+      "patientName": null,
+      "category": "neutral",
+      "title": "Ciclo de recuperação estável",
+      "text": "O grupo como um todo demonstra um padrão estável de recuperação após períodos de estresse, levando em média 3 dias para retornar ao humor basal.",
+      "generatedAt": "2026-05-16T11:00:00Z",
+      "icon": "pulse-outline"
+    }
+  ],
+  "recentAlerts": [
+    {
+      "id": "alt-1",
+      "patientId": "p1",
+      "patientName": "Mariana Costa",
+      "type": "mood_drop",
+      "severity": "high",
+      "title": "Queda acentuada de humor",
+      "description": "Mariana registrou humor abaixo de 3 por 3 dias consecutivos. Intervenção recomendada.",
+      "triggeredAt": "2026-05-17T19:00:00Z",
+      "isRead": false
+    },
+    {
+      "id": "alt-2",
+      "patientId": "p3",
+      "patientName": "Julia Fernandes",
+      "type": "no_checkin",
+      "severity": "medium",
+      "title": "Sem check-in há 5 dias",
+      "description": "Julia não realizou nenhum registro de humor nos últimos 5 dias.",
+      "triggeredAt": "2026-05-16T12:00:00Z",
+      "isRead": false
+    },
+    {
+      "id": "alt-3",
+      "patientId": "p2",
+      "patientName": "Ricardo Alves",
+      "type": "anxiety_spike",
+      "severity": "critical",
+      "title": "Pico de ansiedade detectado",
+      "description": "Ricardo relatou níveis críticos de ansiedade em múltiplos registros nas últimas 48 horas.",
+      "triggeredAt": "2026-05-18T06:30:00Z",
+      "isRead": false
+    },
+    {
+      "id": "alt-4",
+      "patientId": "p4",
+      "patientName": "Carlos Mendes",
+      "type": "disengagement",
+      "severity": "low",
+      "title": "Baixo engajamento",
+      "description": "Carlos completou apenas 1 de 5 atividades propostas esta semana.",
+      "triggeredAt": "2026-05-15T08:00:00Z",
+      "isRead": true
+    },
+    {
+      "id": "alt-5",
+      "patientId": "p1",
+      "patientName": "Mariana Costa",
+      "type": "behavioral_change",
+      "severity": "medium",
+      "title": "Mudança comportamental identificada",
+      "description": "Padrão de escrita nos diários indica aumento de pensamentos negativos.",
+      "triggeredAt": "2026-05-14T15:00:00Z",
+      "isRead": true
+    },
+    {
+      "id": "alt-6",
+      "patientId": "p2",
+      "patientName": "Ricardo Alves",
+      "type": "high_risk",
+      "severity": "critical",
+      "title": "Paciente em risco elevado",
+      "description": "Combinação de humor baixo persistente e relatos de desesperança requer atenção imediata.",
+      "triggeredAt": "2026-05-18T07:00:00Z",
+      "isRead": false
+    }
+  ]
+}

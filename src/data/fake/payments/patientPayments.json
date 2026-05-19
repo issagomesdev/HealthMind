@@ -1,0 +1,343 @@
+{
+  "summary": {
+    "currentPlan": "Premium",
+    "planStatus": "active",
+    "nextBillingDate": "2026-06-05",
+    "nextBillingAmount": 99.90,
+    "pendingCount": 2,
+    "pendingAmount": 349.90,
+    "paidThisMonth": 99.90
+  },
+  "transactions": [
+    {
+      "id": "txn-001",
+      "type": "subscription",
+      "typeLabel": "Plano Premium",
+      "status": "paid",
+      "amount": 99.90,
+      "currency": "BRL",
+      "date": "2026-05-05T10:00:00.000Z",
+      "dueDate": "2026-05-05",
+      "description": "Assinatura mensal Plano Premium HealthMind",
+      "relatedPersonName": "Plano Premium HealthMind",
+      "paymentMethodId": "pm-001",
+      "paymentMethodLabel": "Visa **** 4242",
+      "transactionCode": "TXN-2026-0041",
+      "receiptUrl": null,
+      "notes": "Renovação automática mensal.",
+      "timeline": [
+        { "id": "ev-001-1", "label": "Cobrança gerada", "date": "2026-05-05T09:00:00.000Z", "icon": "document-outline", "color": "#6B7280" },
+        { "id": "ev-001-2", "label": "Pagamento aprovado", "date": "2026-05-05T10:00:00.000Z", "icon": "checkmark-circle-outline", "color": "#065F46" }
+      ]
+    },
+    {
+      "id": "txn-002",
+      "type": "appointment",
+      "typeLabel": "Consulta",
+      "status": "paid",
+      "amount": 180.00,
+      "currency": "BRL",
+      "date": "2026-05-08T14:00:00.000Z",
+      "dueDate": "2026-05-08",
+      "description": "Consulta de psicologia - 50 min",
+      "relatedPersonName": "Dra. Serenity",
+      "relatedPersonId": "prof-001",
+      "paymentMethodId": "pm-001",
+      "paymentMethodLabel": "Visa **** 4242",
+      "transactionCode": "TXN-2026-0042",
+      "receiptUrl": null,
+      "notes": null,
+      "timeline": [
+        { "id": "ev-002-1", "label": "Consulta agendada", "date": "2026-05-01T10:00:00.000Z", "icon": "calendar-outline", "color": "#6B7280" },
+        { "id": "ev-002-2", "label": "Pagamento recebido", "date": "2026-05-08T14:30:00.000Z", "icon": "checkmark-circle-outline", "color": "#065F46" }
+      ]
+    },
+    {
+      "id": "txn-003",
+      "type": "appointment",
+      "typeLabel": "Consulta",
+      "status": "pending",
+      "amount": 250.00,
+      "currency": "BRL",
+      "date": "2026-05-20T09:00:00.000Z",
+      "dueDate": "2026-05-20",
+      "description": "Consulta de psiquiatria - 60 min",
+      "relatedPersonName": "Dr. Marcus Silva",
+      "relatedPersonId": "prof-002",
+      "paymentMethodId": null,
+      "paymentMethodLabel": null,
+      "transactionCode": "TXN-2026-0043",
+      "receiptUrl": null,
+      "notes": "Aguardando pagamento antes da consulta.",
+      "timeline": [
+        { "id": "ev-003-1", "label": "Consulta agendada", "date": "2026-05-15T11:00:00.000Z", "icon": "calendar-outline", "color": "#6B7280" },
+        { "id": "ev-003-2", "label": "Aguardando pagamento", "date": "2026-05-15T11:01:00.000Z", "icon": "time-outline", "color": "#92400E" }
+      ]
+    },
+    {
+      "id": "txn-004",
+      "type": "subscription",
+      "typeLabel": "Plano Premium",
+      "status": "paid",
+      "amount": 99.90,
+      "currency": "BRL",
+      "date": "2026-04-05T10:00:00.000Z",
+      "dueDate": "2026-04-05",
+      "description": "Assinatura mensal Plano Premium HealthMind",
+      "relatedPersonName": "Plano Premium HealthMind",
+      "paymentMethodId": "pm-001",
+      "paymentMethodLabel": "Visa **** 4242",
+      "transactionCode": "TXN-2026-0032",
+      "receiptUrl": null,
+      "notes": "Renovação automática mensal.",
+      "timeline": [
+        { "id": "ev-004-1", "label": "Cobrança gerada", "date": "2026-04-05T09:00:00.000Z", "icon": "document-outline", "color": "#6B7280" },
+        { "id": "ev-004-2", "label": "Pagamento aprovado", "date": "2026-04-05T10:00:00.000Z", "icon": "checkmark-circle-outline", "color": "#065F46" }
+      ]
+    },
+    {
+      "id": "txn-005",
+      "type": "appointment",
+      "typeLabel": "Consulta",
+      "status": "paid",
+      "amount": 180.00,
+      "currency": "BRL",
+      "date": "2026-04-12T15:00:00.000Z",
+      "dueDate": "2026-04-12",
+      "description": "Consulta de psicologia - 50 min",
+      "relatedPersonName": "Dra. Serenity",
+      "relatedPersonId": "prof-001",
+      "paymentMethodId": "pm-002",
+      "paymentMethodLabel": "PIX - ***.123.***-**",
+      "transactionCode": "TXN-2026-0033",
+      "receiptUrl": null,
+      "notes": null,
+      "timeline": [
+        { "id": "ev-005-1", "label": "Consulta agendada", "date": "2026-04-08T10:00:00.000Z", "icon": "calendar-outline", "color": "#6B7280" },
+        { "id": "ev-005-2", "label": "PIX confirmado", "date": "2026-04-12T15:10:00.000Z", "icon": "checkmark-circle-outline", "color": "#065F46" }
+      ]
+    },
+    {
+      "id": "txn-006",
+      "type": "extra_charge",
+      "typeLabel": "Cobrança Extra",
+      "status": "pending",
+      "amount": 99.90,
+      "currency": "BRL",
+      "date": "2026-05-10T08:00:00.000Z",
+      "dueDate": "2026-05-25",
+      "description": "Sessão adicional de emergência",
+      "relatedPersonName": "Dra. Serenity",
+      "relatedPersonId": "prof-001",
+      "paymentMethodId": null,
+      "paymentMethodLabel": null,
+      "transactionCode": "TXN-2026-0044",
+      "receiptUrl": null,
+      "notes": "Sessão extra solicitada pelo profissional.",
+      "timeline": [
+        { "id": "ev-006-1", "label": "Cobrança criada pelo profissional", "date": "2026-05-10T08:00:00.000Z", "icon": "cash-outline", "color": "#6B7280" },
+        { "id": "ev-006-2", "label": "Aguardando aceite do paciente", "date": "2026-05-10T08:01:00.000Z", "icon": "time-outline", "color": "#92400E" }
+      ]
+    },
+    {
+      "id": "txn-007",
+      "type": "appointment",
+      "typeLabel": "Consulta",
+      "status": "overdue",
+      "amount": 180.00,
+      "currency": "BRL",
+      "date": "2026-03-15T10:00:00.000Z",
+      "dueDate": "2026-03-15",
+      "description": "Consulta de psicologia - 50 min",
+      "relatedPersonName": "Dra. Serenity",
+      "relatedPersonId": "prof-001",
+      "paymentMethodId": null,
+      "paymentMethodLabel": null,
+      "transactionCode": "TXN-2026-0021",
+      "receiptUrl": null,
+      "notes": "Pagamento em atraso.",
+      "timeline": [
+        { "id": "ev-007-1", "label": "Consulta realizada", "date": "2026-03-15T10:00:00.000Z", "icon": "calendar-outline", "color": "#6B7280" },
+        { "id": "ev-007-2", "label": "Vencimento sem pagamento", "date": "2026-03-15T23:59:00.000Z", "icon": "alert-circle-outline", "color": "#991B1B" }
+      ]
+    },
+    {
+      "id": "txn-008",
+      "type": "subscription",
+      "typeLabel": "Plano Premium",
+      "status": "paid",
+      "amount": 99.90,
+      "currency": "BRL",
+      "date": "2026-03-05T10:00:00.000Z",
+      "dueDate": "2026-03-05",
+      "description": "Assinatura mensal Plano Premium HealthMind",
+      "relatedPersonName": "Plano Premium HealthMind",
+      "paymentMethodId": "pm-001",
+      "paymentMethodLabel": "Visa **** 4242",
+      "transactionCode": "TXN-2026-0022",
+      "receiptUrl": null,
+      "notes": null,
+      "timeline": [
+        { "id": "ev-008-1", "label": "Cobrança gerada", "date": "2026-03-05T09:00:00.000Z", "icon": "document-outline", "color": "#6B7280" },
+        { "id": "ev-008-2", "label": "Pagamento aprovado", "date": "2026-03-05T10:00:00.000Z", "icon": "checkmark-circle-outline", "color": "#065F46" }
+      ]
+    },
+    {
+      "id": "txn-009",
+      "type": "appointment",
+      "typeLabel": "Consulta",
+      "status": "cancelled",
+      "amount": 180.00,
+      "currency": "BRL",
+      "date": "2026-02-20T14:00:00.000Z",
+      "dueDate": "2026-02-20",
+      "description": "Consulta de psicologia - 50 min (cancelada)",
+      "relatedPersonName": "Dra. Serenity",
+      "relatedPersonId": "prof-001",
+      "paymentMethodId": null,
+      "paymentMethodLabel": null,
+      "transactionCode": "TXN-2026-0015",
+      "receiptUrl": null,
+      "notes": "Cancelada com 24h de antecedência.",
+      "timeline": [
+        { "id": "ev-009-1", "label": "Consulta agendada", "date": "2026-02-15T10:00:00.000Z", "icon": "calendar-outline", "color": "#6B7280" },
+        { "id": "ev-009-2", "label": "Consulta cancelada", "date": "2026-02-19T10:00:00.000Z", "icon": "close-circle-outline", "color": "#6B7280" }
+      ]
+    },
+    {
+      "id": "txn-010",
+      "type": "refund",
+      "typeLabel": "Reembolso",
+      "status": "refunded",
+      "amount": 180.00,
+      "currency": "BRL",
+      "date": "2026-02-22T10:00:00.000Z",
+      "dueDate": null,
+      "description": "Reembolso de consulta cancelada",
+      "relatedPersonName": "Dra. Serenity",
+      "relatedPersonId": "prof-001",
+      "paymentMethodId": "pm-001",
+      "paymentMethodLabel": "Visa **** 4242",
+      "transactionCode": "TXN-2026-0016",
+      "receiptUrl": null,
+      "notes": "Reembolso processado em até 5 dias úteis.",
+      "timeline": [
+        { "id": "ev-010-1", "label": "Reembolso solicitado", "date": "2026-02-19T10:30:00.000Z", "icon": "return-down-back-outline", "color": "#6B7280" },
+        { "id": "ev-010-2", "label": "Reembolso aprovado", "date": "2026-02-20T09:00:00.000Z", "icon": "checkmark-circle-outline", "color": "#065F46" },
+        { "id": "ev-010-3", "label": "Valor creditado", "date": "2026-02-22T10:00:00.000Z", "icon": "wallet-outline", "color": "#065F46" }
+      ]
+    },
+    {
+      "id": "txn-011",
+      "type": "subscription",
+      "typeLabel": "Plano Premium",
+      "status": "paid",
+      "amount": 99.90,
+      "currency": "BRL",
+      "date": "2026-02-05T10:00:00.000Z",
+      "dueDate": "2026-02-05",
+      "description": "Assinatura mensal Plano Premium HealthMind",
+      "relatedPersonName": "Plano Premium HealthMind",
+      "paymentMethodId": "pm-001",
+      "paymentMethodLabel": "Visa **** 4242",
+      "transactionCode": "TXN-2026-0010",
+      "receiptUrl": null,
+      "notes": null,
+      "timeline": [
+        { "id": "ev-011-1", "label": "Cobrança gerada", "date": "2026-02-05T09:00:00.000Z", "icon": "document-outline", "color": "#6B7280" },
+        { "id": "ev-011-2", "label": "Pagamento aprovado", "date": "2026-02-05T10:00:00.000Z", "icon": "checkmark-circle-outline", "color": "#065F46" }
+      ]
+    },
+    {
+      "id": "txn-012",
+      "type": "appointment",
+      "typeLabel": "Consulta",
+      "status": "paid",
+      "amount": 180.00,
+      "currency": "BRL",
+      "date": "2026-01-18T11:00:00.000Z",
+      "dueDate": "2026-01-18",
+      "description": "Consulta de psicologia - 50 min",
+      "relatedPersonName": "Dra. Serenity",
+      "relatedPersonId": "prof-001",
+      "paymentMethodId": "pm-001",
+      "paymentMethodLabel": "Visa **** 4242",
+      "transactionCode": "TXN-2026-0003",
+      "receiptUrl": null,
+      "notes": null,
+      "timeline": [
+        { "id": "ev-012-1", "label": "Consulta agendada", "date": "2026-01-14T09:00:00.000Z", "icon": "calendar-outline", "color": "#6B7280" },
+        { "id": "ev-012-2", "label": "Pagamento confirmado", "date": "2026-01-18T11:30:00.000Z", "icon": "checkmark-circle-outline", "color": "#065F46" }
+      ]
+    }
+  ],
+  "extraCharges": [
+    {
+      "id": "ec-001",
+      "patientId": "patient-001",
+      "patientName": "Você",
+      "professionalId": "prof-001",
+      "professionalName": "Dra. Serenity",
+      "title": "Sessão adicional",
+      "description": "Sessão de acompanhamento adicional solicitada fora do plano regular.",
+      "amount": 80.00,
+      "reason": "Necessidade de suporte extra identificada na última consulta.",
+      "dueDate": "2026-05-28",
+      "status": "awaiting_acceptance",
+      "createdAt": "2026-05-10T08:00:00.000Z",
+      "respondedAt": null,
+      "notes": "Por favor, confirme até 28/05."
+    },
+    {
+      "id": "ec-002",
+      "patientId": "patient-001",
+      "patientName": "Você",
+      "professionalId": "prof-001",
+      "professionalName": "Dra. Serenity",
+      "title": "Material de apoio",
+      "description": "Apostila e material complementar de TCC.",
+      "amount": 50.00,
+      "reason": "Material didático para acompanhamento do tratamento.",
+      "dueDate": "2026-04-15",
+      "status": "approved",
+      "createdAt": "2026-04-08T10:00:00.000Z",
+      "respondedAt": "2026-04-09T14:00:00.000Z",
+      "notes": null
+    },
+    {
+      "id": "ec-003",
+      "patientId": "patient-001",
+      "patientName": "Você",
+      "professionalId": "prof-002",
+      "professionalName": "Dr. Marcus Silva",
+      "title": "Relatório psiquiátrico",
+      "description": "Elaboração de laudo psiquiátrico para fins ocupacionais.",
+      "amount": 220.00,
+      "reason": "Solicitação de empresa empregadora.",
+      "dueDate": "2026-03-20",
+      "status": "rejected",
+      "createdAt": "2026-03-10T09:00:00.000Z",
+      "respondedAt": "2026-03-11T16:00:00.000Z",
+      "notes": "Recusado pelo paciente."
+    }
+  ],
+  "paymentMethods": [
+    {
+      "id": "pm-001",
+      "type": "credit_card",
+      "label": "Visa **** 4242",
+      "isDefault": true,
+      "icon": "card-outline",
+      "lastFour": "4242",
+      "brand": "Visa"
+    },
+    {
+      "id": "pm-002",
+      "type": "pix",
+      "label": "PIX - ***.123.***-**",
+      "isDefault": false,
+      "icon": "qr-code-outline",
+      "pixKey": "***.123.***-**"
+    }
+  ]
+}

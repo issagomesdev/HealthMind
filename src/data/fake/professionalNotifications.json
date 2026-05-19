@@ -1,0 +1,76 @@
+{
+  "notifications": [
+    {
+      "id": "pn_001",
+      "type": "patient_request",
+      "title": "Nova solicitação aceita",
+      "description": "Ana Clara aceitou sua solicitação de acompanhamento.",
+      "createdAt": "2026-05-18T09:15:00.000Z",
+      "read": false
+    },
+    {
+      "id": "pn_002",
+      "type": "appointment",
+      "title": "Consulta hoje às 14:30",
+      "description": "Você possui sessão com Ana Silva.",
+      "createdAt": "2026-05-18T08:00:00.000Z",
+      "read": false
+    },
+    {
+      "id": "pn_003",
+      "type": "emotional_alert",
+      "title": "Novo alerta emocional",
+      "description": "Lucas registrou aumento de ansiedade no diário.",
+      "createdAt": "2026-05-18T07:30:00.000Z",
+      "read": false
+    },
+    {
+      "id": "pn_004",
+      "type": "message",
+      "title": "Mensagem de paciente",
+      "description": "Camila enviou uma nova mensagem.",
+      "createdAt": "2026-05-17T20:10:00.000Z",
+      "read": true
+    },
+    {
+      "id": "pn_005",
+      "type": "payment",
+      "title": "Pagamento pendente",
+      "description": "Há um pagamento aguardando confirmação.",
+      "createdAt": "2026-05-17T15:00:00.000Z",
+      "read": true
+    },
+    {
+      "id": "pn_006",
+      "type": "charge_approved",
+      "title": "Cobrança extra aprovada",
+      "description": "Rafael aprovou a cobrança extra solicitada.",
+      "createdAt": "2026-05-17T11:30:00.000Z",
+      "read": true
+    },
+    {
+      "id": "pn_007",
+      "type": "diary_shared",
+      "title": "Revisar diário",
+      "description": "Novo registro compartilhado por Mariana.",
+      "createdAt": "2026-05-16T18:45:00.000Z",
+      "read": true
+    },
+    {
+      "id": "pn_008",
+      "type": "report",
+      "title": "Relatório semanal disponível",
+      "description": "Seu resumo de atendimentos da semana já está pronto.",
+      "createdAt": "2026-05-16T08:00:00.000Z",
+      "read": true
+    },
+    {
+      "id": "pn_009",
+      "type": "agenda_full",
+      "title": "Agenda cheia",
+      "description": "Você tem muitas consultas hoje. Considere pausas entre atendimentos.",
+      "createdAt": "2026-05-15T07:00:00.000Z",
+      "read": true
+    }
+  ]
+}

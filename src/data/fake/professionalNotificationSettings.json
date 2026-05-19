@@ -1,0 +1,9 @@
+{
+  "newPatientRequests": true,
+  "upcomingAppointments": true,
+  "patientMessages": true,
+  "emotionalAlerts": true,
+  "paymentsAndCharges": true,
+  "professionalReports": false,
+  "wellbeingReminders": true
+}

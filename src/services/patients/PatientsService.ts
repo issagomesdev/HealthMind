@@ -155,6 +155,19 @@ class PatientsService {
     return messages.filter((m) => m.patientId === patientId);
   }
 
+  async getUnreadMessageCount(patientId: string): Promise<number> {
+    await delay(100);
+    const thread = messages
+      .filter((m) => m.patientId === patientId)
+      .sort((a, b) => a.sentAt.localeCompare(b.sentAt));
+    const lastProfMessage = [...thread].reverse().find((m) => m.senderRole === "professional");
+    return thread.filter(
+      (m) =>
+        m.senderRole === "patient" &&
+        (!lastProfMessage || m.sentAt > lastProfMessage.sentAt)
+    ).length;
+  }
+
   async sendChatMessage(
     patientId: string,
     text: string,

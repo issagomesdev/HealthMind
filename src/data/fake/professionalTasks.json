@@ -1,0 +1,84 @@
+{
+  "tasks": [
+    {
+      "id": "task-t1",
+      "title": "Meditação guiada",
+      "description": "Inicie o dia com clareza mental antes das consultas",
+      "durationMinutes": 5,
+      "category": "wellness",
+      "icon": "flower-outline",
+      "completed": false,
+      "date": "2026-05-18"
+    },
+    {
+      "id": "task-t2",
+      "title": "Respiração consciente",
+      "description": "Técnica 4-7-8 para centrar antes das sessões",
+      "durationMinutes": 3,
+      "category": "wellness",
+      "icon": "leaf-outline",
+      "completed": false,
+      "date": "2026-05-18"
+    },
+    {
+      "id": "task-t3",
+      "title": "Revisar agenda do dia",
+      "description": "Verificar horários, pacientes e notas das consultas de hoje",
+      "durationMinutes": 10,
+      "category": "organization",
+      "icon": "calendar-outline",
+      "completed": false,
+      "date": "2026-05-18"
+    },
+    {
+      "id": "task-t4",
+      "title": "Organizar anotações pós-consulta",
+      "description": "Registrar evoluções e pontos relevantes das sessões do dia",
+      "durationMinutes": 15,
+      "category": "organization",
+      "icon": "document-text-outline",
+      "completed": false,
+      "date": "2026-05-18"
+    },
+    {
+      "id": "task-t5",
+      "title": "Pausa para hidratação",
+      "description": "Lembre-se de beber água entre as consultas",
+      "durationMinutes": 5,
+      "category": "wellness",
+      "icon": "water-outline",
+      "completed": false,
+      "date": "2026-05-18"
+    },
+    {
+      "id": "task-t6",
+      "title": "Check-in de bem-estar profissional",
+      "description": "Como você está se sentindo? Cuide de quem cuida",
+      "durationMinutes": 5,
+      "category": "wellness",
+      "icon": "heart-outline",
+      "completed": false,
+      "date": "2026-05-18"
+    },
+    {
+      "id": "task-t7",
+      "title": "Ler artigo sobre ansiedade social",
+      "description": "Atualização sobre novas abordagens no tratamento de ansiedade social",
+      "durationMinutes": 20,
+      "category": "study",
+      "icon": "book-outline",
+      "completed": false,
+      "date": "2026-05-18"
+    },
+    {
+      "id": "task-t8",
+      "title": "Revisão de supervisão clínica",
+      "description": "Preparar casos para supervisão quinzenal com grupo de pares",
+      "durationMinutes": 20,
+      "category": "study",
+      "icon": "people-outline",
+      "completed": false,
+      "date": "2026-05-18"
+    }
+  ]
+}
