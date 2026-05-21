@@ -13,6 +13,12 @@ export interface ChatParticipant {
   isOnline: boolean;
   lastSeen: string | null;
   isTyping: boolean;
+  bio?: string;
+  username?: string;
+  city?: string;
+  state?: string;
+  interests?: string[];
+  joinedAt?: string;
 }
 
 export interface ChatMessage {

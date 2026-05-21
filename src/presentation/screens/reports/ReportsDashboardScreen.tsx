@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   TextInput,
   RefreshControl,
-  Alert,
   Modal,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -13,6 +12,8 @@ import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { TopBar } from "../../components/navigation/TopBar";
 import { AppText } from "../../components/ui/AppText";
+import { SuccessModal } from "../../components/ui/SuccessModal";
+import { useModal } from "../../../hooks/useModal";
 import { useTheme } from "../../../core/theme";
 import { useReports } from "../../../hooks/useReports";
 import { reportsService } from "../../../services/reportsService";
@@ -56,6 +57,7 @@ export function ReportsDashboardScreen() {
     refresh,
   } = useReports();
 
+  const { show: showModal, modalProps } = useModal();
   const [showExportModal, setShowExportModal] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
 
@@ -64,9 +66,9 @@ export function ReportsDashboardScreen() {
     try {
       const result = await reportsService.exportReportFake();
       setShowExportModal(false);
-      Alert.alert("Sucesso", result.message);
+      showModal({ type: "success", title: "Sucesso", message: result.message });
     } catch {
-      Alert.alert("Erro", "Não foi possível gerar o relatório.");
+      showModal({ type: "error", title: "Erro", message: "Não foi possível gerar o relatório." });
     } finally {
       setIsExporting(false);
     }
@@ -453,6 +455,8 @@ export function ReportsDashboardScreen() {
           </View>
         </View>
       </Modal>
+
+      <SuccessModal {...modalProps} />
     </View>
   );
 }

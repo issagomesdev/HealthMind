@@ -67,7 +67,9 @@ class PaymentService {
       } else if (filter === "overdue") {
         list = list.filter((t) => t.status === "overdue");
       } else if (filter === "plans") {
-        list = list.filter((t) => t.type === "subscription");
+        list = list.filter((t) =>
+          (["subscription", "premium_plan", "renewal", "upgrade"] as string[]).includes(t.type)
+        );
       } else if (filter === "appointments") {
         list = list.filter((t) => t.type === "appointment");
       } else if (filter === "extra_charges") {

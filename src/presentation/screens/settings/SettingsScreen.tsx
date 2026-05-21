@@ -63,7 +63,7 @@ export function SettingsScreen() {
 
   return (
     <>
-      <ScreenContainer>
+      <ScreenContainer edges={["bottom"]}>
         <AppHeader title="Configurações" showBack />
 
         <View className="flex-1 px-5 pb-10 gap-6">

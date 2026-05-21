@@ -10,7 +10,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { AppText } from "./AppText";
 import { AppButton } from "./AppButton";
 
-type FeedbackType = "success" | "error" | "warning" | "info";
+type FeedbackType = "success" | "error" | "warning" | "info" | "coming-soon";
 
 const TYPE_CONFIG: Record<
   FeedbackType,
@@ -19,10 +19,11 @@ const TYPE_CONFIG: Record<
     colors: [string, string];
   }
 > = {
-  success: { icon: "checkmark",       colors: ["#2A9D8F", "#4C78D9"] },
-  error:   { icon: "close",           colors: ["#EF4444", "#DC2626"] },
-  warning: { icon: "warning-outline", colors: ["#F59E0B", "#D97706"] },
-  info:    { icon: "information",     colors: ["#4C78D9", "#6366F1"] },
+  success:      { icon: "checkmark",       colors: ["#2A9D8F", "#4C78D9"] },
+  error:        { icon: "close",           colors: ["#EF4444", "#DC2626"] },
+  warning:      { icon: "warning-outline", colors: ["#F59E0B", "#D97706"] },
+  info:         { icon: "information",     colors: ["#4C78D9", "#6366F1"] },
+  "coming-soon": { icon: "rocket-outline", colors: ["#7C3AED", "#4C78D9"] },
 };
 
 interface FeedbackModalProps {

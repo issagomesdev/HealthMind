@@ -10,6 +10,15 @@ export const ROUTES = {
   COMMUNITY:              "/(protected)/(tabs)/community",
   PROFILE:                "/(protected)/(tabs)/profile",
 
+  // ── Professional tabs ────────────────────────────────────────────────────────
+  PATIENTS:               "/(protected)/(tabs)/patients",
+
+  // ── Professional screens ─────────────────────────────────────────────────────
+  ADD_PATIENT:             "/(protected)/add-patient",
+  PATIENT_DETAILS:         "/(protected)/patient-details",
+  PATIENT_CHAT:            "/(protected)/patient-chat",
+  ADD_PATIENT_OBSERVATION: "/(protected)/add-patient-observation",
+
   // ── Protected screens ────────────────────────────────────────────────────────
   SETTINGS:               "/(protected)/settings",
   CHECKIN:                "/(protected)/checkin",
@@ -21,7 +30,15 @@ export const ROUTES = {
   APPOINTMENTS:           "/(protected)/appointments",
   FIND_PROFESSIONAL:      "/(protected)/find-professional",
 
+  // ── Gamification ─────────────────────────────────────────────────────────────
+  LEVELS_BENEFITS:        "/(protected)/levels-benefits",
+
+  // ── Chat ─────────────────────────────────────────────────────────────────────
+  CHAT_CONVERSATION:      "/(protected)/chat-conversation",
+  SIMULATED_CALL:         "/(protected)/simulated-call",
+
   // ── Profile / Settings sub-screens ──────────────────────────────────────────
+  PROFILE_FORM:           "/(protected)/profile-form",
   PROFILE_ACCOUNT:        "/(protected)/profile-account",
   PROFILE_PRIVACY:        "/(protected)/profile-privacy",
   PROFILE_NOTIFICATIONS:  "/(protected)/profile-notifications",

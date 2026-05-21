@@ -8,7 +8,6 @@ import {
   Modal,
   ActivityIndicator,
   KeyboardAvoidingView,
-  Platform,
 } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
@@ -134,8 +133,7 @@ export function ServiceContractRequestScreen() {
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 24}
+      behavior="padding"
     >
       <View className="flex-1 bg-background dark:bg-background-dark">
         <TopBar

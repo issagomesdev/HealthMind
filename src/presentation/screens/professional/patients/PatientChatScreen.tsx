@@ -5,8 +5,6 @@ import {
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
-  Platform,
-  Alert,
   StatusBar,
 } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
@@ -19,6 +17,8 @@ import { useTheme } from "../../../../core/theme";
 import { patientsService } from "../../../../services/patients/PatientsService";
 import { ProfessionalPatient, ChatMessage } from "../../../../types/patient";
 import { getInitials } from "../../../../utils/patient";
+import { SuccessModal } from "../../../components/ui/SuccessModal";
+import { useModal } from "../../../../hooks/useModal";
 
 const PROFESSIONAL_ID = "prof1";
 
@@ -28,6 +28,7 @@ export function PatientChatScreen() {
   const { colors, isDark } = useTheme();
   const insets = useSafeAreaInsets();
   const flatListRef = useRef<FlatList<ChatMessage>>(null);
+  const { show: showModal, modalProps } = useModal();
 
   const [patient, setPatient] = useState<ProfessionalPatient | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -78,11 +79,11 @@ export function PatientChatScreen() {
   }, [inputText, id, isSending]);
 
   const handleCallPress = () => {
-    Alert.alert("Chamada", "Solicitação de chamada enviada ao paciente.");
+    showModal({ type: "info", title: "Chamada", message: "Solicitação de chamada enviada ao paciente." });
   };
 
   const handleVideoPress = () => {
-    Alert.alert("Videochamada", "Solicitação de chamada enviada ao paciente.");
+    showModal({ type: "info", title: "Videochamada", message: "Solicitação de chamada enviada ao paciente." });
   };
 
   if (isLoading) {
@@ -117,8 +118,7 @@ export function PatientChatScreen() {
   return (
     <KeyboardAvoidingView
       style={{ flex: 1, backgroundColor: colors.background }}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
+      behavior="padding"
     >
       <StatusBar
         barStyle={isDark ? "light-content" : "dark-content"}
@@ -298,6 +298,8 @@ export function PatientChatScreen() {
           <Ionicons name="send" size={18} color="#fff" />
         </TouchableOpacity>
       </View>
+
+      <SuccessModal {...modalProps} />
     </KeyboardAvoidingView>
   );
 }

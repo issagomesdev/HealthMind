@@ -3,8 +3,6 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  Linking,
-  Alert,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter, useLocalSearchParams } from "expo-router";
@@ -13,12 +11,15 @@ import { AppText } from "../../../components/ui/AppText";
 import { AppCard } from "../../../components/ui/AppCard";
 import { LoadingState } from "../../../components/ui/LoadingState";
 import { ConfirmActionModal } from "../../../components/ui/ConfirmActionModal";
+import { SuccessModal } from "../../../components/ui/SuccessModal";
+import { useModal } from "../../../../hooks/useModal";
 import { TopBar } from "../../../components/navigation/TopBar";
 import { CalendarAppointmentStatusBadge } from "../../../components/professional/calendar/CalendarAppointmentStatusBadge";
 import { useTheme } from "../../../../core/theme";
 import { professionalCalendarService } from "../../../../services/professionalCalendarService";
 import { ProfessionalAppointment } from "../../../../types/professionalCalendar";
 import { getInitials, getRiskConfig } from "../../../../utils/patient";
+import { useCallActions } from "../../../../hooks/useCallActions";
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -161,9 +162,12 @@ export function AppointmentDetailsScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const params = useLocalSearchParams<{ id: string }>();
+  const { startSimulatedCall } = useCallActions();
 
   const [appointment, setAppointment] = useState<ProfessionalAppointment | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  const { show: showModal, modalProps } = useModal();
 
   // Modals
   const [cancelModal, setCancelModal] = useState(false);
@@ -195,7 +199,7 @@ export function AppointmentDetailsScreen() {
       );
       setCancelModal(false);
     } catch {
-      Alert.alert("Erro", "Não foi possível cancelar a consulta.");
+      showModal({ type: "error", title: "Erro", message: "Não foi possível cancelar a consulta." });
     } finally {
       setCancelLoading(false);
     }
@@ -211,18 +215,18 @@ export function AppointmentDetailsScreen() {
       );
       setCompleteModal(false);
     } catch {
-      Alert.alert("Erro", "Não foi possível atualizar o status.");
+      showModal({ type: "error", title: "Erro", message: "Não foi possível atualizar o status." });
     } finally {
       setCompleteLoading(false);
     }
   };
 
   const handleOpenCall = () => {
-    if (appointment?.callLink) {
-      Linking.openURL(appointment.callLink).catch(() => {
-        Alert.alert("Erro", "Não foi possível abrir o link da chamada.");
-      });
-    }
+    if (!appointment) return;
+    startSimulatedCall(
+      { id: appointment.patientId, name: appointment.patientName },
+      "video"
+    );
   };
 
   const handleViewPatient = () => {
@@ -476,15 +480,13 @@ export function AppointmentDetailsScreen() {
 
         {/* Actions */}
         <View style={{ marginTop: 4 }}>
-          {appointment.format === "online" && appointment.callLink && isActive && (
-            <ActionButton
+          <ActionButton
               icon="videocam-outline"
               label="Entrar na chamada"
               onPress={handleOpenCall}
               color={colors.secondary}
               colors={colors}
             />
-          )}
 
           <ActionButton
             icon="person-outline"
@@ -556,6 +558,8 @@ export function AppointmentDetailsScreen() {
         cancelLabel="Voltar"
         confirmColor="#6DBF7B"
       />
+
+      <SuccessModal {...modalProps} />
     </View>
   );
 }

@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import { View, Image, Animated, Easing, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { AppText } from "../../components/ui/AppText";
-import { useTheme } from "../../../core/theme";
 
 const TOTAL_DURATION = 4000;
 
@@ -11,7 +10,6 @@ interface SplashScreenProps {
 }
 
 export function SplashScreen({ onFinish }: SplashScreenProps) {
-  const { isDark } = useTheme();
 
   // ─── Animated values ──────────────────────────────────────────────────────
   const screenOpacity    = useRef(new Animated.Value(0)).current;
@@ -246,17 +244,13 @@ export function SplashScreen({ onFinish }: SplashScreenProps) {
     return () => clearTimeout(timer);
   }, [onFinish]);
 
-  // ─── Theme tokens ─────────────────────────────────────────────────────────
-  const bgColors = isDark
-    ? (["#091520", "#0C1C2C", "#0A1F22"] as const)
-    : (["#E6F6F3", "#ECF1F7", "#F4F4F6"] as const);
-
-  const glowBg    = isDark ? "rgba(42,157,143,0.13)" : "rgba(42,157,143,0.10)";
-  const rippleBg  = isDark ? "rgba(42,157,143,0.20)" : "rgba(42,157,143,0.15)";
-  const titleClr  = isDark ? "#E2F5F2" : "#192F38";
-  const tagClr    = isDark ? "#5DAAA0" : "#357D76";
-  const divClr    = isDark ? "#2A9D8F" : "#2A9D8F";
-  const dotClr    = isDark ? "#2A9D8F" : "#2A9D8F";
+  const bgColors  = ["#E6F6F3", "#ECF1F7", "#F4F4F6"] as const;
+  const glowBg    = "rgba(42,157,143,0.10)";
+  const rippleBg  = "rgba(42,157,143,0.15)";
+  const titleClr  = "#192F38";
+  const tagClr    = "#357D76";
+  const divClr    = "#2A9D8F";
+  const dotClr    = "#2A9D8F";
 
   return (
     <Animated.View style={[styles.root, { opacity: screenOpacity }]}>
@@ -341,7 +335,7 @@ export function SplashScreen({ onFinish }: SplashScreenProps) {
             ]}
           >
             <AppText style={[styles.tagline, { color: tagClr }]}>
-              Cuidado emocional ao seu alcance
+              cuidando da sua mente, todos os dias.
             </AppText>
           </Animated.View>
         </View>

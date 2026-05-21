@@ -18,6 +18,9 @@ const formatDate = (dateStr: string) =>
 
 const TYPE_ICON: Record<PaymentType, keyof typeof Ionicons.glyphMap> = {
   subscription: "star-outline",
+  premium_plan: "star-outline",
+  renewal: "refresh-outline",
+  upgrade: "trending-up-outline",
   appointment: "calendar-outline",
   extra_charge: "cash-outline",
   payout: "arrow-up-circle-outline",
@@ -26,7 +29,10 @@ const TYPE_ICON: Record<PaymentType, keyof typeof Ionicons.glyphMap> = {
 };
 
 const TYPE_COLOR: Record<string, string> = {
-  subscription: "#4C78D9",
+  subscription: "#7C3AED",
+  premium_plan: "#7C3AED",
+  renewal: "#7C3AED",
+  upgrade: "#7C3AED",
   appointment: "#2A9D8F",
   extra_charge: "#F59E0B",
   payout: "#6D28D9",
@@ -51,20 +57,22 @@ export function PaymentHistoryCard({
 
   const isExpense = userRole === "patient";
   const isPayout = transaction.type === "payout";
+  const isAmountNegative = transaction.amount < 0;
   const isPositive =
     transaction.status === "paid" ||
     transaction.status === "received" ||
     transaction.status === "approved";
-  const isNegative =
-    transaction.status === "overdue" || transaction.status === "pending";
 
   let amountColor = colors.content;
-  if (isPositive) amountColor = "#065F46";
-  else if (isNegative) amountColor = colors.error;
+  if (isAmountNegative) amountColor = "#EF4444";
+  else if (isPositive) amountColor = "#065F46";
+  else if (transaction.status === "overdue") amountColor = "#F97316";
+  else if (transaction.status === "pending") amountColor = "#D97706";
 
   let amountPrefix = isExpense ? "− " : "+ ";
   if (isPayout) amountPrefix = "↑ ";
   if (transaction.status === "refunded") amountPrefix = "+ ";
+  if (isAmountNegative) amountPrefix = "";
 
   return (
     <TouchableOpacity

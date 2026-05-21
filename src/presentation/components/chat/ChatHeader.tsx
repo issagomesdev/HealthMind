@@ -106,35 +106,39 @@ export function ChatHeader({ conversation, onBack, onCall, onInfo }: ChatHeaderP
 
       {/* Call buttons + info */}
       <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
-        <TouchableOpacity
-          onPress={() => onCall("voice")}
-          activeOpacity={0.75}
-          style={{
-            width: 36,
-            height: 36,
-            borderRadius: 18,
-            backgroundColor: colors.secondary + "18",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Ionicons name="call-outline" size={18} color={colors.secondary} />
-        </TouchableOpacity>
+        {conversation.conversationType === "patient_professional" && (
+          <>
+            <TouchableOpacity
+              onPress={() => onCall("voice")}
+              activeOpacity={0.75}
+              style={{
+                width: 36,
+                height: 36,
+                borderRadius: 18,
+                backgroundColor: colors.secondary + "18",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Ionicons name="call-outline" size={18} color={colors.secondary} />
+            </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={() => onCall("video")}
-          activeOpacity={0.75}
-          style={{
-            width: 36,
-            height: 36,
-            borderRadius: 18,
-            backgroundColor: colors.secondary + "18",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Ionicons name="videocam-outline" size={19} color={colors.secondary} />
-        </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => onCall("video")}
+              activeOpacity={0.75}
+              style={{
+                width: 36,
+                height: 36,
+                borderRadius: 18,
+                backgroundColor: colors.secondary + "18",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Ionicons name="videocam-outline" size={19} color={colors.secondary} />
+            </TouchableOpacity>
+          </>
+        )}
 
         <TouchableOpacity
           onPress={onInfo}

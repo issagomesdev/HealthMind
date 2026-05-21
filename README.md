@@ -48,10 +48,13 @@ O aplicativo possui dois perfis de usuário com dashboards, fluxos e ferramentas
 - Insights emocionais — análise dos últimos 30 dias
 - Comunidade com feed e criação de posts
 - Encontrar profissional (match por sintomas + agendamento)
-- Consultas e calendário interativo
+- Consultas e calendário interativo — botão "Entrar na Sala" navega para chamada simulada (somente consultas Online agendadas)
 - Notificações
-- Chat / Mensagens com profissionais (busca, filtros, ações por long press)
-- Pagamentos — histórico de transações e métodos de pagamento
+- Chat / Mensagens com profissionais e membros da comunidade (busca, filtros, ações por long press)
+  - Modal de informações: status online, "Ver perfil" para todos os participantes não-suporte
+  - Perfil público de profissional: avaliação, abordagens, áreas de atuação, disponibilidade
+  - Perfil público de usuário/paciente: bio, interesses, conquistas (sem dados clínicos)
+- Pagamentos — histórico de transações com cores contextuais (pendente amarelo, atrasado laranja), métodos de pagamento, detalhes com ações contextuais por tipo
 - Perfil completo (conta, privacidade do diário, notificações, assinatura premium, ajuda)
 
 **Profissional**
@@ -66,14 +69,28 @@ O aplicativo possui dois perfis de usuário com dashboards, fluxos e ferramentas
   - Chat direto com o paciente
   - Adicionar paciente + contrato de serviço
 - Agenda / Calendário (criar consulta, detalhes, gestão)
+  - Botão "Entrar na chamada" navega para chamada simulada em consultas online e híbridas
+  - Card de próxima consulta com acesso direto à chamada
 - Painel de Evolução — visão geral de todos os pacientes com gráficos, alertas emocionais e IA de insights
-- Detalhes de evolução individual por paciente
-- Chat / Mensagens com pacientes (busca, filtros, ações por long press)
-- Pagamentos — earnings chart, transações, cobranças extras, repasses
+  - Detalhes individuais com ações rápidas: abrir chat, ver prontuário, agendar consulta, nova observação
+- Chat / Mensagens com pacientes e colegas (busca, filtros, ações por long press)
+  - Modal de informações: status online contextual, "Ver perfil" para todos os participantes não-suporte
+  - Perfil público de profissional: avaliação, abordagens, áreas de atuação, disponibilidade, botão de agendamento
+  - Perfil público de paciente/usuário: dados públicos limitados, sem informações clínicas
+- Pagamentos — earnings chart, transações com exibição correta de valores negativos (assinaturas), cobranças extras, repasses
+  - Assinaturas da plataforma com badge visual e ação exclusiva de exportar comprovante
+  - Botão "Abrir chat" exibido apenas em pagamentos vinculados a pacientes
 - Relatórios — dashboard com gráficos agregados, tabela de pacientes, relatório individual exportável
+  - Compartilhamento direto para o chat do paciente
 - Disponibilidade — horários semanais, pausas, exceções, tipos de consulta, regras de agendamento
 - Notificações
 - Perfil (conta, disponibilidade, notificações, assinatura, ajuda)
+
+**Hooks e utilitários transversais**
+- `usePatientQuickActions` — navegação centralizada para chat, prontuário, agendamento e observação por paciente
+- `useCallActions` — navegação centralizada para chamada simulada (voz ou vídeo), reutilizado por Chat, Agenda e Detalhes da consulta
+- `paymentHelpers` — `getPaymentActions`, `getPaymentVisualVariant`, `isSubscriptionPayment` isolando lógica da UI
+- `conversationInfoConfig` — config centralizada do modal de chat por papel e tipo de conversa, com `getParticipantProfileRoute`
 
 **Respiração guiada**
 - Respiração guiada interativa (animação sincronizada, presets, timer)
@@ -134,57 +151,36 @@ Padrão de dados fake: `JSON → Service (com delay simulado) → Hook → Scree
 
 ```
 src/
-├── assets/                        # Assets do projeto
 ├── config/
-│   └── env.ts                     # Configuração de URL da API
-├── core/                          # Núcleo da aplicação — agnóstico de UI
+│   └── env.ts                     # Configuração de ambiente e URL da API
+├── core/
 │   ├── auth/
 │   │   └── AuthContext.tsx        # Contexto global de autenticação e sessão
-│   ├── constants/
-│   │   ├── api.ts                 # Rotas da API
-│   │   ├── navigation.ts          # Nomes das rotas de navegação
-│   │   └── routes.ts              # Constantes de paths
 │   ├── theme/
-│   │   ├── colors.ts              # Paleta de cores (light/dark)
-│   │   ├── spacing.ts             # Escala de espaçamento
-│   │   ├── ThemeContext.tsx       # Contexto e hooks
+│   │   ├── colors.ts              # Paleta de cores (tokens light/dark)
+│   │   ├── ThemeContext.tsx       # Contexto e hook useTheme
 │   │   └── index.ts
 │   └── types/
-│       └── index.ts               # Tipos globais
+│       └── index.ts               # Tipos globais compartilhados
 ├── data/
-│   └── fake/                      # JSONs de dados mockados para desenvolvimento
-├── domain/                        # Camada de domínio/regras de negócio
-│   ├── entities/
-│   ├── repositories/
-│   └── ...
-├── hooks/                         # Hooks de dados por feature 
-├── types/                         # Tipos de domínio por módulo 
-├── presentation/                  # Camada de UI
-│   ├── components/                # Componentes reutilizáveis por domínio
-│   │   ├── ui/                    # Design system base
-│   │   └── ...
-│   ├── context/                   # Contextos React de navegação e estado compartilhado
-│   ├── controllers/               # Hooks de lógica de tela 
-│   │   └── ...
-│   └── screens/                   # Telas organizadas por feature
-│       ├── auth/                  # Login e cadastro
-│       ├── onboarding/
-│       │   ├── public/            # Onboarding introdutório 
-│       │   └── profile/           # Onboarding de dados do paciente e profissional
-│       └── ...
-└── services/                      # Acesso a dados 
-    ├── auth/                      # AuthService + gerenciamento de token
-    ├── api/                       # ApiService base (fetch com headers JWT)
-    └── ...
+│   └── fake/                      # JSONs de dados mockados por módulo
+├── hooks/                         # Hooks de lógica e dados por feature
+├── types/                         # Tipos de domínio por módulo
+├── utils/                         # Funções utilitárias e helpers
+├── services/                      # Acesso a dados (fake JSON ou API real)
+└── presentation/
+    ├── components/                # Componentes reutilizáveis por domínio
+    │   └── ui/                    # Design system base (AppText, AppCard, TopBar…)
+    └── screens/                   # Telas organizadas por feature
 
 app/                               # Expo Router — rotas file-based
+├── _layout.tsx                    # Layout raiz (fontes, contextos, splash)
 ├── (auth)/                        # Rotas públicas (login, cadastro)
+│   └── _layout.tsx
 └── (protected)/                   # Rotas protegidas (requer JWT)
-    ├── (tabs)/                    # Tab bar principal
-    └── ...                        # Rotas em stack (paciente e profissional)
-    └── screens/                   # Telas organizadas por feature
-        └── ...               
-                              
+    ├── _layout.tsx                # Guard de autenticação
+    └── (tabs)/                    # Tab bar principal
+        └── _layout.tsx
 ```
 
 <h2 id="funcionalidades">✨ Funcionalidades</h2>
@@ -213,10 +209,20 @@ Fluxo completo: seleção de sintomas → análise inteligente → lista de prof
 Calendário interativo com datas destacadas, visualização de horários, criação, reagendamento e cancelamento de consultas.
 
 #### 💬 Chat / Mensagens
-Lista de conversas com busca, filtros (todos, não lidos, profissionais), contagem de não lidos e ações por long press (silenciar, fixar, marcar como lida, apagar). Conversa individual com agrupamento por data, indicador de digitação e resposta automática simulada.
+Lista de conversas com busca, filtros (todos, não lidos, profissionais, comunidade), contagem de não lidos e ações por long press (silenciar, fixar, marcar como lida, apagar). Conversa individual com agrupamento por data, indicador de digitação, chamadas de voz e vídeo simuladas.
+
+Modal de informações da conversa:
+- Status online do participante (Online / Offline / Visto por último) para todas as conversas exceto suporte
+- "Ver perfil" disponível para profissionais, pacientes e membros da comunidade
+- Ações clínicas contextuais mantidas (prontuário, evolução, agendar — somente profissional com paciente)
+- Suporte: sem status online, sem "Ver perfil"
+
+**Perfil público de profissional** — avaliação (nota e número de reviews), anos de experiência, bio, abordagens terapêuticas, áreas de atuação, tipos de atendimento, próxima disponibilidade, botões de chat e agenda.
+
+**Perfil público de usuário/paciente** — bio, interesses/temas de cuidado, data de entrada na plataforma, conquistas e badges. Sem dados clínicos, diário, prontuário ou alertas emocionais.
 
 #### 💳 Pagamentos
-Resumo financeiro com total pago, próxima cobrança e saldo. Histórico de transações com filtros por status. Métodos de pagamento cadastrados. Tela de detalhes com timeline de status.
+Resumo financeiro com total pago, próxima cobrança e saldo. Histórico de transações com cores contextuais por status: verde (pago), amarelo (pendente), laranja (atrasado), vermelho (valores negativos). Métodos de pagamento cadastrados. Tela de detalhes com timeline de status e ações contextuais por tipo de transação.
 
 #### 👤 Perfil e configurações
 Edição de dados pessoais, privacidade do diário, preferências de notificações, plano de assinatura premium e central de ajuda com FAQ.
@@ -237,7 +243,7 @@ Lista de pacientes com busca, filtros por risco e engajamento. Para cada pacient
 - **Chat** — conversa direta com o paciente
 
 #### 📅 Agenda
-Calendário de consultas com visualização mensal/semanal. Criar nova consulta com seleção de paciente (modal), data com máscara DD/MM/AAAA, horário, duração, formato e valor.
+Calendário de consultas com visualização mensal/semanal. Criar nova consulta com seleção de paciente (modal), data com máscara DD/MM/AAAA, horário, duração, formato e valor. Card de próxima consulta com acesso direto a detalhes e entrada na chamada. Botão "Entrar na chamada" exibido para consultas online e híbridas — navega para a tela de chamada simulada sem depender de link externo.
 
 #### 📈 Painel de Evolução
 Dashboard clínico com:
@@ -246,12 +252,19 @@ Dashboard clínico com:
 - Alertas emocionais com dismiss
 - Tabela de pacientes com tendência de humor, nível de risco e engajamento
 - Detalhes individuais por paciente: scores, metas, emoções recorrentes, atividades, hábitos
+- Ações rápidas por paciente: abrir chat direto, ver prontuário, agendar consulta, registrar observação clínica
 
 #### 💬 Chat / Mensagens
-Mesmo módulo do paciente, adaptado para o perfil profissional. Filtros incluem "pacientes" e "colegas".
+Mesmo módulo do paciente, adaptado para o perfil profissional. Filtros incluem "pacientes" e "colegas". Modal de informações com status online, ações clínicas contextuais (prontuário, evolução, agendamento, check-in) e acesso ao perfil público do participante.
 
 #### 💰 Pagamentos
-Resumo financeiro com total recebido, a receber e pendente. Earnings chart semanal (barras SVG com destaque no maior valor). Histórico de transações, cobranças extras e configuração de repasse.
+Resumo financeiro com total recebido, a receber e pendente. Earnings chart semanal (barras SVG com destaque no maior valor). Histórico de transações com cores contextuais por status e exibição correta de valores negativos (assinaturas da plataforma). Cobranças extras e configuração de repasse.
+
+Tela de detalhes da transação:
+- Badge "Assinatura" em roxo para pagamentos de plano/renovação/upgrade
+- "Saída financeira" com valor em vermelho para transações negativas
+- Botão "Abrir chat" exibido somente quando a transação está vinculada a um paciente
+- Ações contextuais isoladas em `paymentHelpers` — sem lógica espalhada na UI
 
 #### 📋 Relatórios
 Dashboard com:
@@ -266,7 +279,7 @@ Relatório individual por paciente:
 - Emoções, temas e gatilhos frequentes
 - Atividades e consultas
 - Notas clínicas (privadas, com toggle de visibilidade)
-- Ações: exportar, imprimir, compartilhar
+- Ações: exportar, imprimir, compartilhar com paciente (navega diretamente para o chat)
 
 #### 🕐 Disponibilidade
 Configuração completa de agenda:
@@ -360,11 +373,11 @@ cp .env.example .env
 # Ambiente: development | production
 EXPO_PUBLIC_APP_ENV=development
 
-# URL da API em desenvolvimento
-EXPO_PUBLIC_API_URL_DEV=http://SEU_IP_LOCAL:3333
+# URL da API em desenvolvimento (IP local da máquina na rede Wi-Fi)
+EXPO_PUBLIC_API_URL_DEV=http://0.0.0.0:3333
 
 # URL da API em produção
-EXPO_PUBLIC_API_URL_PROD=https://api.healthmind.com
+EXPO_PUBLIC_API_URL_PROD=https://api.url
 ```
 
 > **Por que não usar `localhost`?**  
@@ -383,6 +396,50 @@ ifconfig | grep "inet "
 Exemplo: `EXPO_PUBLIC_API_URL_DEV=http://192.168.1.100:3333`
 
 A seleção da URL correta é feita automaticamente por `src/config/env.ts` com base em `EXPO_PUBLIC_APP_ENV`.
+
+---
+
+### Variáveis de ambiente no EAS Build
+
+O arquivo `.env` funciona normalmente em **desenvolvimento local**. O `npx expo start` e o Expo Go leem o `.env` diretamente da sua máquina.
+
+**Porém, builds gerados pelo EAS são compilados nos servidores da Expo** — e não têm acesso ao `.env` local. Por isso, as variáveis precisam ser declaradas no `eas.json` (para versões versionadas) ou via **EAS Secrets/Environment Variables** no painel da Expo (para valores sensíveis).
+
+| Contexto | Onde definir as variáveis |
+|---|---|
+| `npx expo start` / Expo Go | `.env` local |
+| `eas build --profile preview` | `eas.json` → `build.preview.env` |
+| `eas build --profile production` | `eas.json` → `build.production.env` ou EAS Secrets |
+
+#### Exemplo de `eas.json` com variáveis por perfil
+
+```json
+{
+  "build": {
+    "preview": {
+      "android": { "buildType": "apk" },
+      "env": {
+        "EXPO_PUBLIC_APP_ENV": "production",
+        "EXPO_PUBLIC_API_URL_DEV": "http://0.0.0.0:3333",
+        "EXPO_PUBLIC_API_URL_PROD": "https://api.url"
+      }
+    },
+    "production": {
+      "android": { "buildType": "app-bundle" },
+      "env": {
+        "EXPO_PUBLIC_APP_ENV": "production",
+        "EXPO_PUBLIC_API_URL_PROD": "https://api.url"
+      }
+    }
+  }
+}
+```
+
+> **⚠️ Atenção:** Se as variáveis não forem configuradas no EAS Build, o app compilado receberá URLs vazias/`undefined`, causando erros como:
+> ```
+> Invalid URL: /auth/login
+> ```
+> O app pode funcionar corretamente no Expo Go (lê o `.env` local) e falhar no APK gerado pelo EAS (sem acesso ao `.env`). Sempre verifique o `eas.json` antes de gerar um build.
 
 ### Dados fake
 

@@ -3,7 +3,6 @@ import {
   View,
   ScrollView,
   KeyboardAvoidingView,
-  Platform,
   StatusBar,
   ViewStyle,
 } from "react-native";
@@ -16,6 +15,7 @@ interface ScreenContainerProps {
   className?: string;
   contentClassName?: string;
   avoidKeyboard?: boolean;
+  keyboardVerticalOffset?: number;
   safeArea?: boolean;
   edges?: Array<"top" | "bottom" | "left" | "right">;
   style?: ViewStyle;
@@ -27,8 +27,9 @@ export function ScreenContainer({
   className,
   contentClassName,
   avoidKeyboard = false,
+  keyboardVerticalOffset = 0,
   safeArea = true,
-  edges = ["top", "bottom"],
+  edges = ["bottom"],
   style,
 }: ScreenContainerProps) {
   const { colors, isDark } = useTheme();
@@ -55,8 +56,8 @@ export function ScreenContainer({
   const withKeyboard = avoidKeyboard ? (
     <KeyboardAvoidingView
       className="flex-1"
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 24}
+      behavior="padding"
+      keyboardVerticalOffset={keyboardVerticalOffset}
     >
       {inner}
     </KeyboardAvoidingView>

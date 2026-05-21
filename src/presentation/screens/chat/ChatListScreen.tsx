@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   Modal,
   Pressable,
-  Alert,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -20,6 +19,7 @@ import { ChatListItem } from "../../components/chat/ChatListItem";
 import { ChatSearchBar } from "../../components/chat/ChatSearchBar";
 import { ChatFilterChips } from "../../components/chat/ChatFilterChips";
 import { EmptyChatState } from "../../components/chat/EmptyChatState";
+import { ConfirmActionModal } from "../../components/ui/ConfirmActionModal";
 import type { ChatConversation } from "../../../types/chat";
 
 interface LongPressActionSheetProps {
@@ -171,20 +171,11 @@ export function ChatListScreen() {
   } = useChats(userRole);
 
   const [longPressConv, setLongPressConv] = useState<ChatConversation | null>(null);
+  const [convToDelete, setConvToDelete] = useState<ChatConversation | null>(null);
 
   function handleDelete(conv: ChatConversation) {
-    Alert.alert(
-      "Apagar conversa",
-      `Deseja apagar a conversa com ${conv.participant.name}? Esta ação não pode ser desfeita.`,
-      [
-        { text: "Cancelar", style: "cancel" },
-        {
-          text: "Apagar",
-          style: "destructive",
-          onPress: () => deleteConversation(conv.id),
-        },
-      ]
-    );
+    setLongPressConv(null);
+    setConvToDelete(conv);
   }
 
   const pluralConv = conversations.length === 1 ? "conversa" : "conversas";
@@ -279,6 +270,19 @@ export function ChatListScreen() {
           onDelete={() => handleDelete(longPressConv)}
         />
       )}
+
+      <ConfirmActionModal
+        visible={!!convToDelete}
+        icon="trash-outline"
+        iconColor="#EF4444"
+        confirmColor="#EF4444"
+        title="Apagar conversa"
+        description={`Deseja apagar a conversa com ${convToDelete?.participant.name}? Esta ação não pode ser desfeita.`}
+        confirmLabel="Apagar"
+        cancelLabel="Cancelar"
+        onConfirm={() => { deleteConversation(convToDelete!.id); setConvToDelete(null); }}
+        onCancel={() => setConvToDelete(null)}
+      />
     </View>
   );
 }

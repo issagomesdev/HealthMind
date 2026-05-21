@@ -21,6 +21,7 @@ import { EngagementCard } from "../../../components/professional/evolution/Engag
 import { EmotionalAlertCard } from "../../../components/professional/evolution/EmotionalAlertCard";
 import { TextInsightCard } from "../../../components/professional/evolution/InsightCard";
 import { EvolutionFilterBar } from "../../../components/professional/evolution/EvolutionFilterBar";
+import { usePatientQuickActions } from "../../../../hooks/usePatientQuickActions";
 import type { PeriodFilter } from "../../../../types/evolution";
 
 const TREND_CONFIG = {
@@ -41,6 +42,7 @@ export function PatientEvolutionDetailsScreen() {
   const router = useRouter();
   const { patientId } = useLocalSearchParams<{ patientId: string }>();
   const [period, setPeriod] = useState<PeriodFilter>("30d");
+  const quickActions = usePatientQuickActions();
 
   const { details, isLoading } = usePatientEvolution(patientId ?? "");
 
@@ -447,13 +449,34 @@ export function PatientEvolutionDetailsScreen() {
           </AppText>
           <View className="flex-row flex-wrap" style={{ gap: 10 }}>
             {[
-              { icon: "chatbubble-outline" as const, label: "Abrir chat", color: colors.secondary },
-              { icon: "folder-open-outline" as const, label: "Ver prontuário", color: "#059669" },
-              { icon: "calendar-outline" as const, label: "Agendar consulta", color: "#7C3AED" },
-              { icon: "create-outline" as const, label: "Observação", color: "#D97706" },
+              {
+                icon: "chatbubble-outline" as const,
+                label: "Abrir chat",
+                color: colors.secondary,
+                onPress: () => quickActions.openPatientChat(patientId ?? "", details.name),
+              },
+              {
+                icon: "folder-open-outline" as const,
+                label: "Ver prontuário",
+                color: "#059669",
+                onPress: () => quickActions.openPatientRecord(patientId ?? ""),
+              },
+              {
+                icon: "calendar-outline" as const,
+                label: "Agendar consulta",
+                color: "#7C3AED",
+                onPress: () => quickActions.schedulePatientAppointment(patientId ?? "", details.name),
+              },
+              {
+                icon: "create-outline" as const,
+                label: "Observação",
+                color: "#D97706",
+                onPress: () => quickActions.createPatientObservation(patientId ?? "", details.name),
+              },
             ].map((action) => (
               <TouchableOpacity
                 key={action.label}
+                onPress={action.onPress}
                 className="flex-1 rounded-2xl p-4 items-center"
                 style={{ backgroundColor: action.color + "15", minWidth: 130 }}
                 activeOpacity={0.7}

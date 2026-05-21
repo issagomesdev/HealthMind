@@ -1,8 +1,10 @@
 import React from "react";
-import { View, TouchableOpacity, Image, Alert } from "react-native";
+import { View, TouchableOpacity, Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Ionicons } from "@expo/vector-icons";
 import { AppText } from "../ui/AppText";
+import { SuccessModal } from "../ui/SuccessModal";
+import { useModal } from "../../../hooks/useModal";
 import { useTheme } from "../../../core/theme";
 
 interface ImagePickerFieldProps {
@@ -12,11 +14,12 @@ interface ImagePickerFieldProps {
 
 export function ImagePickerField({ value, onChange }: ImagePickerFieldProps) {
   const { colors } = useTheme();
+  const { show: showModal, modalProps } = useModal();
 
   const pickImage = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== "granted") {
-      Alert.alert("Permissão necessária", "Precisamos de acesso à galeria para adicionar fotos.");
+      showModal({ type: "warning", title: "Permissão necessária", message: "Precisamos de acesso à galeria para adicionar fotos." });
       return;
     }
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -34,25 +37,30 @@ export function ImagePickerField({ value, onChange }: ImagePickerFieldProps) {
 
   if (value) {
     return (
-      <View className="rounded-2xl overflow-hidden">
-        <Image
-          source={{ uri: value }}
-          className="w-full h-48"
-          resizeMode="cover"
-        />
-        <TouchableOpacity
-          onPress={removeImage}
+      <>
+        <SuccessModal {...modalProps} />
+        <View className="rounded-2xl overflow-hidden">
+          <Image
+            source={{ uri: value }}
+            className="w-full h-48"
+            resizeMode="cover"
+          />
+          <TouchableOpacity
+            onPress={removeImage}
           className="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/50 items-center justify-center"
           activeOpacity={0.8}
         >
-          <Ionicons name="close" size={16} color="#fff" />
-        </TouchableOpacity>
-      </View>
+            <Ionicons name="close" size={16} color="#fff" />
+          </TouchableOpacity>
+        </View>
+      </>
     );
   }
 
   return (
-    <TouchableOpacity
+    <>
+      <SuccessModal {...modalProps} />
+      <TouchableOpacity
       onPress={pickImage}
       activeOpacity={0.75}
       className="flex-row items-center gap-3 border-2 border-dashed border-border dark:border-border-dark rounded-2xl px-4 py-4"
@@ -69,5 +77,6 @@ export function ImagePickerField({ value, onChange }: ImagePickerFieldProps) {
         </AppText>
       </View>
     </TouchableOpacity>
+    </>
   );
 }

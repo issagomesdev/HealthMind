@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Alert } from "react-native";
+import { View } from "react-native";
 import { useRouter } from "expo-router";
 import { ScreenContainer } from "../../components/layout/ScreenContainer";
 import { AppText } from "../../components/ui/AppText";
@@ -14,6 +14,8 @@ import { AppointmentDetailsModal } from "../../components/appointments/Appointme
 import { PatientDashboardData, MoodValue, MoodType, User } from "../../../core/types";
 import { useNavigationContext } from "../../context/NavigationContext";
 import { TopBar } from "../../components/navigation/TopBar";
+import { SuccessModal } from "../../components/ui/SuccessModal";
+import { useModal } from "../../../hooks/useModal";
 
 interface PatientDashboardProps {
   user: User;
@@ -39,6 +41,7 @@ export function PatientDashboard({
   const { openMenu } = useNavigationContext();
   const router = useRouter();
   const firstName = user.name.split(" ")[0];
+  const { show: showModal, modalProps } = useModal();
 
   const [showDetailsModal, setShowDetailsModal] = useState(false);
 
@@ -68,11 +71,11 @@ export function PatientDashboard({
   };
 
   const handleAppointmentCancel = () => {
-    Alert.alert("HealthMind", "Consulta cancelada com sucesso.");
+    showModal({ type: "success", title: "HealthMind", message: "Consulta cancelada com sucesso." });
   };
 
   const handleAppointmentReschedule = () => {
-    Alert.alert("HealthMind", "Solicitação de reagendamento enviada.");
+    showModal({ type: "info", title: "HealthMind", message: "Solicitação de reagendamento enviada." });
   };
 
   const QUICK_ACTIONS = [
@@ -83,7 +86,7 @@ export function PatientDashboard({
   ];
 
   return (
-    <ScreenContainer scrollable safeArea edges={["top", "bottom"]}>
+    <ScreenContainer scrollable safeArea edges={["bottom"]}>
       {/* Top bar */}
       <TopBar title="HealthMind" onMenuPress={openMenu} />
 
@@ -158,6 +161,8 @@ export function PatientDashboard({
         onCancel={handleAppointmentCancel}
         onReschedule={handleAppointmentReschedule}
       />
+
+      <SuccessModal {...modalProps} />
     </ScreenContainer>
   );
 }

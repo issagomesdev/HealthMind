@@ -27,7 +27,7 @@ export function RegisterScreen({ onRegisterSuccess, onNavigateToLogin }: Registe
   useEffect(() => { if (errors.general) showError(errors.general); }, [errors.general]);
 
   return (
-    <ScreenContainer avoidKeyboard>
+    <ScreenContainer avoidKeyboard edges={["top", "bottom"]}>
       <ScrollView
         className="flex-1"
         contentContainerClassName="grow px-7 pt-8 pb-10 gap-6"

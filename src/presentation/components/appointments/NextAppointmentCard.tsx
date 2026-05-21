@@ -1,8 +1,9 @@
 import React from "react";
-import { View, TouchableOpacity, Alert } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { AppText } from "../ui/AppText";
 import { UserAppointment } from "../../../core/types";
+import { useCallActions } from "../../../hooks/useCallActions";
 
 interface NextAppointmentCardProps {
   appointment: UserAppointment;
@@ -21,10 +22,13 @@ function formatDateLabel(dateStr: string): string {
 
 export function NextAppointmentCard({ appointment, onReschedule }: NextAppointmentCardProps) {
   const dateLabel = formatDateLabel(appointment.date);
+  const { startSimulatedCall } = useCallActions();
 
   const handleEnterRoom = () => {
-    Alert.alert("Em breve", "Funcionalidade disponível em breve.");
+    startSimulatedCall({ id: "prof-001", name: appointment.professionalName }, "video");
   };
+
+  const showEnterRoom = appointment.type === "Online" && appointment.status === "scheduled";
 
   return (
     <View
@@ -104,15 +108,17 @@ export function NextAppointmentCard({ appointment, onReschedule }: NextAppointme
 
         {/* Buttons */}
         <View className="flex-row gap-3">
-          <TouchableOpacity
-            onPress={handleEnterRoom}
-            activeOpacity={0.8}
-            className="flex-1 py-3 rounded-2xl items-center justify-center border border-white/40"
-          >
-            <AppText variant="smallMedium" color="white" className="font-semibold">
-              Entrar na Sala
-            </AppText>
-          </TouchableOpacity>
+          {showEnterRoom && (
+            <TouchableOpacity
+              onPress={handleEnterRoom}
+              activeOpacity={0.8}
+              className="flex-1 py-3 rounded-2xl items-center justify-center border border-white/40"
+            >
+              <AppText variant="smallMedium" color="white" className="font-semibold">
+                Entrar na Sala
+              </AppText>
+            </TouchableOpacity>
+          )}
           <TouchableOpacity
             onPress={() => onReschedule(appointment.id)}
             activeOpacity={0.8}

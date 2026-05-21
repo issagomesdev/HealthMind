@@ -171,6 +171,18 @@ class ChatService {
     );
   }
 
+  async getConversationByPatientId(patientId: string): Promise<ChatConversation | null> {
+    await delay(100);
+    const conv = professionalConversations.find((c) => c.participant.id === patientId) ?? null;
+    return conv ? { ...conv, messages: [...conv.messages] } : null;
+  }
+
+  async requestPatientCheckIn(patientId: string): Promise<void> {
+    await delay(300);
+    // Fake: log or update state — no persistence needed
+    console.log(`[ChatService] Check-in solicitado para patientId: ${patientId}`);
+  }
+
   async startFakeCall(
     conversationId: string,
     callType: "voice" | "video"

@@ -1,8 +1,8 @@
 [
   {
     "id": "p1",
-    "name": "Mariana Costa",
-    "avatarInitials": "MC",
+    "name": "Ana Lima",
+    "avatarInitials": "AL",
     "dominantMood": "Ansiedade",
     "trend": "worsening",
     "riskLevel": "high_risk",
@@ -18,8 +18,8 @@
   },
   {
     "id": "p2",
-    "name": "Ricardo Alves",
-    "avatarInitials": "RA",
+    "name": "Carlos Mendes",
+    "avatarInitials": "CM",
     "dominantMood": "Ansiedade Extrema",
     "trend": "worsening",
     "riskLevel": "critical",
@@ -35,8 +35,8 @@
   },
   {
     "id": "p3",
-    "name": "Julia Fernandes",
-    "avatarInitials": "JF",
+    "name": "Fernanda Costa",
+    "avatarInitials": "FC",
     "dominantMood": "Apatia",
     "trend": "stable",
     "riskLevel": "attention",
@@ -52,8 +52,8 @@
   },
   {
     "id": "p4",
-    "name": "Carlos Mendes",
-    "avatarInitials": "CM",
+    "name": "João Oliveira",
+    "avatarInitials": "JO",
     "dominantMood": "Calmo",
     "trend": "stable",
     "riskLevel": "attention",
@@ -69,8 +69,8 @@
   },
   {
     "id": "p5",
-    "name": "Ana Beatriz",
-    "avatarInitials": "AB",
+    "name": "Mariana Santos",
+    "avatarInitials": "MS",
     "dominantMood": "Alegria",
     "trend": "improving",
     "riskLevel": "stable",
@@ -120,8 +120,8 @@
   },
   {
     "id": "p8",
-    "name": "Bruno Carvalho",
-    "avatarInitials": "BC",
+    "name": "Roberto Alves",
+    "avatarInitials": "RA",
     "dominantMood": "Neutro",
     "trend": "stable",
     "riskLevel": "stable",

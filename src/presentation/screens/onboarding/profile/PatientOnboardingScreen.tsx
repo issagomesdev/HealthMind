@@ -340,10 +340,31 @@ export function PatientOnboardingScreen({ onComplete }: PatientOnboardingScreenP
       if (phone) body.phone = phone.replace(/\D/g, "");
       const cpfDigits = cpf.replace(/\D/g, "");
       if (cpfDigits.length === 11) body.cpf = cpfDigits;
+
+      // Endereço
+      const cepDigits = cep.replace(/\D/g, "");
+      if (cepDigits.length === 8) body.address_zipcode = cepDigits;
+      if (rua.trim()) body.address_street = rua.trim();
+      if (numero.trim()) body.address_number = numero.trim();
+      if (complemento.trim()) body.address_complement = complemento.trim();
+      if (bairro.trim()) body.address_neighborhood = bairro.trim();
+      if (cidade.trim()) body.address_city = cidade.trim();
+      if (estado) body.address_state = estado;
+
+      // Contato de emergência
+      if (emergencyName.trim()) body.emergency_contact_name = emergencyName.trim();
+      const emergencyPhoneDigits = emergencyPhone.replace(/\D/g, "");
+      if (emergencyPhoneDigits.length >= 10) body.emergency_contact_phone = emergencyPhoneDigits;
+      if (emergencyRelation) body.emergency_contact_relationship = emergencyRelation;
+
+      // Saúde e objetivos
       if (mainComplaint.trim()) body.main_complaint = mainComplaint.trim();
       if (therapyGoals.length) body.therapy_goals = therapyGoals.join(", ");
-      if (medicationList.length) body.medications = medicationList.join(", ");
+      body.current_medications = medicationList.join(", ");
       if (hasPreviousTherapy !== null) body.has_previous_therapy = hasPreviousTherapy;
+      if (hasPsychiatrist !== null) body.has_psychiatric_follow_up = hasPsychiatrist;
+      if (hasHealthPlan !== null) body.has_health_insurance = hasHealthPlan;
+      if (hasHealthPlan && healthPlanName.trim()) body.health_insurance_name = healthPlanName.trim();
 
       const response = await fetch(API_ROUTES.patients.me, {
         method: "PUT",
@@ -364,13 +385,13 @@ export function PatientOnboardingScreen({ onComplete }: PatientOnboardingScreenP
     } finally {
       setLoading(false);
     }
-  }, [birthDate, gender, phone, cpf, mainComplaint, therapyGoals, medicationList, hasPreviousTherapy, hasPsychiatrist, hasHealthPlan, healthPlanName, refreshUser, onComplete]);
+  }, [birthDate, gender, phone, cpf, cep, rua, numero, complemento, bairro, cidade, estado, emergencyName, emergencyPhone, emergencyRelation, mainComplaint, therapyGoals, medicationList, hasPreviousTherapy, hasPsychiatrist, hasHealthPlan, healthPlanName, refreshUser, onComplete]);
 
   const percent = Math.round((step / TOTAL_STEPS) * 100);
   const meta = STEP_META[step - 1];
 
   return (
-    <ScreenContainer avoidKeyboard>
+    <ScreenContainer avoidKeyboard edges={["top", "bottom"]}>
       <ScrollView
         className="flex-1"
         contentContainerClassName="grow px-5 pt-6 pb-12 gap-5"

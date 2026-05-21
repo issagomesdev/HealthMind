@@ -4,7 +4,6 @@ import {
   ScrollView,
   TouchableOpacity,
   TextInput,
-  Alert,
   Modal,
   ActivityIndicator,
 } from "react-native";
@@ -18,7 +17,10 @@ import { MoodEvolutionChart } from "../../components/reports/MoodEvolutionChart"
 import { PatientReportStatusBadge } from "../../components/reports/PatientReportStatusBadge";
 import { EmptyReportState } from "../../components/reports/EmptyReportState";
 import { useTheme } from "../../../core/theme";
+import { usePatientQuickActions } from "../../../hooks/usePatientQuickActions";
 import { usePatientReport } from "../../../hooks/usePatientReport";
+import { SuccessModal } from "../../components/ui/SuccessModal";
+import { useModal } from "../../../hooks/useModal";
 import type { PatientReportStatus } from "../../../types/reports";
 
 // ─── Local SectionCard ────────────────────────────────────────────────────────
@@ -124,25 +126,27 @@ export function PatientReportScreen() {
   const { patientId } = useLocalSearchParams<{ patientId: string }>();
 
   const { report, isLoading, isSavingNote, addNote } = usePatientReport(patientId ?? "");
+  const { openPatientChat } = usePatientQuickActions();
 
   const [noteText, setNoteText] = useState("");
   const [isPrivateNote, setIsPrivateNote] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
+  const { show: showModal, modalProps } = useModal();
 
   const handleSaveNote = async () => {
     if (!noteText.trim()) {
-      Alert.alert("Atenção", "Escreva uma observação antes de salvar.");
+      showModal({ type: "warning", title: "Atenção", message: "Escreva uma observação antes de salvar." });
       return;
     }
     await addNote(noteText, isPrivateNote);
     setNoteText("");
     setIsPrivateNote(false);
-    Alert.alert("Salvo", "Observação salva com sucesso.");
+    showModal({ type: "success", title: "Salvo", message: "Observação salva com sucesso.", actionLabel: "Ok" });
   };
 
   const handleExport = () => {
     setShowExportModal(false);
-    Alert.alert("Em breve", "Funcionalidade disponível em breve.");
+    showModal({ type: "coming-soon", title: "Em breve", message: "Funcionalidade disponível em breve." });
   };
 
   if (isLoading) {
@@ -593,7 +597,7 @@ export function PatientReportScreen() {
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => Alert.alert("Em breve", "Funcionalidade disponível em breve.")}
+            onPress={() => showModal({ type: "coming-soon", title: "Em breve", message: "Funcionalidade disponível em breve." })}
             activeOpacity={0.8}
             style={{
               flexDirection: "row",
@@ -613,7 +617,9 @@ export function PatientReportScreen() {
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => Alert.alert("Em breve", "Funcionalidade disponível em breve.")}
+            onPress={() =>
+              openPatientChat(patientId ?? "", report?.name ?? "Paciente")
+            }
             activeOpacity={0.8}
             style={{
               flexDirection: "row",
@@ -623,11 +629,11 @@ export function PatientReportScreen() {
               paddingVertical: 14,
               borderRadius: 14,
               borderWidth: 1.5,
-              borderColor: colors.border,
+              borderColor: colors.secondary,
             }}
           >
-            <Ionicons name="share-social-outline" size={18} color={colors.content} />
-            <AppText style={{ fontSize: 14, fontWeight: "600", color: colors.content }}>
+            <Ionicons name="chatbubble-outline" size={18} color={colors.secondary} />
+            <AppText style={{ fontSize: 14, fontWeight: "600", color: colors.secondary }}>
               Compartilhar com paciente
             </AppText>
           </TouchableOpacity>
@@ -717,6 +723,8 @@ export function PatientReportScreen() {
           </View>
         </View>
       </Modal>
+
+      <SuccessModal {...modalProps} />
     </View>
   );
 }

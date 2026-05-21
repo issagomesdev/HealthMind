@@ -1,5 +1,6 @@
 import React from "react";
 import { View, TextInput, TouchableOpacity, ActivityIndicator } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "../../../core/theme";
 
@@ -19,6 +20,7 @@ export function ChatInputBar({
   isSending = false,
 }: ChatInputBarProps) {
   const { colors, isDark } = useTheme();
+  const insets = useSafeAreaInsets();
   const hasText = value.trim().length > 0;
   const canSend = hasText && !isSending;
 
@@ -28,7 +30,8 @@ export function ChatInputBar({
         flexDirection: "row",
         alignItems: "flex-end",
         paddingHorizontal: 16,
-        paddingVertical: 8,
+        paddingTop: 8,
+        paddingBottom: Math.max(insets.bottom, 8),
         gap: 10,
         borderTopWidth: 1,
         borderTopColor: colors.border,

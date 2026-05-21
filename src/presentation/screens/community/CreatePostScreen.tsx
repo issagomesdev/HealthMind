@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
+import { View, ScrollView, KeyboardAvoidingView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AppHeader } from "../../components/ui/AppHeader";
 import { AppText } from "../../components/ui/AppText";
@@ -54,7 +54,7 @@ export function CreatePostScreen({
     <>
       <KeyboardAvoidingView
         className="flex-1 bg-background dark:bg-background-dark"
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        behavior="padding"
       >
         <AppHeader title="Nova publicação" showBack onBackPress={onBack} />
 

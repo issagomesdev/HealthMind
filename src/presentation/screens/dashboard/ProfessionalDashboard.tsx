@@ -1,5 +1,6 @@
-import React from "react";
-import { View, TouchableOpacity, Image } from "react-native";
+import React, { useState } from "react";
+import { View, TouchableOpacity } from "react-native";
+import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { ScreenContainer } from "../../components/layout/ScreenContainer";
 import { AppText } from "../../components/ui/AppText";
@@ -10,10 +11,13 @@ import { StatsCard } from "../../components/dashboard/StatsCard";
 import { AlertCard } from "../../components/dashboard/AlertCard";
 import { WeeklyChart } from "../../components/dashboard/WeeklyChart";
 import { InsightCard } from "../../components/dashboard/InsightCard";
-import { ProfessionalDashboardData, User } from "../../../core/types";
+import { PatientSelectModal } from "../../components/professional/patients/PatientSelectModal";
+import { ProfessionalDashboardData, EmotionalAlert, User } from "../../../core/types";
+import { ProfessionalPatient } from "../../../types/patient";
 import { useTheme } from "../../../core/theme";
 import { useNavigationContext } from "../../context/NavigationContext";
 import { TopBar } from "../../components/navigation/TopBar";
+import { ROUTES } from "../../../core/constants/routes";
 
 interface ProfessionalDashboardProps {
   user: User;
@@ -29,17 +33,43 @@ const QUICK_ACTIONS = [
 export function ProfessionalDashboard({
   user,
   data,
-  onNavigateToSettings,
 }: ProfessionalDashboardProps) {
   const { colors } = useTheme();
   const { openMenu } = useNavigationContext();
+  const router = useRouter();
+  const [showPatientModal, setShowPatientModal] = useState(false);
+
+  const handleQuickAction = (label: string) => {
+    switch (label) {
+      case "Novo Paciente":
+        router.push(ROUTES.ADD_PATIENT);
+        break;
+      case "Anotações rápidas":
+        setShowPatientModal(true);
+        break;
+    }
+  };
+
+  const handleAlertAction = (alert: EmotionalAlert) => {
+    if (alert.severity === "medium") {
+      router.push({ pathname: ROUTES.PATIENT_CHAT, params: { id: alert.patientId } });
+    } else {
+      router.push({ pathname: ROUTES.PATIENT_DETAILS, params: { id: alert.patientId } });
+    }
+  };
+
+  const handleSelectPatient = (patient: ProfessionalPatient) => {
+    setShowPatientModal(false);
+    router.push({
+      pathname: ROUTES.ADD_PATIENT_OBSERVATION,
+      params: { patientId: patient.id, patientName: patient.name },
+    });
+  };
 
   return (
-    <ScreenContainer scrollable safeArea edges={["top", "bottom"]}>
-      {/* Top bar */}
-       <TopBar title="HealthMind" onMenuPress={openMenu} />
+    <ScreenContainer scrollable safeArea edges={["bottom"]}>
+      <TopBar title="HealthMind" onMenuPress={openMenu} />
 
-      {/* Content */}
       <View className="px-5 gap-5 pb-6">
         <GreetingHeader
           greeting={`Olá, ${user.name.split(" ")[0]}`}
@@ -71,6 +101,7 @@ export function ProfessionalDashboard({
             <React.Fragment key={action.label}>
               <TouchableOpacity
                 activeOpacity={0.7}
+                onPress={() => handleQuickAction(action.label)}
                 className="flex-row items-center gap-3 px-5 py-4"
               >
                 <View className="w-8 h-8 rounded-full bg-secondary/10 dark:bg-secondary-dark/20 items-center justify-center">
@@ -94,11 +125,15 @@ export function ProfessionalDashboard({
           <SectionHeader
             title="Alertas Emocionais"
             actionLabel="Ver todos"
-            onAction={() => {}}
+            onAction={() => router.push(ROUTES.PATIENTS)}
           />
           <View className="gap-2.5">
             {data.emotionalAlerts.map((alert) => (
-              <AlertCard key={alert.id} alert={alert} onAction={() => {}} />
+              <AlertCard
+                key={alert.id}
+                alert={alert}
+                onAction={() => handleAlertAction(alert)}
+              />
             ))}
           </View>
         </View>
@@ -116,6 +151,12 @@ export function ProfessionalDashboard({
           variant="professional"
         />
       </View>
+
+      <PatientSelectModal
+        visible={showPatientModal}
+        onClose={() => setShowPatientModal(false)}
+        onSelectPatient={handleSelectPatient}
+      />
     </ScreenContainer>
   );
 }

@@ -1,11 +1,12 @@
 import React from "react";
-import { View, TouchableOpacity, Linking } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { AppText } from "../../ui/AppText";
 import { useTheme } from "../../../../core/theme";
 import { ProfessionalAppointment } from "../../../../types/professionalCalendar";
 import { getInitials, getRiskConfig } from "../../../../utils/patient";
+import { useCallActions } from "../../../../hooks/useCallActions";
 
 interface NextAppointmentCardProps {
   appointment: ProfessionalAppointment | null;
@@ -27,6 +28,7 @@ function formatDate(dateStr: string): string {
 export function NextAppointmentCard({ appointment }: NextAppointmentCardProps) {
   const { colors } = useTheme();
   const router = useRouter();
+  const { startSimulatedCall } = useCallActions();
 
   if (!appointment) {
     return (
@@ -71,9 +73,10 @@ export function NextAppointmentCard({ appointment }: NextAppointmentCardProps) {
   const initials = getInitials(appointment.patientName);
 
   const handleOpenCall = () => {
-    if (appointment.callLink) {
-      Linking.openURL(appointment.callLink).catch(() => {});
-    }
+    startSimulatedCall(
+      { id: appointment.patientId, name: appointment.patientName },
+      "video"
+    );
   };
 
   const handleViewDetails = () => {
@@ -228,8 +231,7 @@ export function NextAppointmentCard({ appointment }: NextAppointmentCardProps) {
           </AppText>
         </TouchableOpacity>
 
-        {appointment.format === "online" && appointment.callLink && (
-          <TouchableOpacity
+        <TouchableOpacity
             onPress={handleOpenCall}
             activeOpacity={0.85}
             style={{
@@ -248,7 +250,6 @@ export function NextAppointmentCard({ appointment }: NextAppointmentCardProps) {
               Entrar
             </AppText>
           </TouchableOpacity>
-        )}
       </View>
     </View>
   );

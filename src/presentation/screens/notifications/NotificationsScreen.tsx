@@ -1,5 +1,5 @@
-import React, { useCallback } from "react";
-import { View, ScrollView, TouchableOpacity, Alert } from "react-native";
+import React, { useCallback, useState } from "react";
+import { View, ScrollView, TouchableOpacity } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useFocusEffect } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
@@ -9,6 +9,7 @@ import { LoadingState } from "../../components/ui/LoadingState";
 import { NotificationSection } from "../../components/notifications/NotificationSection";
 import { EmptyNotificationsState } from "../../components/notifications/EmptyNotificationsState";
 import { useNotificationsController } from "../../controllers/useNotificationsController";
+import { ConfirmActionModal } from "../../components/ui/ConfirmActionModal";
 import { useTheme } from "../../../core/theme";
 
 interface NotificationsScreenProps {
@@ -19,6 +20,7 @@ export function NotificationsScreen({ onBack }: NotificationsScreenProps) {
   const { colors } = useTheme();
   const insets = useSafeAreaInsets();
   const ctrl = useNotificationsController();
+  const [showClearConfirm, setShowClearConfirm] = useState(false);
 
   useFocusEffect(
     useCallback(() => {
@@ -26,16 +28,7 @@ export function NotificationsScreen({ onBack }: NotificationsScreenProps) {
     }, [])
   );
 
-  const handleClearAll = () => {
-    Alert.alert(
-      "Limpar notificações",
-      "Tem certeza que deseja remover todas as notificações?",
-      [
-        { text: "Cancelar", style: "cancel" },
-        { text: "Limpar", style: "destructive", onPress: ctrl.clearAll },
-      ]
-    );
-  };
+  const handleClearAll = () => setShowClearConfirm(true);
 
   return (
     <View className="flex-1 bg-background dark:bg-background-dark">
@@ -90,6 +83,18 @@ export function NotificationsScreen({ onBack }: NotificationsScreenProps) {
           ))}
         </ScrollView>
       )}
+      <ConfirmActionModal
+        visible={showClearConfirm}
+        icon="trash-outline"
+        iconColor="#EF4444"
+        confirmColor="#EF4444"
+        title="Limpar notificações"
+        description="Tem certeza que deseja remover todas as notificações?"
+        confirmLabel="Limpar tudo"
+        cancelLabel="Cancelar"
+        onConfirm={() => { setShowClearConfirm(false); ctrl.clearAll(); }}
+        onCancel={() => setShowClearConfirm(false)}
+      />
     </View>
   );
 }

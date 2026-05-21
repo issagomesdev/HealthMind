@@ -7,7 +7,7 @@ import {
   Modal,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useRouter } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { AppText } from "../../../components/ui/AppText";
 import { TopBar } from "../../../components/navigation/TopBar";
@@ -43,6 +43,7 @@ export function EvolutionDashboardScreen() {
   const { colors } = useTheme();
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const { initialSearch } = useLocalSearchParams<{ initialSearch?: string; patientId?: string }>();
   const [showSortModal, setShowSortModal] = useState(false);
   const [showRiskModal, setShowRiskModal] = useState(false);
 
@@ -63,7 +64,7 @@ export function EvolutionDashboardScreen() {
     isLoading,
     refresh,
     dismissAlert,
-  } = useEvolutionDashboard();
+  } = useEvolutionDashboard(initialSearch ?? "");
 
   const unreadAlerts = alerts.filter((a) => !a.isRead);
 
@@ -77,13 +78,11 @@ export function EvolutionDashboardScreen() {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
-      <View style={{ paddingTop: insets.top }}>
-        <TopBar
-                title="HealthMind"
-                onBackPress={() => router.back()}
-                showNotifications={false}
-              />
-      </View>
+      <TopBar
+        title="HealthMind"
+        onBackPress={() => router.back()}
+        showNotifications={false}
+      />
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: insets.bottom + 32 }}

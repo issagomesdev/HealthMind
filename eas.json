@@ -3,11 +3,20 @@
     "preview": {
       "android": {
         "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_APP_ENV": "production",
+        "EXPO_PUBLIC_API_URL_PROD": "https://healthmind.byissa.dev",
+        "EXPO_PUBLIC_API_URL_DEV": "http://192.168.1.16:3333"
       }
     },
     "production": {
       "android": {
         "buildType": "app-bundle"
+      },
+      "env": {
+        "EXPO_PUBLIC_APP_ENV": "production",
+        "EXPO_PUBLIC_API_URL_PROD": "https://healthmind.byissa.dev"
       }
     }
   }

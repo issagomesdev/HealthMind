@@ -1,16 +1,16 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   View,
   Modal,
   Animated,
   TouchableWithoutFeedback,
   TouchableOpacity,
-  Alert,
   ScrollView,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { AppText } from "../ui/AppText";
+import { ConfirmActionModal } from "../ui/ConfirmActionModal";
 import { SessionTopicsTags } from "./SessionTopicsTags";
 import { AppointmentInfo } from "../../../core/types";
 import { useTheme } from "../../../core/theme";
@@ -72,6 +72,7 @@ export function AppointmentDetailsModal({
   const insets = useSafeAreaInsets();
   const slideAnim = useRef(new Animated.Value(600)).current;
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const [showCancelConfirm, setShowCancelConfirm] = useState(false);
 
   useEffect(() => {
     if (visible) {
@@ -104,23 +105,7 @@ export function AppointmentDetailsModal({
     }
   }, [visible]);
 
-  const handleCancel = () => {
-    Alert.alert(
-      "Cancelar consulta",
-      "Confirmar cancelamento da consulta?",
-      [
-        { text: "Não", style: "cancel" },
-        {
-          text: "Cancelar consulta",
-          style: "destructive",
-          onPress: () => {
-            onClose();
-            onCancel();
-          },
-        },
-      ]
-    );
-  };
+  const handleCancel = () => setShowCancelConfirm(true);
 
   const handleReschedule = () => {
     onReschedule();
@@ -130,6 +115,7 @@ export function AppointmentDetailsModal({
   if (!appointment) return null;
 
   return (
+    <>
     <Modal
       visible={visible}
       transparent
@@ -253,5 +239,19 @@ export function AppointmentDetailsModal({
         </Animated.View>
       </TouchableWithoutFeedback>
     </Modal>
+
+    <ConfirmActionModal
+      visible={showCancelConfirm}
+      icon="calendar-outline"
+      iconColor="#EF4444"
+      confirmColor="#EF4444"
+      title="Cancelar consulta"
+      description="Confirmar cancelamento da consulta? Esta ação não pode ser desfeita."
+      confirmLabel="Cancelar consulta"
+      cancelLabel="Voltar"
+      onConfirm={() => { setShowCancelConfirm(false); onClose(); onCancel(); }}
+      onCancel={() => setShowCancelConfirm(false)}
+    />
+    </>
   );
 }

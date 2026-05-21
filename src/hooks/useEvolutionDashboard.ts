@@ -11,7 +11,7 @@ import type {
   RiskFilter,
 } from "../types/evolution";
 
-export function useEvolutionDashboard() {
+export function useEvolutionDashboard(initialSearch = "") {
   const [summary, setSummary] = useState<DashboardSummary | null>(null);
   const [moodHistory, setMoodHistory] = useState<MoodDataPoint[]>([]);
   const [weeklyHistory, setWeeklyHistory] = useState<MoodDataPoint[]>([]);
@@ -22,7 +22,7 @@ export function useEvolutionDashboard() {
   const [period, setPeriod] = useState<PeriodFilter>("30d");
   const [sort, setSort] = useState<SortFilter>("in_alert");
   const [risk, setRisk] = useState<RiskFilter>("all");
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(initialSearch);
 
   const [isLoading, setIsLoading] = useState(true);
   const [refreshKey, setRefreshKey] = useState(0);

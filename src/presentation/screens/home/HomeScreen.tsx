@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import { AppText } from "../../components/ui/AppText";
 import { AppCard } from "../../components/ui/AppCard";
 import { ScreenContainer } from "../../components/layout/ScreenContainer";
+import { HomeProgressShortcut } from "../../components/levels/HomeProgressShortcut";
 import { useTheme } from "../../../core/theme";
 import { useAuth } from "../../../core/auth/AuthContext";
+import { levelsBenefitsService } from "../../../services/levelsBenefitsService";
+import type { HomeProgressSummary } from "../../../types/levelsBenefits";
 
 interface HomeScreenProps {
   onNavigateToSettings: () => void;
@@ -14,6 +18,9 @@ interface HomeScreenProps {
 export function HomeScreen({ onNavigateToSettings }: HomeScreenProps) {
   const { colors } = useTheme();
   const { user, logout } = useAuth();
+  const router = useRouter();
+  const [progressSummary, setProgressSummary] = useState<HomeProgressSummary | null>(null);
+  const [progressLoading, setProgressLoading] = useState(true);
 
   const greeting = () => {
     const h = new Date().getHours();
@@ -23,9 +30,17 @@ export function HomeScreen({ onNavigateToSettings }: HomeScreenProps) {
   };
 
   const firstName = user?.name?.split(" ")[0] ?? "Usuário";
+  const role = user?.role === "professional" ? "professional" : "patient";
+
+  useEffect(() => {
+    levelsBenefitsService
+      .getHomeProgressSummary(role)
+      .then(setProgressSummary)
+      .finally(() => setProgressLoading(false));
+  }, [role]);
 
   return (
-    <ScreenContainer>
+    <ScreenContainer edges={["top", "bottom"]}>
       <View className="flex-1 px-6 pt-4 gap-7">
         <View className="flex-row items-center justify-between">
           <View className="w-12 h-12 rounded-full items-center justify-center bg-secondary/20 dark:bg-secondary-dark/20">
@@ -51,6 +66,13 @@ export function HomeScreen({ onNavigateToSettings }: HomeScreenProps) {
             Como você está se sentindo hoje?
           </AppText>
         </View>
+
+        {/* Progress shortcut */}
+        <HomeProgressShortcut
+          summary={progressSummary}
+          isLoading={progressLoading}
+          onPress={() => router.push("/(protected)/levels-benefits")}
+        />
 
         <AppCard className="items-center">
           <View className="items-center gap-3 py-4">

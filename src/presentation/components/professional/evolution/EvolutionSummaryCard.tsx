@@ -66,7 +66,7 @@ export function EvolutionSummaryCard({ summary }: Props) {
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 20, paddingVertical: 8, gap: 12 }}
+        contentContainerStyle={{ paddingHorizontal: 20, paddingVertical: 8, gap: 2 }}
       >
         <MiniCard
           icon="people-outline"

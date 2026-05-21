@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
+import { View, ScrollView, KeyboardAvoidingView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AppHeader } from "../../components/ui/AppHeader";
 import { AppCard } from "../../components/ui/AppCard";
@@ -36,7 +36,7 @@ export function AccountSettingsScreen({ onBack }: AccountSettingsScreenProps) {
     <>
       <KeyboardAvoidingView
         className="flex-1 bg-background dark:bg-background-dark"
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        behavior="padding"
       >
         <AppHeader title="Configurações de conta" showBack onBackPress={onBack} />
 

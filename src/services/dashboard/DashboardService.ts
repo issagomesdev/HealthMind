@@ -41,16 +41,18 @@ class DashboardServiceImpl {
       emotionalAlerts: [
         {
           id: "1",
-          patientName: "Ricardo Silva",
+          patientId: "p7",
+          patientName: "Beatriz Almeida",
           alertType: "mood_drop",
-          message: "Queda de humor por 3 dias",
+          message: "Autolesão relatada — protocolo de crise ativo",
           severity: "high",
         },
         {
           id: "2",
-          patientName: "Mariana Costa",
+          patientId: "p6",
+          patientName: "Paulo Ferreira",
           alertType: "missed_checkin",
-          message: "Check-in perdido",
+          message: "Flashbacks aumentando — check-in perdido",
           severity: "medium",
         },
       ],

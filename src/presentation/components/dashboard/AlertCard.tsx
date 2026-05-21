@@ -58,9 +58,9 @@ export function AlertCard({ alert, onAction }: AlertCardProps) {
         <AppText variant="bodyMedium" className={`font-semibold ${cfg.nameCls}`}>
           {alert.patientName}
         </AppText>
-        <View className="flex-row items-center gap-1.5">
-          <Ionicons name={cfg.icon} size={13} color={cfg.iconColor} />
-          <AppText variant="small" color="muted">
+        <View className="flex-row items-center gap-1.5" style={{ flex: 1, width: "85%" }}>
+          <Ionicons name={cfg.icon} size={13} color={cfg.iconColor} style={{ flexShrink: 0 }} />
+          <AppText variant="small" color="muted" numberOfLines={1} style={{ flex: 1 }}>
             {alert.message}
           </AppText>
         </View>

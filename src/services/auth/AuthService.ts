@@ -65,6 +65,7 @@ class AuthServiceImpl implements IAuthRepository {
       method: "POST",
       body: JSON.stringify({ email: credentials.email, password: credentials.password }),
     });
+
     await TokenStorage.save(data.token);
     const meData = await fetchMe(data.token);
     return { user: mapApiUser(meData.user), profile: meData.profile };

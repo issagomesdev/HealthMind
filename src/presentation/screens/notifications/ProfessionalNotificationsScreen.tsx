@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { View, ScrollView, TouchableOpacity, Alert } from "react-native";
+import { View, ScrollView, TouchableOpacity } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useFocusEffect } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
@@ -7,6 +7,7 @@ import { AppHeader } from "../../components/ui/AppHeader";
 import { AppText } from "../../components/ui/AppText";
 import { AppCard } from "../../components/ui/AppCard";
 import { LoadingState } from "../../components/ui/LoadingState";
+import { ConfirmActionModal } from "../../components/ui/ConfirmActionModal";
 import { useTheme } from "../../../core/theme";
 import {
   professionalNotificationsService,
@@ -136,6 +137,8 @@ export function ProfessionalNotificationsScreen({ onBack }: ProfessionalNotifica
 
   const [notifications, setNotifications] = useState<ProfessionalNotification[]>([]);
   const [loading, setLoading] = useState(true);
+  const [removeModalVisible, setRemoveModalVisible] = useState(false);
+  const [pendingRemoveId, setPendingRemoveId] = useState<string | null>(null);
 
   const loadAll = useCallback(async () => {
     setLoading(true);
@@ -168,21 +171,17 @@ export function ProfessionalNotificationsScreen({ onBack }: ProfessionalNotifica
   };
 
   const handleRemove = (id: string) => {
-    Alert.alert(
-      "Remover notificação",
-      "Tem certeza que deseja remover esta notificação?",
-      [
-        { text: "Cancelar", style: "cancel" },
-        {
-          text: "Remover",
-          style: "destructive",
-          onPress: async () => {
-            setNotifications((prev) => prev.filter((n) => n.id !== id));
-            await professionalNotificationsService.remove(id);
-          },
-        },
-      ]
-    );
+    setPendingRemoveId(id);
+    setRemoveModalVisible(true);
+  };
+
+  const handleConfirmRemove = async () => {
+    if (!pendingRemoveId) return;
+    const id = pendingRemoveId;
+    setRemoveModalVisible(false);
+    setPendingRemoveId(null);
+    setNotifications((prev) => prev.filter((n) => n.id !== id));
+    await professionalNotificationsService.remove(id);
   };
 
   return (
@@ -255,6 +254,18 @@ export function ProfessionalNotificationsScreen({ onBack }: ProfessionalNotifica
           ))}
         </ScrollView>
       )}
+      <ConfirmActionModal
+        visible={removeModalVisible}
+        onConfirm={handleConfirmRemove}
+        onCancel={() => { setRemoveModalVisible(false); setPendingRemoveId(null); }}
+        icon="trash-outline"
+        iconColor="#EF4444"
+        title="Remover notificação"
+        description="Tem certeza que deseja remover esta notificação?"
+        confirmLabel="Remover"
+        cancelLabel="Cancelar"
+        confirmColor="#EF4444"
+      />
     </View>
   );
 }

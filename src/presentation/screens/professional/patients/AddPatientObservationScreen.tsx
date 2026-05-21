@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { TopBar } from "../../../components/navigation/TopBar";
 import { AppText } from "../../../components/ui/AppText";
@@ -78,6 +79,7 @@ export function AddPatientObservationScreen() {
   const router = useRouter();
   const { patientId, patientName } = useLocalSearchParams<{ patientId: string; patientName: string }>();
   const { colors } = useTheme();
+  const insets = useSafeAreaInsets();
 
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState<ObservationCategory>("Geral");
@@ -122,7 +124,7 @@ export function AddPatientObservationScreen() {
 
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ padding: 16, paddingBottom: 60, gap: 20 }}
+        contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 32, gap: 20 }}
         keyboardShouldPersistTaps="handled"
       >
         {/* Title */}

@@ -316,18 +316,32 @@ export function ProfessionalOnboardingScreen({ onComplete }: ProfessionalOnboard
       if (phone) body.phone = phone.replace(/\D/g, "");
       const cpfDigits = cpf.replace(/\D/g, "");
       if (cpfDigits.length === 11) body.cpf = cpfDigits;
+
+      // Credenciais profissionais
       if (registerType) body.register_type = registerType;
       if (professionalRegister.trim()) body.professional_register = professionalRegister.trim();
       if (registerState) body.register_state = registerState;
       if (specialty.trim()) body.specialty = specialty.trim();
       if (approach) body.approach = approach;
-      if (experienceYears >= 0) body.experience_years = experienceYears;
+      body.experience_years = experienceYears;
+
+      // Apresentação
       if (bio.trim()) body.bio = bio.trim();
       if (clinicName.trim()) body.clinic_name = clinicName.trim();
-      const fee = parseFloat(consultationFee.replace(/./g, "").replace(",", "."));
-      if (!isNaN(fee) && fee > 0) body.consultation_fee = fee;
-      body.online_appointments = onlineAppointments;
-      body.in_person_appointments = inPersonAppointments;
+      const fee = parseFloat(consultationFee.replace(/\./g, "").replace(",", "."));
+      if (!isNaN(fee) && fee > 0) body.consultation_price = fee;
+      body.offers_online_care = onlineAppointments;
+      body.offers_in_person_care = inPersonAppointments;
+
+      // Endereço profissional
+      const cepDigits = cep.replace(/\D/g, "");
+      if (cepDigits.length === 8) body.address_zipcode = cepDigits;
+      if (rua.trim()) body.address_street = rua.trim();
+      if (numero.trim()) body.address_number = numero.trim();
+      if (complemento.trim()) body.address_complement = complemento.trim();
+      if (bairro.trim()) body.address_neighborhood = bairro.trim();
+      if (cidade.trim()) body.address_city = cidade.trim();
+      if (estado) body.address_state = estado;
 
       const response = await fetch(API_ROUTES.professionals.me, {
         method: "PUT",
@@ -348,13 +362,13 @@ export function ProfessionalOnboardingScreen({ onComplete }: ProfessionalOnboard
     } finally {
       setLoading(false);
     }
-  }, [birthDate, gender, phone, cpf, registerType, professionalRegister, registerState, specialty, approach, experienceYears, bio, clinicName, consultationFee, onlineAppointments, inPersonAppointments, refreshUser, onComplete]);
+  }, [birthDate, gender, phone, cpf, registerType, professionalRegister, registerState, specialty, approach, experienceYears, bio, clinicName, consultationFee, onlineAppointments, inPersonAppointments, cep, rua, numero, complemento, bairro, cidade, estado, refreshUser, onComplete]);
 
   const percent = Math.round((step / TOTAL_STEPS) * 100);
   const meta = STEP_META[step - 1];
 
   return (
-    <ScreenContainer avoidKeyboard>
+    <ScreenContainer avoidKeyboard edges={["top", "bottom"]}>
       <ScrollView
         className="flex-1"
         contentContainerClassName="grow px-5 pt-6 pb-12 gap-5"

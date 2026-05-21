@@ -1,0 +1,97 @@
+{
+  "patient": {
+    "currentLevel": {
+      "id": 4,
+      "name": "Explorador Mindful",
+      "badge": "🌿",
+      "color": "#10B981",
+      "xpRequired": 1000
+    },
+    "nextLevel": {
+      "id": 5,
+      "name": "Guardião do Equilíbrio",
+      "badge": "✨",
+      "color": "#A78BFA",
+      "xpRequired": 2000
+    },
+    "tagline": "Você está criando uma rotina de autocuidado consistente.",
+    "currentXP": 1250,
+    "totalXP": 1250,
+    "xpToNextLevel": 750,
+    "weeklyXP": 85,
+    "streak": 7,
+    "dailyMissions": [
+      { "id": "m1", "title": "Check-in diário", "description": "Registre como você está se sentindo hoje", "xpReward": 20, "completed": true, "icon": "calendar-outline" },
+      { "id": "m2", "title": "Praticar respiração", "description": "Complete um exercício de respiração", "xpReward": 30, "completed": false, "icon": "leaf-outline" },
+      { "id": "m3", "title": "Completar diário", "description": "Adicione uma entrada no seu diário", "xpReward": 25, "completed": false, "icon": "document-text-outline" }
+    ],
+    "achievements": [
+      { "id": "a1", "title": "7 dias seguidos", "description": "Manteve sequência por uma semana", "icon": "flame-outline", "color": "#F59E0B", "unlockedAt": "2025-11-08T10:00:00Z", "locked": false },
+      { "id": "a2", "title": "Diário consistente", "description": "5 entradas no diário", "icon": "book-outline", "color": "#10B981", "unlockedAt": "2025-11-12T10:00:00Z", "locked": false },
+      { "id": "a3", "title": "Mente calma", "description": "10 exercícios de respiração", "icon": "leaf-outline", "color": "#A78BFA", "unlockedAt": null, "locked": true },
+      { "id": "a4", "title": "30 dias forte", "description": "Sequência de 30 dias", "icon": "trophy-outline", "color": "#EF4444", "unlockedAt": null, "locked": true }
+    ],
+    "activeBenefits": [
+      { "id": "b1", "title": "Badges de conquista", "icon": "ribbon-outline" },
+      { "id": "b2", "title": "Novos temas", "icon": "color-palette-outline" },
+      { "id": "b3", "title": "Atividades personalizadas", "icon": "star-outline" }
+    ],
+    "nextLevelBenefit": "Relatório de Insights Mensal",
+    "levels": [
+      { "id": 1, "name": "Iniciante", "badge": "🌱", "color": "#9CA3AF", "xpRequired": 0 },
+      { "id": 2, "name": "Consciente", "badge": "🧠", "color": "#60A5FA", "xpRequired": 200 },
+      { "id": 3, "name": "Reflexivo", "badge": "💭", "color": "#6DBF7B", "xpRequired": 500 },
+      { "id": 4, "name": "Explorador Mindful", "badge": "🌿", "color": "#10B981", "xpRequired": 1000 },
+      { "id": 5, "name": "Guardião do Equilíbrio", "badge": "✨", "color": "#A78BFA", "xpRequired": 2000 },
+      { "id": 6, "name": "Mestre do Autocuidado", "badge": "🌟", "color": "#F59E0B", "xpRequired": 4000 }
+    ]
+  },
+  "professional": {
+    "currentLevel": {
+      "id": 6,
+      "name": "Mentor Clínico",
+      "badge": "💼",
+      "color": "#10B981",
+      "xpRequired": 3000
+    },
+    "nextLevel": {
+      "id": 7,
+      "name": "Líder em Cuidado Digital",
+      "badge": "🎓",
+      "color": "#A78BFA",
+      "xpRequired": 5000
+    },
+    "tagline": "Seu acompanhamento ativo fortalece a jornada dos pacientes.",
+    "currentXP": 3800,
+    "totalXP": 3800,
+    "xpToNextLevel": 1200,
+    "weeklyXP": 120,
+    "streak": 12,
+    "dailyMissions": [
+      { "id": "m1", "title": "Registrar consulta", "description": "Conclua uma sessão com paciente", "xpReward": 30, "completed": true, "icon": "calendar-outline" },
+      { "id": "m2", "title": "Adicionar observação", "description": "Registre uma nota clínica", "xpReward": 25, "completed": false, "icon": "document-text-outline" },
+      { "id": "m3", "title": "Responder mensagem", "description": "Responda um paciente", "xpReward": 15, "completed": false, "icon": "chatbubble-outline" }
+    ],
+    "achievements": [
+      { "id": "a1", "title": "Resposta rápida", "description": "Respondeu paciente em menos de 1h", "icon": "flash-outline", "color": "#F59E0B", "unlockedAt": "2025-11-01T10:00:00Z", "locked": false },
+      { "id": "a2", "title": "Atendimento consistente", "description": "30 sessões realizadas", "icon": "refresh-circle-outline", "color": "#10B981", "unlockedAt": "2025-11-20T10:00:00Z", "locked": false },
+      { "id": "a3", "title": "50 sessões", "description": "Realize 50 consultas na plataforma", "icon": "trophy-outline", "color": "#A78BFA", "unlockedAt": null, "locked": true },
+      { "id": "a4", "title": "100 pacientes", "description": "Atenda 100 pacientes únicos", "icon": "people-circle-outline", "color": "#EF4444", "unlockedAt": null, "locked": true }
+    ],
+    "activeBenefits": [
+      { "id": "b1", "title": "Destaque no perfil", "icon": "star-outline" },
+      { "id": "b2", "title": "Templates de notas", "icon": "document-outline" },
+      { "id": "b3", "title": "Relatórios semanais", "icon": "bar-chart-outline" }
+    ],
+    "nextLevelBenefit": "Líder em Cuidado Digital",
+    "levels": [
+      { "id": 1, "name": "Iniciante", "badge": "🌱", "color": "#9CA3AF", "xpRequired": 0 },
+      { "id": 2, "name": "Colaborador", "badge": "🤝", "color": "#60A5FA", "xpRequired": 300 },
+      { "id": 3, "name": "Terapeuta Ativo", "badge": "💼", "color": "#6DBF7B", "xpRequired": 800 },
+      { "id": 4, "name": "Especialista", "badge": "🎓", "color": "#A78BFA", "xpRequired": 1800 },
+      { "id": 5, "name": "Referência Clínica", "badge": "⭐", "color": "#F59E0B", "xpRequired": 3000 },
+      { "id": 6, "name": "Mentor Clínico", "badge": "💎", "color": "#10B981", "xpRequired": 5000 },
+      { "id": 7, "name": "Líder em Cuidado Digital", "badge": "🌟", "color": "#EF4444", "xpRequired": 9000 }
+    ]
+  }
+}

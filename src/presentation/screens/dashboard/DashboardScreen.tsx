@@ -1,10 +1,12 @@
 import React from "react";
 import { View } from "react-native";
+import { useFocusEffect } from "expo-router";
 import { useDashboardController } from "../../controllers/useDashboardController";
 import { PatientDashboard } from "./PatientDashboard";
 import { ProfessionalDashboard } from "./ProfessionalDashboard";
 import { LoadingState } from "../../components/ui/LoadingState";
 import { EmptyState } from "../../components/ui/EmptyState";
+import { useRefreshAuthenticatedUser } from "../../../hooks/useRefreshAuthenticatedUser";
 
 interface DashboardScreenProps {
   onNavigateToSettings?: () => void;
@@ -13,6 +15,9 @@ interface DashboardScreenProps {
 export function DashboardScreen({ onNavigateToSettings }: DashboardScreenProps) {
   const { state, loading, error, user, reload, selectMood } =
     useDashboardController();
+
+  const { refresh } = useRefreshAuthenticatedUser();
+  useFocusEffect(React.useCallback(() => { refresh(); }, [refresh]));
 
   if (loading) {
     return <LoadingState message="Carregando dashboard..." fullScreen />;

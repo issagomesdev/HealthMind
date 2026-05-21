@@ -3,11 +3,11 @@
     "id": "prfc1",
     "conversationType": "patient_professional",
     "participant": {
-      "id": "patient-mariana",
-      "name": "Mariana Costa",
+      "id": "p5",
+      "name": "Mariana Santos",
       "role": "patient",
       "subtitle": "Paciente",
-      "avatarInitials": "MC",
+      "avatarInitials": "MS",
       "avatarUrl": null,
       "isOnline": true,
       "lastSeen": null,
@@ -100,8 +100,8 @@
     "id": "prfc2",
     "conversationType": "patient_professional",
     "participant": {
-      "id": "patient-ricardo",
-      "name": "Ricardo Alves",
+      "id": "p8",
+      "name": "Roberto Alves",
       "role": "patient",
       "subtitle": "Paciente",
       "avatarInitials": "RA",
@@ -170,11 +170,11 @@
     "id": "prfc3",
     "conversationType": "patient_professional",
     "participant": {
-      "id": "patient-julia",
-      "name": "Julia Fernandes",
+      "id": "p3",
+      "name": "Fernanda Costa",
       "role": "patient",
       "subtitle": "Paciente",
-      "avatarInitials": "JF",
+      "avatarInitials": "FC",
       "avatarUrl": null,
       "isOnline": false,
       "lastSeen": "2026-05-13T11:00:00Z",
@@ -194,14 +194,14 @@
         "conversationId": "prfc3",
         "senderId": "u-prof-1",
         "senderRole": "professional",
-        "text": "Julia, como foi o exercício de autocompaixão que conversamos?",
+        "text": "Fernanda, como foi o exercício de autocompaixão que conversamos?",
         "sentAt": "2026-05-12T14:00:00Z",
         "status": "read"
       },
       {
         "id": "prfc3-m2",
         "conversationId": "prfc3",
-        "senderId": "patient-julia",
+        "senderId": "patient-fernanda",
         "senderRole": "patient",
         "text": "Ainda não consegui fazer. Estava me sentindo muito ansiosa.",
         "sentAt": "2026-05-12T15:00:00Z",
@@ -212,17 +212,155 @@
         "conversationId": "prfc3",
         "senderId": "u-prof-1",
         "senderRole": "professional",
-        "text": "Tudo bem, Julia. Sem pressão. Quando se sentir pronta, comece com apenas 5 minutos de escrita sobre algo positivo que fez.",
+        "text": "Tudo bem, Fernanda. Sem pressão. Quando se sentir pronta, comece com apenas 5 minutos de escrita sobre algo positivo que fez.",
         "sentAt": "2026-05-13T10:00:00Z",
         "status": "read"
       },
       {
         "id": "prfc3-m4",
         "conversationId": "prfc3",
-        "senderId": "patient-julia",
+        "senderId": "patient-fernanda",
         "senderRole": "patient",
         "text": "Vou tentar fazer isso até amanhã.",
         "sentAt": "2026-05-13T11:00:00Z",
+        "status": "read"
+      }
+    ]
+  },
+  {
+    "id": "prfc6",
+    "conversationType": "patient_professional",
+    "participant": {
+      "id": "p1",
+      "name": "Ana Lima",
+      "role": "patient",
+      "subtitle": "Paciente",
+      "avatarInitials": "AL",
+      "avatarUrl": null,
+      "isOnline": false,
+      "lastSeen": "2026-05-17T19:00:00Z",
+      "isTyping": false
+    },
+    "lastMessage": "Me sinto muito ansiosa ultimamente, não consigo dormir bem.",
+    "lastMessageAt": "2026-05-17T19:00:00Z",
+    "lastMessageSenderId": "patient-ana",
+    "unreadCount": 2,
+    "isPinned": false,
+    "isMuted": false,
+    "isBlocked": false,
+    "blockReason": null,
+    "messages": [
+      {
+        "id": "prfc6-m1",
+        "conversationId": "prfc6",
+        "senderId": "u-prof-1",
+        "senderRole": "professional",
+        "text": "Bom dia, Ana! Como você está se sentindo esta semana?",
+        "sentAt": "2026-05-17T08:00:00Z",
+        "status": "read"
+      },
+      {
+        "id": "prfc6-m2",
+        "conversationId": "prfc6",
+        "senderId": "patient-ana",
+        "senderRole": "patient",
+        "text": "Me sinto muito ansiosa ultimamente, não consigo dormir bem.",
+        "sentAt": "2026-05-17T19:00:00Z",
+        "status": "delivered"
+      }
+    ]
+  },
+  {
+    "id": "prfc7",
+    "conversationType": "patient_professional",
+    "participant": {
+      "id": "p2",
+      "name": "Carlos Mendes",
+      "role": "patient",
+      "subtitle": "Paciente",
+      "avatarInitials": "CM",
+      "avatarUrl": null,
+      "isOnline": false,
+      "lastSeen": "2026-05-18T06:30:00Z",
+      "isTyping": false
+    },
+    "lastMessage": "Tive muitos pensamentos negativos nos últimos dias.",
+    "lastMessageAt": "2026-05-18T06:30:00Z",
+    "lastMessageSenderId": "patient-carlos",
+    "unreadCount": 1,
+    "isPinned": false,
+    "isMuted": false,
+    "isBlocked": false,
+    "blockReason": null,
+    "messages": [
+      {
+        "id": "prfc7-m1",
+        "conversationId": "prfc7",
+        "senderId": "u-prof-1",
+        "senderRole": "professional",
+        "text": "Carlos, conseguiu fazer as atividades que combinamos esta semana?",
+        "sentAt": "2026-05-17T10:00:00Z",
+        "status": "read"
+      },
+      {
+        "id": "prfc7-m2",
+        "conversationId": "prfc7",
+        "senderId": "patient-carlos",
+        "senderRole": "patient",
+        "text": "Só consegui fazer uma. Tive muitos pensamentos negativos nos últimos dias.",
+        "sentAt": "2026-05-17T11:00:00Z",
+        "status": "read"
+      },
+      {
+        "id": "prfc7-m3",
+        "conversationId": "prfc7",
+        "senderId": "patient-carlos",
+        "senderRole": "patient",
+        "text": "Tive muitos pensamentos negativos nos últimos dias.",
+        "sentAt": "2026-05-18T06:30:00Z",
+        "status": "delivered"
+      }
+    ]
+  },
+  {
+    "id": "prfc8",
+    "conversationType": "patient_professional",
+    "participant": {
+      "id": "p4",
+      "name": "João Oliveira",
+      "role": "patient",
+      "subtitle": "Paciente",
+      "avatarInitials": "JO",
+      "avatarUrl": null,
+      "isOnline": false,
+      "lastSeen": "2026-05-15T08:00:00Z",
+      "isTyping": false
+    },
+    "lastMessage": "Consegui dormir melhor essa semana com as dicas!",
+    "lastMessageAt": "2026-05-15T08:00:00Z",
+    "lastMessageSenderId": "patient-joao",
+    "unreadCount": 0,
+    "isPinned": false,
+    "isMuted": false,
+    "isBlocked": false,
+    "blockReason": null,
+    "messages": [
+      {
+        "id": "prfc8-m1",
+        "conversationId": "prfc8",
+        "senderId": "u-prof-1",
+        "senderRole": "professional",
+        "text": "João, como está a rotina de sono desde a última sessão?",
+        "sentAt": "2026-05-14T09:00:00Z",
+        "status": "read"
+      },
+      {
+        "id": "prfc8-m2",
+        "conversationId": "prfc8",
+        "senderId": "patient-joao",
+        "senderRole": "patient",
+        "text": "Consegui dormir melhor essa semana com as dicas!",
+        "sentAt": "2026-05-15T08:00:00Z",
         "status": "read"
       }
     ]

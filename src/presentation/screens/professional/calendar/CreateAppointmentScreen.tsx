@@ -5,19 +5,20 @@ import {
   TouchableOpacity,
   Switch,
   TextInput,
-  Alert,
   KeyboardAvoidingView,
   Platform,
   Modal,
   StyleSheet,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AppText } from "../../../components/ui/AppText";
 import { AppButton } from "../../../components/ui/AppButton";
 import { LoadingState } from "../../../components/ui/LoadingState";
 import { ConfirmActionModal } from "../../../components/ui/ConfirmActionModal";
+import { SuccessModal } from "../../../components/ui/SuccessModal";
+import { useModal } from "../../../../hooks/useModal";
 import { TopBar } from "../../../components/navigation/TopBar";
 import { useTheme } from "../../../../core/theme";
 import { patientsService } from "../../../../services/patients/PatientsService";
@@ -742,8 +743,13 @@ function TimePickerModal({
 
 export function CreateAppointmentScreen() {
   const { colors } = useTheme();
+  const { selectedPatientId, selectedPatientName } = useLocalSearchParams<{
+    selectedPatientId?: string;
+    selectedPatientName?: string;
+  }>();
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const { show: showModal, modalProps } = useModal();
 
   // Data
   const [patients, setPatients] = useState<PatientOption[]>([]);
@@ -788,9 +794,22 @@ export function CreateAppointmentScreen() {
           }));
         setPatients(active);
         setPatientsLoading(false);
+
+        if (selectedPatientId) {
+          const found = active.find((p) => p.id === selectedPatientId);
+          if (found) {
+            setSelectedPatient(found);
+          } else if (selectedPatientName) {
+            setSelectedPatient({
+              id: selectedPatientId,
+              name: decodeURIComponent(selectedPatientName),
+              riskLevel: "stable",
+            });
+          }
+        }
       })
       .catch(() => setPatientsLoading(false));
-  }, []);
+  }, [selectedPatientId, selectedPatientName]);
 
   const handlePatientSelect = (p: PatientOption) => {
     setSelectedPatient(p);
@@ -806,7 +825,7 @@ export function CreateAppointmentScreen() {
   const handleSave = async () => {
     const err = validate();
     if (err) {
-      Alert.alert("Atenção", err);
+      showModal({ type: "error", title: "Atenção", message: err });
       return;
     }
     setConfirmModal(true);
@@ -848,7 +867,7 @@ export function CreateAppointmentScreen() {
     } catch {
       setSaving(false);
       setConfirmModal(false);
-      Alert.alert("Erro", "Não foi possível salvar a consulta. Tente novamente.");
+      showModal({ type: "error", title: "Erro", message: "Não foi possível salvar a consulta. Tente novamente." });
     }
   };
 
@@ -1278,6 +1297,8 @@ export function CreateAppointmentScreen() {
         onClose={() => setShowTimePicker(false)}
         colors={colors}
       />
+
+      <SuccessModal {...modalProps} />
     </KeyboardAvoidingView>
   );
 }

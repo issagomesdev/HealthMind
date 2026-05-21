@@ -3,11 +3,10 @@ import {
   View,
   FlatList,
   KeyboardAvoidingView,
-  Platform,
-  Alert,
 } from "react-native";
 import { AppText } from "../../components/ui/AppText";
 import { LoadingState } from "../../components/ui/LoadingState";
+import { ConfirmActionModal } from "../../components/ui/ConfirmActionModal";
 import { ChatHeader } from "../../components/chat/ChatHeader";
 import { MessageBubble } from "../../components/chat/MessageBubble";
 import { ChatInputBar } from "../../components/chat/ChatInputBar";
@@ -19,6 +18,7 @@ import { ConversationInfoModal } from "../../components/chat/ConversationInfoMod
 import { useAuth } from "../../../core/auth/AuthContext";
 import { useTheme } from "../../../core/theme";
 import { useConversation } from "../../../hooks/useConversation";
+import { useChatActions } from "../../../hooks/useChatActions";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import type { ChatMessage } from "../../../types/chat";
 
@@ -97,6 +97,8 @@ export function ChatConversationScreen() {
   const { conversation, messages, isLoading, isSending, isTypingSimulated, sendMessage } =
     useConversation(userRole, conversationId ?? "");
 
+  const chatActions = useChatActions(conversation, userRole, router);
+
   const [showCallModal, setShowCallModal] = useState(false);
   const [callType, setCallType] = useState<"voice" | "video">("voice");
   const [showAttachment, setShowAttachment] = useState(false);
@@ -107,7 +109,6 @@ export function ChatConversationScreen() {
   const flatListRef = useRef<FlatList>(null);
 
   const showQuickReplies = !inputFocused && inputText.length === 0;
-
   const groupedItems = groupMessagesByDate(messages);
 
   const handleSend = useCallback(() => {
@@ -125,33 +126,8 @@ export function ChatConversationScreen() {
   }, []);
 
   const handleAttachmentAction = useCallback((_actionId: string) => {
-    Alert.alert("Ação", "Ação simulada — funcionalidade completa em breve.");
+    // Attachment actions are simulated
   }, []);
-
-  const handleInfoNavigate = useCallback(
-    (action: string) => {
-      if (action === "patient-chart" || action === "evolution") {
-        Alert.alert("Navegar", "Ação simulada — funcionalidade completa em breve.");
-      } else if (action === "schedule-appointment") {
-        router.push("/(protected)/appointments" as any);
-      } else if (action === "support") {
-        Alert.alert("Suporte", "Nossa equipe de suporte estará disponível em breve.");
-      } else {
-        Alert.alert("Ação", "Ação simulada — funcionalidade completa em breve.");
-      }
-    },
-    [router]
-  );
-
-  const handleCallConfirm = useCallback(() => {
-    setShowCallModal(false);
-    if (conversation) {
-      Alert.alert(
-        "Chamada",
-        `Chamando ${conversation.participant.name}... (simulação)`
-      );
-    }
-  }, [conversation]);
 
   if (isLoading || !conversation) {
     return (
@@ -161,10 +137,12 @@ export function ChatConversationScreen() {
     );
   }
 
+  const participantName = conversation.participant.name;
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1, backgroundColor: colors.background }}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior="padding"
       keyboardVerticalOffset={0}
     >
       {/* Header */}
@@ -207,7 +185,6 @@ export function ChatConversationScreen() {
               </View>
             );
           }
-
           const isOwn = item.message.senderId === user?.id;
           return <MessageBubble message={item.message} isOwn={isOwn} />;
         }}
@@ -216,9 +193,7 @@ export function ChatConversationScreen() {
       />
 
       {/* Typing indicator */}
-      {isTypingSimulated && (
-        <TypingIndicator name={conversation.participant.name} />
-      )}
+      {isTypingSimulated && <TypingIndicator name={participantName} />}
 
       {/* Quick reply chips */}
       {showQuickReplies && (
@@ -241,14 +216,17 @@ export function ChatConversationScreen() {
       <CallActionModal
         visible={showCallModal}
         onClose={() => setShowCallModal(false)}
-        participantName={conversation.participant.name}
+        participantName={participantName}
         callType={callType}
-        onConfirm={handleCallConfirm}
+        onConfirm={() => {
+          setShowCallModal(false);
+          chatActions.handleCallConfirm(callType);
+        }}
         isBlocked={conversation.isBlocked}
         blockReason={conversation.blockReason}
       />
 
-      {/* Attachment action sheet */}
+      {/* Attachment sheet */}
       <AttachmentActionSheet
         visible={showAttachment}
         onClose={() => setShowAttachment(false)}
@@ -263,7 +241,57 @@ export function ChatConversationScreen() {
           onClose={() => setShowInfo(false)}
           conversation={conversation}
           userRole={userRole}
-          onNavigate={handleInfoNavigate}
+          isMuted={chatActions.isMuted}
+          onNavigate={chatActions.handleInfoAction}
+        />
+      )}
+
+      {/* Check-in confirmation */}
+      <ConfirmActionModal
+        visible={chatActions.showCheckInConfirm}
+        isLoading={chatActions.checkInLoading}
+        icon="checkmark-circle-outline"
+        iconColor="#6DBF7B"
+        confirmColor="#6DBF7B"
+        title="Solicitar check-in"
+        description={`Deseja enviar uma solicitação de check-in emocional para ${participantName}?`}
+        confirmLabel="Enviar solicitação"
+        cancelLabel="Cancelar"
+        onConfirm={chatActions.confirmCheckIn}
+        onCancel={() => chatActions.setShowCheckInConfirm(false)}
+      />
+
+      {/* Mute / unmute confirmation */}
+      <ConfirmActionModal
+        visible={chatActions.showMuteConfirm}
+        isLoading={chatActions.muteLoading}
+        icon={chatActions.isMuted ? "volume-high-outline" : "volume-mute-outline"}
+        iconColor={chatActions.isMuted ? "#60A5FA" : "#9CA3AF"}
+        title={chatActions.isMuted ? "Remover silêncio" : "Silenciar conversa"}
+        description={
+          chatActions.isMuted
+            ? "Deseja voltar a receber alertas desta conversa?"
+            : "Você deixará de receber alertas desta conversa. Deseja continuar?"
+        }
+        confirmLabel={chatActions.isMuted ? "Remover silêncio" : "Silenciar"}
+        cancelLabel="Cancelar"
+        onConfirm={chatActions.confirmMute}
+        onCancel={() => chatActions.setShowMuteConfirm(false)}
+      />
+
+      {/* Feedback modal (success/info) */}
+      {chatActions.feedbackConfig && (
+        <ConfirmActionModal
+          visible={!!chatActions.feedbackConfig}
+          icon={chatActions.feedbackConfig.icon}
+          iconColor={chatActions.feedbackConfig.iconColor}
+          confirmColor={chatActions.feedbackConfig.iconColor}
+          title={chatActions.feedbackConfig.title}
+          description={chatActions.feedbackConfig.description}
+          confirmLabel="Ok"
+          cancelLabel={false}
+          onConfirm={chatActions.dismissFeedback}
+          onCancel={chatActions.dismissFeedback}
         />
       )}
     </KeyboardAvoidingView>

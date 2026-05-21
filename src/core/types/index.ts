@@ -12,9 +12,23 @@ export interface PatientProfile {
   gender: GenderType | null;
   cpf: string | null;
   phone: string | null;
+  address_zipcode: string | null;
+  address_street: string | null;
+  address_number: string | null;
+  address_complement: string | null;
+  address_neighborhood: string | null;
+  address_city: string | null;
+  address_state: string | null;
+  emergency_contact_name: string | null;
+  emergency_contact_phone: string | null;
+  emergency_contact_relationship: string | null;
   main_complaint: string | null;
   therapy_goals: string | null;
+  current_medications: string | null;
   has_previous_therapy: boolean | null;
+  has_psychiatric_follow_up: boolean | null;
+  has_health_insurance: boolean | null;
+  health_insurance_name: string | null;
   profile_completed: boolean;
   created_at: string;
   updated_at: string;
@@ -32,8 +46,20 @@ export interface ProfessionalProfile {
   register_type: RegisterType | null;
   register_state: string | null;
   specialty: string | null;
+  approach: string | null;
   bio: string | null;
   experience_years: number | null;
+  clinic_name: string | null;
+  consultation_price: number | null;
+  offers_online_care: boolean;
+  offers_in_person_care: boolean;
+  address_zipcode: string | null;
+  address_street: string | null;
+  address_number: string | null;
+  address_complement: string | null;
+  address_neighborhood: string | null;
+  address_city: string | null;
+  address_state: string | null;
   profile_completed: boolean;
   created_at: string;
   updated_at: string;
@@ -101,6 +127,7 @@ export interface WeeklyMetric {
 
 export interface EmotionalAlert {
   id: string;
+  patientId: string;
   patientName: string;
   alertType: "mood_drop" | "missed_checkin" | "custom";
   message: string;

@@ -12,6 +12,9 @@ export type PaymentStatus =
   | "awaiting_acceptance";
 export type PaymentType =
   | "subscription"
+  | "premium_plan"
+  | "renewal"
+  | "upgrade"
   | "appointment"
   | "contract"
   | "extra_charge"
@@ -67,6 +70,7 @@ export interface PaymentTransaction {
   description: string;
   relatedPersonName: string;
   relatedPersonId?: string;
+  patientId?: string | null;
   paymentMethodId?: string;
   paymentMethodLabel?: string;
   transactionCode: string;

@@ -14,14 +14,16 @@ import { useProfileController } from "../../controllers/useProfileController";
 import { useAuth } from "../../../core/auth/AuthContext";
 import { useTheme } from "../../../core/theme";
 import { ProfessionalProfile } from "../../../core/types";
+import { useRefreshAuthenticatedUser } from "../../../hooks/useRefreshAuthenticatedUser";
 import { professionalProfileService, ProfessionalStats } from "../../../services/professionalProfileService";
 
 export function ProfileScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
-  const { user, logout } = useAuth();
+  const { user, logout, profile: authProfile } = useAuth();
   const { colors, setThemeMode, isDark } = useTheme();
-  const { profile, loading, loadProfile } = useProfileController();
+  const { profile, loadProfile } = useProfileController();
+  const { refresh } = useRefreshAuthenticatedUser();
   const [showLogout, setShowLogout] = useState(false);
   const [stats, setStats] = useState<ProfessionalStats | null>(null);
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
@@ -31,7 +33,8 @@ export function ProfileScreen() {
   useFocusEffect(
     React.useCallback(() => {
       loadProfile();
-    }, [loadProfile])
+      refresh();
+    }, [loadProfile, refresh])
   );
 
   useEffect(() => {
@@ -45,15 +48,13 @@ export function ProfileScreen() {
     await logout();
   };
 
-  const displayProfile = profile ?? {
-    name: user?.name ?? "Usuário",
-    email: user?.email ?? "",
-    badge: "Mindful",
-    level: 1,
-    plan: "ESSENTIAL" as const,
+  const displayProfile = {
+    ...(profile ?? { badge: "Mindful", level: 1, plan: "ESSENTIAL" as const }),
+    name: user?.name ?? profile?.name ?? "Usuário",
+    email: user?.email ?? profile?.email ?? "",
   };
 
-  const professionalProfile = isProfessional ? (profile as ProfessionalProfile) : null;
+  const professionalProfile = isProfessional ? (authProfile as ProfessionalProfile | null) : null;
 
   const PATIENT_SETTINGS = [
     {
@@ -61,6 +62,18 @@ export function ProfileScreen() {
       title: "Configurações de conta",
       description: "Dados pessoais, e-mail e senha",
       onPress: () => router.push("/(protected)/profile-account"),
+    },
+    {
+      icon: "clipboard-outline" as const,
+      title: "Minha ficha",
+      description: "Dados pessoais e preferências de cuidado",
+      onPress: () => router.push("/(protected)/profile-form"),
+    },
+    {
+      icon: "trophy-outline" as const,
+      title: "Níveis e Benefícios",
+      description: "Seu progresso, missões e conquistas",
+      onPress: () => router.push("/(protected)/levels-benefits"),
     },
     {
       icon: "lock-closed-outline" as const,
@@ -95,6 +108,18 @@ export function ProfileScreen() {
       title: "Configurações de conta",
       description: "Dados pessoais, e-mail e senha",
       onPress: () => router.push("/(protected)/profile-account"),
+    },
+    {
+      icon: "clipboard-outline" as const,
+      title: "Minha ficha",
+      description: "Dados profissionais e modalidade de atendimento",
+      onPress: () => router.push("/(protected)/profile-form"),
+    },
+    {
+      icon: "trophy-outline" as const,
+      title: "Níveis e Benefícios",
+      description: "Seu progresso, missões e conquistas",
+      onPress: () => router.push("/(protected)/levels-benefits"),
     },
     {
       icon: "calendar-outline" as const,
@@ -139,7 +164,7 @@ export function ProfileScreen() {
                   className="rounded-full bg-secondary/20 dark:bg-secondary-dark/20 items-center justify-center overflow-hidden"
                   style={{ width: 96, height: 96 }}
                 >
-                  <AppText style={{ fontSize: 34, fontWeight: "700", color: colors.secondary }}>
+                  <AppText style={{ fontSize: 34, fontWeight: "700", color: colors.secondary, lineHeight: 25 }}>
                     {(user?.name ?? "P")
                       .split(" ")
                       .slice(0, 2)

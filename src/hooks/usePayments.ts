@@ -97,7 +97,8 @@ export function usePayments(userRole: "patient" | "professional") {
       else if (filter === "paid")
         matchesFilter = t.status === "paid" || t.status === "received";
       else if (filter === "overdue") matchesFilter = t.status === "overdue";
-      else if (filter === "plans") matchesFilter = t.type === "subscription";
+      else if (filter === "plans")
+        matchesFilter = (["subscription", "premium_plan", "renewal", "upgrade"] as string[]).includes(t.type);
       else if (filter === "appointments")
         matchesFilter = t.type === "appointment";
       else if (filter === "extra_charges")

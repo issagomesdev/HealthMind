@@ -25,7 +25,7 @@ export function DiaryListScreen() {
   );
 
   return (
-    <ScreenContainer safeArea edges={["top", "bottom"]}>
+    <ScreenContainer safeArea edges={["bottom"]}>
       <TopBar title="HealthMind" onMenuPress={openMenu} />
 
       {/* Heading */}

@@ -4,7 +4,6 @@ import {
   ScrollView,
   TouchableOpacity,
   TextInput,
-  Alert,
 } from "react-native";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -12,6 +11,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { TopBar } from "../../components/navigation/TopBar";
 import { AppText } from "../../components/ui/AppText";
 import { LoadingState } from "../../components/ui/LoadingState";
+import { SuccessModal } from "../../components/ui/SuccessModal";
+import { ConfirmActionModal } from "../../components/ui/ConfirmActionModal";
+import { useModal } from "../../../hooks/useModal";
 import { PaymentSummaryCard } from "../../components/payments/PaymentSummaryCard";
 import { EarningsChart } from "../../components/payments/EarningsChart";
 import { PaymentFilterChips } from "../../components/payments/PaymentFilterChips";
@@ -89,11 +91,15 @@ export function PaymentsHomeScreen() {
     requestPayout,
   } = usePayments(userRole);
 
+  const { show: showModal, modalProps } = useModal();
+
   // Modals
   const [showPayoutModal, setShowPayoutModal] = useState(false);
   const [payoutLoading, setPayoutLoading] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
   const [exportLoading, setExportLoading] = useState(false);
+  const [showRemoveModal, setShowRemoveModal] = useState(false);
+  const [pendingRemoveId, setPendingRemoveId] = useState<string | null>(null);
 
   const pendingCharges =
     isPatient
@@ -106,14 +112,15 @@ export function PaymentsHomeScreen() {
   ) => {
     try {
       await respondToCharge(chargeId, action);
-      Alert.alert(
-        action === "accept" ? "Cobrança aceita" : "Cobrança recusada",
-        action === "accept"
+      showModal({
+        type: action === "accept" ? "success" : "info",
+        title: action === "accept" ? "Cobrança aceita" : "Cobrança recusada",
+        message: action === "accept"
           ? "A cobrança foi aceita. O pagamento será processado."
-          : "A cobrança foi recusada."
-      );
+          : "A cobrança foi recusada.",
+      });
     } catch {
-      Alert.alert("Erro", "Não foi possível processar sua resposta.");
+      showModal({ type: "error", title: "Erro", message: "Não foi possível processar sua resposta." });
     }
   };
 
@@ -122,12 +129,9 @@ export function PaymentsHomeScreen() {
     try {
       await requestPayout(1200.0);
       setShowPayoutModal(false);
-      Alert.alert(
-        "Repasse solicitado",
-        "Seu repasse de R$ 1.200,00 está sendo processado."
-      );
+      showModal({ type: "success", title: "Repasse solicitado", message: "Seu repasse de R$ 1.200,00 está sendo processado." });
     } catch {
-      Alert.alert("Erro", "Não foi possível solicitar o repasse.");
+      showModal({ type: "error", title: "Erro", message: "Não foi possível solicitar o repasse." });
     } finally {
       setPayoutLoading(false);
     }
@@ -138,9 +142,9 @@ export function PaymentsHomeScreen() {
     try {
       const result = await paymentService.exportPaymentReportFake();
       setShowExportModal(false);
-      Alert.alert("Sucesso", result.message);
+      showModal({ type: "success", title: "Sucesso", message: result.message });
     } catch {
-      Alert.alert("Erro", "Não foi possível gerar o relatório.");
+      showModal({ type: "error", title: "Erro", message: "Não foi possível gerar o relatório." });
     } finally {
       setExportLoading(false);
     }
@@ -151,30 +155,26 @@ export function PaymentsHomeScreen() {
       await paymentService.setDefaultPaymentMethod(userRole, methodId);
       refresh();
     } catch {
-      Alert.alert("Erro", "Não foi possível alterar o método padrão.");
+      showModal({ type: "error", title: "Erro", message: "Não foi possível alterar o método padrão." });
     }
   };
 
-  const handleRemoveMethod = async (methodId: string) => {
-    Alert.alert(
-      "Remover método",
-      "Deseja remover este método de pagamento?",
-      [
-        { text: "Cancelar", style: "cancel" },
-        {
-          text: "Remover",
-          style: "destructive",
-          onPress: async () => {
-            try {
-              await paymentService.removePaymentMethod(userRole, methodId);
-              refresh();
-            } catch {
-              Alert.alert("Erro", "Não foi possível remover o método.");
-            }
-          },
-        },
-      ]
-    );
+  const handleRemoveMethod = (methodId: string) => {
+    setPendingRemoveId(methodId);
+    setShowRemoveModal(true);
+  };
+
+  const handleConfirmRemoveMethod = async () => {
+    if (!pendingRemoveId) return;
+    const methodId = pendingRemoveId;
+    setShowRemoveModal(false);
+    setPendingRemoveId(null);
+    try {
+      await paymentService.removePaymentMethod(userRole, methodId);
+      refresh();
+    } catch {
+      showModal({ type: "error", title: "Erro", message: "Não foi possível remover o método." });
+    }
   };
 
   if (isLoading) {
@@ -220,7 +220,8 @@ export function PaymentsHomeScreen() {
               style={{
                 backgroundColor: colors.surface,
                 borderRadius: 16,
-                padding: 16,
+                paddingVertical: 16,
+                paddingHorizontal: 5,
                 shadowColor: "#000",
                 shadowOffset: { width: 0, height: 2 },
                 shadowOpacity: 0.05,
@@ -235,6 +236,7 @@ export function PaymentsHomeScreen() {
                     flexDirection: "row",
                     alignItems: "center",
                     marginTop: 12,
+                    marginLeft: 10,
                     gap: 6,
                   }}
                 >
@@ -453,10 +455,7 @@ export function PaymentsHomeScreen() {
                 marginTop: 4,
               }}
               onPress={() =>
-                Alert.alert(
-                  "Em breve",
-                  "Adição de novos métodos estará disponível em breve."
-                )
+                showModal({ type: "coming-soon", title: "Em breve", message: "Adição de novos métodos estará disponível em breve." })
               }
             >
               <Ionicons name="add-circle-outline" size={20} color={colors.secondary} />
@@ -530,10 +529,7 @@ export function PaymentsHomeScreen() {
                 key={p.id}
                 payout={p}
                 onPress={() =>
-                  Alert.alert(
-                    "Repasse",
-                    `Valor: ${formatBRL(p.amount)}\nLíquido: ${formatBRL(p.netAmount)}\nMétodo: ${p.method}`
-                  )
+                  showModal({ type: "info", title: "Repasse", message: `Valor: ${formatBRL(p.amount)}\nLíquido: ${formatBRL(p.netAmount)}\nMétodo: ${p.method}` })
                 }
               />
             ))}
@@ -619,6 +615,21 @@ export function PaymentsHomeScreen() {
         loading={exportLoading}
         icon="document-text-outline"
       />
+
+      <ConfirmActionModal
+        visible={showRemoveModal}
+        onConfirm={handleConfirmRemoveMethod}
+        onCancel={() => { setShowRemoveModal(false); setPendingRemoveId(null); }}
+        icon="trash-outline"
+        iconColor="#EF4444"
+        title="Remover método"
+        description="Deseja remover este método de pagamento?"
+        confirmLabel="Remover"
+        cancelLabel="Cancelar"
+        confirmColor="#EF4444"
+      />
+
+      <SuccessModal {...modalProps} />
     </View>
   );
 }

@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { View, ScrollView, Alert } from "react-native";
+import React from "react";
+import { View, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useFocusEffect, useRouter } from "expo-router";
@@ -14,6 +14,7 @@ import { DailyActivityCard } from "../../components/appointments/DailyActivityCa
 import { ReminderAlertCard } from "../../components/appointments/ReminderAlertCard";
 import { FindProfessionalShortcutCard } from "../../components/appointments/FindProfessionalShortcutCard";
 import { useAppointmentsController } from "../../controllers/useAppointmentsController";
+import { SuccessModal } from "../../components/ui/SuccessModal";
 import { useTheme } from "../../../core/theme";
 
 interface AppointmentsScreenProps {
@@ -51,14 +52,6 @@ export function AppointmentsScreen({ onNavigateToProfessionals }: AppointmentsSc
       ctrl.loadAll();
     }, [])
   );
-
-  useEffect(() => {
-    if (ctrl.feedback) {
-      Alert.alert("HealthMind", ctrl.feedback, [
-        { text: "OK", onPress: ctrl.clearFeedback },
-      ]);
-    }
-  }, [ctrl.feedback]);
 
   if (ctrl.isLoading) {
     return (
@@ -162,6 +155,15 @@ export function AppointmentsScreen({ onNavigateToProfessionals }: AppointmentsSc
         {/* Find professional shortcut */}
         <FindProfessionalShortcutCard onPress={onNavigateToProfessionals} />
       </ScrollView>
+
+      <SuccessModal
+        visible={!!ctrl.feedback}
+        type="info"
+        title="HealthMind"
+        message={ctrl.feedback ?? ""}
+        actionLabel="Ok"
+        onClose={ctrl.clearFeedback}
+      />
     </View>
   );
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AppText } from "./AppText";
 import { useTheme } from "../../../core/theme";
 
@@ -15,9 +16,13 @@ interface AppHeaderProps {
 export function AppHeader({ title, showBack = false, onBackPress, rightElement }: AppHeaderProps) {
   const { colors } = useTheme();
   const router = useRouter();
+  const insets = useSafeAreaInsets();
 
   return (
-    <View className="flex-row items-center justify-between px-5 py-3">
+    <View
+      className="flex-row items-center justify-between px-5"
+      style={{ paddingTop: insets.top + 8, paddingBottom: 12 }}
+    >
       {showBack ? (
         <TouchableOpacity
           onPress={onBackPress ?? (() => router.back())}

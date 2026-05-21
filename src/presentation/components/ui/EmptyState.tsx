@@ -43,7 +43,7 @@ export function EmptyState({
           label={actionLabel}
           onPress={onAction}
           variant="outline"
-          fullWidth={false}
+          fullWidth={true}
           className="mt-2"
         />
       )}
