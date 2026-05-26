@@ -388,12 +388,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   logo: {
-    width: 400,
-    height: 400,
+    width: 300,
+    height: 300,
   },
   titleWrap: {
     alignItems: "center",
-    marginTop: 10,
+    marginTop: 20,
   },
   title: {
     fontSize: 36,

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, TouchableOpacity, ScrollView } from "react-native";
+import { View, TouchableOpacity, ScrollView, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { AppText } from "../../components/ui/AppText";
 import { AppInput } from "../../components/ui/AppInput";
@@ -30,7 +30,10 @@ export function LoginScreen({ onLoginSuccess, onNavigateToRegister, onForgotPass
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
-        <View className="flex-row items-center gap-2.5 justify-center">
+        <View className="flex-row items-center gap-1.5 justify-center">
+          {/* <View className="w-6 h-6 rounded-lg bg-secondary dark:bg-secondary-dark items-center justify-center">
+            <Image source={require("../../../assets/images/logo/white.png")} style={{ width: 18, height: 18 }} />
+          </View> */}
           <AppText variant="heading3" color="secondary" className="font-bold">
             HealthMind
           </AppText>

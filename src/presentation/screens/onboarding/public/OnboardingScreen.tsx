@@ -96,7 +96,7 @@ export function OnboardingScreen({ onFinish, onLogin }: OnboardingScreenProps) {
         <View style={{ width }} className="flex-1 bg-background dark:bg-background-dark">
           <View className="px-7 pt-12 pb-4 flex-row items-center gap-2">
             <View className="w-8 h-8 rounded-full bg-secondary dark:bg-secondary-dark items-center justify-center">
-              <Ionicons name="leaf" size={16} color="#fff" />
+              <Image source={require("../../../../assets/images/logo/white.png")} style={{ width: 23, height: 23 }} />
             </View>
             <AppText variant="bodyMedium" className="font-bold text-primary dark:text-content-dark">
               HealthMind
@@ -139,7 +139,7 @@ export function OnboardingScreen({ onFinish, onLogin }: OnboardingScreenProps) {
             >
               <View className="flex-row items-center gap-2">
                 <View className="w-8 h-8 rounded-full items-center justify-center bg-white/25">
-                  <Ionicons name="leaf" size={16} color="#fff" />
+                  <Image source={require("../../../../assets/images/logo/white.png")} style={{ width: 23, height: 23 }} />
                 </View>
                 <AppText variant="bodyMedium" className="font-bold text-white">
                   HealthMind
@@ -204,7 +204,7 @@ export function OnboardingScreen({ onFinish, onLogin }: OnboardingScreenProps) {
           >
             <View className="flex-row items-center gap-2">
               <View className="w-8 h-8 rounded-full items-center justify-center bg-white/25">
-                <Ionicons name="leaf" size={16} color="#fff" />
+                <Image source={require("../../../../assets/images/logo/white.png")} style={{ width: 23, height: 23 }} />
               </View>
               <AppText variant="bodyMedium" className="font-bold text-white">
                 HealthMind

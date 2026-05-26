@@ -35,7 +35,10 @@ export function RegisterScreen({ onRegisterSuccess, onNavigateToLogin }: Registe
         showsVerticalScrollIndicator={false}
       >
         <View className="items-center gap-2.5">
-          <View className="flex-row items-center gap-2.5 justify-center">
+          <View className="flex-row items-center gap-1.5 justify-center">
+            {/* <View className="w-6 h-6 rounded-lg bg-secondary dark:bg-secondary-dark items-center justify-center">
+              <Image source={require("../../../assets/images/logo/white.png")} style={{ width: 18, height: 18 }} />
+            </View> */}
             <AppText variant="heading3" color="secondary" className="font-bold">
               HealthMind
             </AppText>
