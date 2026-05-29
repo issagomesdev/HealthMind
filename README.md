@@ -15,6 +15,7 @@
   <a href="#funcionalidades">Funcionalidades</a> •
   <a href="#design">Design System</a> •
   <a href="#getting-started">Getting Started</a> •
+  <a href="#team">Equipe</a> •
   <a href="#related-projects">Projetos relacionados</a> •
   <a href="#licenca">Licença</a>
 </p>
@@ -478,9 +479,22 @@ Para conectar os demais módulos à API futuramente:
 - substituir os services fake pelos services reais;
 - a camada de UI não precisa de alterações.
 
+<h2 id="team">👥 Equipe</h2>
+
+| Nome | Papel | LinkedIn |
+|---|---|---|
+| Hayssa Gomes | Desenvolvimento Front-end & Produto | [LinkedIn](https://www.linkedin.com/in/issagomesdev) |
+| Vitoria Inacia | Produto, Pesquisa & Experiência | [LinkedIn](https://www.linkedin.com/in/vitoria-inacia-0a1086250) |
+| Kelvson Nilson | Desenvolvimento & Solução Técnica | [LinkedIn](https://www.linkedin.com/in/kelvson-nilson-129751286/) |
+| Leticia Oliveira | Pesquisa, Estratégia & Experiência | [LinkedIn](https://www.linkedin.com/in/-leticiaoliveira/) |
+| Arthur Santo | Produto, Tecnologia & Apresentação | [LinkedIn](https://www.linkedin.com/in/arthur-santo-b8651a2b6/) |
+
 <h2 id="related-projects">🔗 Projetos relacionados</h2>
 
-🧱 Repositório da API backend disponível <a href="https://github.com/issagomesdev/HealthMind-api">aqui</a>.
+| Projeto | Descrição | Link |
+|---|---|---|
+| **HealthMind Page** | Landing page oficial do HealthMind, desenvolvida com React, Vite, TypeScript e Tailwind CSS | <a href="https://github.com/issagomesdev/HealthMindPage">Acessar repositório</a> |
+| **HealthMind API** | Backend/API do ecossistema HealthMind, responsável pela autenticação, regras de negócio e integração com dados | <a href="https://github.com/issagomesdev/HealthMind-api">Acessar repositório</a> |
 
 <h2 id="licenca">📄 Licença</h2>
 
