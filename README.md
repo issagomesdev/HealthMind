@@ -7,6 +7,12 @@
 ![Status](https://img.shields.io/badge/status-em_desenvolvimento-yellow?style=for-the-badge)
 
 <p align="center">
+  <img src="https://media.byissa.dev/healthmind/app_preview1.png" alt="preview" style="max-width:300px; width:50%;"/>
+  <img src="https://media.byissa.dev/healthmind/app_preview2.png" alt="preview" style="max-width:300px; width:50%;"/>
+  <img src="https://media.byissa.dev/healthmind/app_preview3.png" alt="preview" style="max-width:300px; width:50%;"/>
+</p>
+
+<p align="center">
   <a href="#sobre">Sobre</a> •
   <a href="#roadmap">Roadmap</a> •
   <a href="#tecnologias">Tecnologias</a> •
