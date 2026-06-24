@@ -489,7 +489,7 @@ Para conectar os demais módulos à API futuramente:
 
 | Nome | Papel | LinkedIn |
 |---|---|---|
-| Hayssa Gomes | Desenvolvimento Front-end & Produto | [LinkedIn](https://www.linkedin.com/in/issagomesdev) |
+| Hayssa Gomes | Desenvolvimento Mobile & Produto | [LinkedIn](https://www.linkedin.com/in/issagomesdev) |
 | Vitoria Inacia | Produto, Pesquisa & Experiência | [LinkedIn](https://www.linkedin.com/in/vitoria-inacia-0a1086250) |
 | Kelvson Nilson | Desenvolvimento & Solução Técnica | [LinkedIn](https://www.linkedin.com/in/kelvson-nilson-129751286/) |
 | Leticia Oliveira | Pesquisa, Estratégia & Experiência | [LinkedIn](https://www.linkedin.com/in/-leticiaoliveira/) |
