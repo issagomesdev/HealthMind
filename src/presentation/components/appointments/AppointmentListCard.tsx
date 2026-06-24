@@ -10,19 +10,23 @@ interface AppointmentListCardProps {
   appointment: UserAppointment;
   onCancel: (id: string) => void;
   onReschedule: (id: string) => void;
+  /** Optional: defaults to onReschedule when not provided. */
+  onPostpone?: (id: string) => void;
 }
 
 export function AppointmentListCard({
   appointment,
   onCancel,
   onReschedule,
+  onPostpone = onReschedule,
 }: AppointmentListCardProps) {
   const { colors } = useTheme();
+  const isCancelled = appointment.status === "cancelled";
 
   return (
     <AppCard className="mx-5 gap-3">
-      {/* Top row: time + type badge */}
-      <View className="flex-row items-center justify-between">
+      {/* Top row: time + type/status badge */}
+      <View className="flex-row items-center justify-between" style={{ opacity: isCancelled ? 0.5 : 1 }}>
         <View className="flex-row items-center gap-2">
           <View
             className="w-8 h-8 rounded-xl items-center justify-center"
@@ -52,7 +56,7 @@ export function AppointmentListCard({
       </View>
 
       {/* Professional info */}
-      <View className="gap-0.5">
+      <View className="gap-0.5" style={{ opacity: isCancelled ? 0.5 : 1 }}>
         <AppText variant="bodyMedium" className="font-semibold">
           {appointment.professionalName}
         </AppText>
@@ -61,33 +65,59 @@ export function AppointmentListCard({
         </AppText>
       </View>
 
+      {isCancelled && (
+        <View
+          className="self-start flex-row items-center gap-1 px-2.5 py-1 rounded-full"
+          style={{ backgroundColor: colors.error + "14" }}
+        >
+          <Ionicons name="close-circle" size={12} color={colors.error} />
+          <AppText variant="caption" color="error" className="font-semibold">
+            Cancelado
+          </AppText>
+        </View>
+      )}
+
       {/* Divider */}
       <View className="h-px bg-border dark:bg-border-dark" />
 
       {/* Actions */}
-      <View className="flex-row gap-2">
+      {isCancelled ? (
         <TouchableOpacity
           onPress={() => onReschedule(appointment.id)}
           activeOpacity={0.7}
-          className="flex-1 flex-row items-center justify-center gap-1.5 py-2.5 rounded-xl border border-border dark:border-border-dark"
+          className="flex-row items-center justify-center gap-1.5 py-2.5 rounded-xl"
+          style={{ backgroundColor: colors.secondary + "18" }}
         >
-          <Ionicons name="calendar-outline" size={14} color={colors.subtle} />
-          <AppText variant="small" color="muted" className="font-medium">
-            Adiar
+          <Ionicons name="calendar-outline" size={14} color={colors.secondary} />
+          <AppText variant="small" color="secondary" className="font-semibold">
+            Remarcar
           </AppText>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => onCancel(appointment.id)}
-          activeOpacity={0.7}
-          className="flex-1 flex-row items-center justify-center gap-1.5 py-2.5 rounded-xl"
-          style={{ backgroundColor: colors.error + "12" }}
-        >
-          <Ionicons name="close-circle-outline" size={14} color={colors.error} />
-          <AppText variant="small" color="error" className="font-medium">
-            Cancelar
-          </AppText>
-        </TouchableOpacity>
-      </View>
+      ) : (
+        <View className="flex-row gap-2">
+          <TouchableOpacity
+            onPress={() => onPostpone(appointment.id)}
+            activeOpacity={0.7}
+            className="flex-1 flex-row items-center justify-center gap-1.5 py-2.5 rounded-xl border border-border dark:border-border-dark"
+          >
+            <Ionicons name="calendar-outline" size={14} color={colors.subtle} />
+            <AppText variant="small" color="muted" className="font-medium">
+              Adiar
+            </AppText>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => onCancel(appointment.id)}
+            activeOpacity={0.7}
+            className="flex-1 flex-row items-center justify-center gap-1.5 py-2.5 rounded-xl"
+            style={{ backgroundColor: colors.error + "12" }}
+          >
+            <Ionicons name="close-circle-outline" size={14} color={colors.error} />
+            <AppText variant="small" color="error" className="font-medium">
+              Cancelar
+            </AppText>
+          </TouchableOpacity>
+        </View>
+      )}
     </AppCard>
   );
 }

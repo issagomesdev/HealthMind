@@ -1,4 +1,3 @@
-import appointmentsData from "../data/fake/professionalAppointments.json";
 import tasksData from "../data/fake/professionalTasks.json";
 import remindersData from "../data/fake/professionalReminders.json";
 import {
@@ -8,16 +7,22 @@ import {
   CalendarDayData,
   AppointmentStatus,
 } from "../types/professionalCalendar";
+import {
+  generateMockProfessionalAppointments,
+  getAppointmentsForDate as getMockAppointmentsForDate,
+  getAllGeneratedAppointments,
+  findAppointmentById,
+  updateAppointmentInCache,
+  addAppointmentToCache,
+  postponeAppointmentInCache,
+  rescheduleAppointmentInCache,
+} from "../data/fake/mockProfessionalAppointments";
+import { getTodayDateString } from "../utils/date";
 
 const delay = (ms = 300) => new Promise<void>((r) => setTimeout(r, ms));
 
-let appointments: ProfessionalAppointment[] = appointmentsData.appointments as ProfessionalAppointment[];
 let tasks: ProfessionalTask[] = tasksData.tasks as ProfessionalTask[];
 let reminders: ProfessionalReminder[] = remindersData.reminders as ProfessionalReminder[];
-
-function todayStr(): string {
-  return new Date().toISOString().slice(0, 10);
-}
 
 function nowStr(): string {
   const d = new Date();
@@ -26,22 +31,29 @@ function nowStr(): string {
   return `${hh}:${mm}`;
 }
 
+// Active appointments first (by time), cancelled ones always last.
+function sortForDayList(appointments: ProfessionalAppointment[]): ProfessionalAppointment[] {
+  return [...appointments].sort((a, b) => {
+    if (a.status === "cancelled" && b.status !== "cancelled") return 1;
+    if (a.status !== "cancelled" && b.status === "cancelled") return -1;
+    return a.time.localeCompare(b.time);
+  });
+}
+
 class ProfessionalCalendarService {
   // ─── Appointments ──────────────────────────────────────────────────────────
 
   async getAppointmentsForDate(date: string): Promise<ProfessionalAppointment[]> {
     await delay();
-    return appointments
-      .filter((a) => a.date === date)
-      .sort((a, b) => a.time.localeCompare(b.time));
+    return sortForDayList(getMockAppointmentsForDate(date));
   }
 
   async getNextAppointment(): Promise<ProfessionalAppointment | null> {
     await delay(150);
-    const today = todayStr();
+    const today = getTodayDateString();
     const now = nowStr();
 
-    const upcoming = appointments
+    const upcoming = getAllGeneratedAppointments()
       .filter((a) => {
         if (a.status === "cancelled" || a.status === "completed") return false;
         if (a.date > today) return true;
@@ -60,11 +72,11 @@ class ProfessionalCalendarService {
   async getCalendarDots(year: number, month: number): Promise<CalendarDayData[]> {
     await delay(200);
     const prefix = `${year}-${String(month).padStart(2, "0")}`;
+    const monthAppointments = generateMockProfessionalAppointments(year, month);
 
     const daysMap = new Map<string, CalendarDayData>();
 
-    appointments.forEach((a) => {
-      if (!a.date.startsWith(prefix)) return;
+    monthAppointments.forEach((a) => {
       const existing = daysMap.get(a.date) ?? {
         date: a.date,
         hasAppointment: false,
@@ -110,30 +122,36 @@ class ProfessionalCalendarService {
       ...data,
       id: `cal-a${Date.now()}`,
     };
-    appointments = [...appointments, newItem];
+    addAppointmentToCache(newItem);
     return newItem;
   }
 
   async updateAppointmentStatus(id: string, status: AppointmentStatus): Promise<void> {
     await delay(300);
-    appointments = appointments.map((a) =>
-      a.id === id
-        ? {
-            ...a,
-            status,
-            statusLabel: statusLabelMap[status],
-          }
-        : a
-    );
+    updateAppointmentInCache(id, (a) => ({
+      ...a,
+      status,
+      statusLabel: statusLabelMap[status],
+    }));
   }
 
   async cancelAppointment(id: string): Promise<void> {
     await this.updateAppointmentStatus(id, "cancelled");
   }
 
+  async postponeAppointment(id: string): Promise<ProfessionalAppointment | null> {
+    await delay(400);
+    return postponeAppointmentInCache(id);
+  }
+
+  async rescheduleAppointment(id: string): Promise<ProfessionalAppointment | null> {
+    await delay(400);
+    return rescheduleAppointmentInCache(id);
+  }
+
   async getAppointmentById(id: string): Promise<ProfessionalAppointment | null> {
     await delay(150);
-    return appointments.find((a) => a.id === id) ?? null;
+    return findAppointmentById(id);
   }
 
   // ─── Tasks ─────────────────────────────────────────────────────────────────
@@ -196,8 +214,8 @@ class ProfessionalCalendarService {
     nextAppointment: ProfessionalAppointment | null;
   }> {
     await delay(200);
-    const dayAppointments = appointments.filter(
-      (a) => a.date === date && a.status !== "cancelled"
+    const dayAppointments = getMockAppointmentsForDate(date).filter(
+      (a) => a.status !== "cancelled"
     );
     const dayTasks = tasks.filter((t) => t.date === date && !t.completed);
     const dayReminders = reminders.filter(

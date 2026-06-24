@@ -1,8 +1,7 @@
 import React from "react";
-import { View, ScrollView, ActivityIndicator } from "react-native";
+import { View, ScrollView, ActivityIndicator, StatusBar } from "react-native";
 import { useFocusEffect } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { ScreenContainer } from "../../components/layout/ScreenContainer";
 import { AppText } from "../../components/ui/AppText";
 import { WeeklyMoodChart } from "../../components/progress/WeeklyMoodChart";
 import { CheckInStreakCard } from "../../components/progress/CheckInStreakCard";
@@ -13,7 +12,7 @@ import { useProgressController } from "../../controllers/useProgressController";
 import { useTheme } from "../../../core/theme";
 
 export function ProgressScreen() {
-  const { colors } = useTheme();
+  const { colors, isDark } = useTheme();
   const insets = useSafeAreaInsets();
   const { progress, loading, loadProgress } = useProgressController();
 
@@ -23,18 +22,27 @@ export function ProgressScreen() {
     }, [loadProgress])
   );
 
+  const statusBar = (
+    <StatusBar
+      barStyle={isDark ? "light-content" : "dark-content"}
+      backgroundColor={colors.background}
+    />
+  );
+
   if (loading && !progress) {
     return (
-      <ScreenContainer safeArea={false}>
+      <View className="flex-1 bg-background dark:bg-background-dark">
+        {statusBar}
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator color={colors.secondary} size="large" />
         </View>
-      </ScreenContainer>
+      </View>
     );
   }
 
   return (
-    <ScreenContainer safeArea={false}>
+    <View className="flex-1 bg-background dark:bg-background-dark">
+      {statusBar}
       <ScrollView
         className="flex-1"
         showsVerticalScrollIndicator={false}
@@ -72,6 +80,6 @@ export function ProgressScreen() {
           )}
         </View>
       </ScrollView>
-    </ScreenContainer>
+    </View>
   );
 }

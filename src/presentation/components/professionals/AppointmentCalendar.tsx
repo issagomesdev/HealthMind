@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { View, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { AppText } from "../ui/AppText";
 import { AppCard } from "../ui/AppCard";
 import { useTheme } from "../../../core/theme";
+import { generateMockAvailability } from "../../../data/fake/mockAvailability";
 
 const WEEKDAYS = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
 const MONTHS = [
@@ -16,13 +17,14 @@ function toYMD(d: Date): string {
 }
 
 interface AppointmentCalendarProps {
+  // Kept for interface stability; availability is now generated internally
+  // per displayed month instead of coming from this fixed list.
   availableDates: string[];
   selectedDate: string | null;
   onSelectDate: (date: string) => void;
 }
 
 export function AppointmentCalendar({
-  availableDates,
   selectedDate,
   onSelectDate,
 }: AppointmentCalendarProps) {
@@ -55,7 +57,14 @@ export function AppointmentCalendar({
   // Pad to full rows
   while (cells.length % 7 !== 0) cells.push(null);
 
-  const availableSet = new Set(availableDates);
+  const monthAvailability = useMemo(
+    () => generateMockAvailability(viewYear, viewMonth),
+    [viewYear, viewMonth]
+  );
+  const availableSet = useMemo(
+    () => new Set(monthAvailability.map((day) => day.date)),
+    [monthAvailability]
+  );
 
   return (
     <AppCard className="gap-4">

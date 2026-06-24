@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { View } from "react-native";
+import { View, FlatList } from "react-native";
 import { useRouter } from "expo-router";
-import { ScreenContainer } from "../../components/layout/ScreenContainer";
 import { AppText } from "../../components/ui/AppText";
 import { SectionHeader } from "../../components/dashboard/SectionHeader";
 import { GreetingHeader } from "../../components/dashboard/GreetingHeader";
@@ -16,6 +15,10 @@ import { useNavigationContext } from "../../context/NavigationContext";
 import { TopBar } from "../../components/navigation/TopBar";
 import { SuccessModal } from "../../components/ui/SuccessModal";
 import { useModal } from "../../../hooks/useModal";
+
+// Stable empty array: FlatList is used purely as a scroll container here
+// (content is passed via ListHeaderComponent), so it never renders items.
+const EMPTY_DATA: never[] = [];
 
 interface PatientDashboardProps {
   user: User;
@@ -85,13 +88,8 @@ export function PatientDashboard({
     { label: "Comunidade", icon: "chatbubbles-outline" as const },
   ];
 
-  return (
-    <ScreenContainer scrollable safeArea edges={["bottom"]}>
-      {/* Top bar */}
-      <TopBar title="HealthMind" onMenuPress={openMenu} />
-
-      {/* Content */}
-      <View className="px-5 gap-5 pb-6">
+  const content = (
+    <View className="px-5 gap-5 pb-6">
         <GreetingHeader
           greeting={`Olá, como você\nestá hoje?`}
           subtitle="Bem-vindo de volta ao seu espaço de cuidado."
@@ -151,7 +149,20 @@ export function PatientDashboard({
             maxBarHeight={64}
           />
         </View>
-      </View>
+    </View>
+  );
+
+  return (
+    <View className="flex-1 bg-background dark:bg-background-dark">
+      <TopBar title="HealthMind" onMenuPress={openMenu} />
+
+      <FlatList
+        data={EMPTY_DATA}
+        renderItem={null}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
+        ListHeaderComponent={content}
+      />
 
       {/* Appointment details modal */}
       <AppointmentDetailsModal
@@ -163,6 +174,6 @@ export function PatientDashboard({
       />
 
       <SuccessModal {...modalProps} />
-    </ScreenContainer>
+    </View>
   );
 }

@@ -12,7 +12,7 @@ const STATUS_BAR_COLORS: Record<AppointmentStatus, string> = {
   scheduled: "#3B82F6",
   in_progress: "#2A9D8F",
   completed: "#9CA3AF",
-  cancelled: "#D1D5DB",
+  cancelled: "#EF4444",
   missed: "#EF4444",
 };
 
@@ -23,6 +23,7 @@ interface AppointmentListCardProps {
 export function AppointmentListCard({ appointment }: AppointmentListCardProps) {
   const { colors } = useTheme();
   const router = useRouter();
+  const isCancelled = appointment.status === "cancelled";
 
   const initials = getInitials(appointment.patientName);
   const barColor = STATUS_BAR_COLORS[appointment.status];
@@ -48,6 +49,7 @@ export function AppointmentListCard({ appointment }: AppointmentListCardProps) {
         marginBottom: 10,
         flexDirection: "row",
         overflow: "hidden",
+        opacity: isCancelled ? 0.65 : 1,
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.06,
@@ -126,7 +128,26 @@ export function AppointmentListCard({ appointment }: AppointmentListCardProps) {
             flexWrap: "wrap",
           }}
         >
-          <CalendarAppointmentStatusBadge status={appointment.status} small />
+          {isCancelled ? (
+            <View
+              style={{
+                backgroundColor: colors.error + "18",
+                borderRadius: 99,
+                paddingHorizontal: 8,
+                paddingVertical: 2,
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 3,
+              }}
+            >
+              <Ionicons name="close-circle" size={11} color={colors.error} />
+              <AppText style={{ fontSize: 11, fontWeight: "700", color: colors.error }}>
+                Cancelada
+              </AppText>
+            </View>
+          ) : (
+            <CalendarAppointmentStatusBadge status={appointment.status} small />
+          )}
 
           {/* Format badge */}
           <View

@@ -6,10 +6,7 @@ import {
   ProfessionalReminder,
   CalendarDayData,
 } from "../types/professionalCalendar";
-
-function todayStr(): string {
-  return new Date().toISOString().slice(0, 10);
-}
+import { getTodayDateString } from "../utils/date";
 
 interface DaySummary {
   appointmentsCount: number;
@@ -37,7 +34,7 @@ interface UseProfessionalCalendarReturn {
 }
 
 export function useProfessionalCalendar(): UseProfessionalCalendarReturn {
-  const today = todayStr();
+  const today = getTodayDateString();
   const [selectedDate, setSelectedDateState] = useState(today);
   const [currentYear, setCurrentYear] = useState(() => new Date().getFullYear());
   const [currentMonth, setCurrentMonthState] = useState(() => new Date().getMonth() + 1);

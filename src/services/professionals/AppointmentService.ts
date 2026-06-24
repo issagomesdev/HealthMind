@@ -1,45 +1,27 @@
-import fakeAppointments from "../../data/fake/appointments.json";
-
-interface SlotRecord {
-  professionalId: string;
-  date: string;
-  times: string[];
-}
+import { getMockTimesForDate } from "../../data/fake/mockAvailability";
 
 // Future: GET /appointments/available-dates, GET /appointments/available-times, POST /appointments
 
 class AppointmentServiceImpl {
-  private slots: SlotRecord[] = fakeAppointments.availableSlots;
-
-  async getAvailableDates(professionalId: string): Promise<string[]> {
+  // professionalId is accepted for API shape compatibility but ignored: mock
+  // availability is the same for every professional and is generated
+  // dynamically per month by AppointmentCalendar (see mockAvailability.ts).
+  async getAvailableDates(_professionalId: string): Promise<string[]> {
     await new Promise((r) => setTimeout(r, 250));
-    return this.slots
-      .filter((s) => s.professionalId === professionalId)
-      .map((s) => s.date)
-      .sort();
+    return [];
   }
 
-  async getAvailableTimes(professionalId: string, date: string): Promise<string[]> {
+  async getAvailableTimes(_professionalId: string, date: string): Promise<string[]> {
     await new Promise((r) => setTimeout(r, 200));
-    const slot = this.slots.find(
-      (s) => s.professionalId === professionalId && s.date === date
-    );
-    return slot?.times.sort() ?? [];
+    return getMockTimesForDate(date);
   }
 
   async createAppointment(
-    professionalId: string,
+    _professionalId: string,
     date: string,
     time: string
   ): Promise<{ id: string }> {
     await new Promise((r) => setTimeout(r, 700));
-    // Remove the booked time from mock
-    const slot = this.slots.find(
-      (s) => s.professionalId === professionalId && s.date === date
-    );
-    if (slot) {
-      slot.times = slot.times.filter((t) => t !== time);
-    }
     return { id: `appt_${Date.now()}` };
   }
 }

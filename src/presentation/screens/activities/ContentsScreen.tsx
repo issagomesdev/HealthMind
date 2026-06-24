@@ -1,8 +1,7 @@
 import React from "react";
-import { View, ScrollView, ActivityIndicator } from "react-native";
+import { View, ScrollView, ActivityIndicator, StatusBar } from "react-native";
 import { useFocusEffect } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { ScreenContainer } from "../../components/layout/ScreenContainer";
 import { AppText } from "../../components/ui/AppText";
 import { SearchInput } from "../../components/contents/SearchInput";
 import { ContentFilterChips } from "../../components/contents/ContentFilterChips";
@@ -13,7 +12,7 @@ import { useContentsController } from "../../controllers/useContentsController";
 import { useTheme } from "../../../core/theme";
 
 export function ContentsScreen() {
-  const { colors } = useTheme();
+  const { colors, isDark } = useTheme();
   const insets = useSafeAreaInsets();
   const {
     contents,
@@ -35,18 +34,27 @@ export function ContentsScreen() {
   const featured = contents.find((c) => c.featured);
   const nonFeatured = contents.filter((c) => !c.featured);
 
+  const statusBar = (
+    <StatusBar
+      barStyle={isDark ? "light-content" : "dark-content"}
+      backgroundColor={colors.background}
+    />
+  );
+
   if (loading && contents.length === 0) {
     return (
-      <ScreenContainer safeArea={false}>
+      <View className="flex-1 bg-background dark:bg-background-dark">
+        {statusBar}
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator color={colors.secondary} size="large" />
         </View>
-      </ScreenContainer>
+      </View>
     );
   }
 
   return (
-    <ScreenContainer safeArea={false}>
+    <View className="flex-1 bg-background dark:bg-background-dark">
+      {statusBar}
       <ScrollView
         className="flex-1"
         showsVerticalScrollIndicator={false}
@@ -109,6 +117,6 @@ export function ContentsScreen() {
           )}
         </View>
       </ScrollView>
-    </ScreenContainer>
+    </View>
   );
 }

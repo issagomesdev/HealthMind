@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
@@ -15,10 +15,59 @@ import { ReminderAlertCard } from "../../components/appointments/ReminderAlertCa
 import { FindProfessionalShortcutCard } from "../../components/appointments/FindProfessionalShortcutCard";
 import { useAppointmentsController } from "../../controllers/useAppointmentsController";
 import { SuccessModal } from "../../components/ui/SuccessModal";
+import { ConfirmActionModal } from "../../components/ui/ConfirmActionModal";
 import { useTheme } from "../../../core/theme";
+import { UserAppointment } from "../../../core/types";
+import {
+  generateMockAppointmentsForDate,
+  postponeMockAppointment,
+  rescheduleMockAppointment,
+} from "../../../data/fake/mockUserAppointments";
 
 interface AppointmentsScreenProps {
   onNavigateToProfessionals: () => void;
+}
+
+type PendingActionType = "cancel" | "postpone" | "reschedule";
+
+interface PendingAction {
+  type: PendingActionType;
+  appointmentId: string;
+}
+
+const CONFIRM_PROMPTS: Record<
+  PendingActionType,
+  { title: string; description: string; confirmLabel: string; icon: keyof typeof Ionicons.glyphMap }
+> = {
+  cancel: {
+    title: "Cancelar consulta",
+    description: "Deseja cancelar esta consulta?",
+    confirmLabel: "Confirmar cancelamento",
+    icon: "close-circle-outline",
+  },
+  postpone: {
+    title: "Adiar consulta",
+    description: "Deseja adiar esta consulta?",
+    confirmLabel: "Confirmar adiamento",
+    icon: "calendar-outline",
+  },
+  reschedule: {
+    title: "Remarcar consulta",
+    description: "Deseja remarcar esta consulta?",
+    confirmLabel: "Confirmar remarcação",
+    icon: "calendar-outline",
+  },
+};
+
+// Scheduled appointments first (soonest to latest), cancelled ones always last.
+function sortAppointments(appointments: UserAppointment[]): UserAppointment[] {
+  return [...appointments].sort((a, b) => {
+    if (a.status === "cancelled" && b.status !== "cancelled") return 1;
+    if (a.status !== "cancelled" && b.status === "cancelled") return -1;
+    const dateA = new Date(`${a.date}T${a.time}`).getTime();
+    const dateB = new Date(`${b.date}T${b.time}`).getTime();
+    return dateA - dateB;
+  });
 }
 
 function SectionHeader({ title, badge }: { title: string; badge?: string }) {
@@ -46,12 +95,64 @@ export function AppointmentsScreen({ onNavigateToProfessionals }: AppointmentsSc
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const ctrl = useAppointmentsController();
+  const { colors } = useTheme();
+
+  const [appointments, setAppointments] = useState<UserAppointment[]>([]);
+  const [pendingAction, setPendingAction] = useState<PendingAction | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   useFocusEffect(
     React.useCallback(() => {
       ctrl.loadAll();
     }, [])
   );
+
+  // Re-generate the mocked appointments list whenever the calendar's
+  // selected date changes, reusing cached data if the date was seen before.
+  useEffect(() => {
+    setAppointments(sortAppointments(generateMockAppointmentsForDate(ctrl.selectedDate)));
+  }, [ctrl.selectedDate]);
+
+  const handleRequestCancelAppointment = (appointmentId: string) => {
+    setPendingAction({ type: "cancel", appointmentId });
+  };
+
+  const handleRequestPostponeAppointment = (appointmentId: string) => {
+    setPendingAction({ type: "postpone", appointmentId });
+  };
+
+  const handleRequestRescheduleAppointment = (appointmentId: string) => {
+    setPendingAction({ type: "reschedule", appointmentId });
+  };
+
+  const handleConfirmCancelAppointment = (appointmentId: string) => {
+    setAppointments((prev) =>
+      sortAppointments(prev.map((a) => (a.id === appointmentId ? { ...a, status: "cancelled" } : a)))
+    );
+  };
+
+  const handleConfirmPostponeAppointment = (appointmentId: string) => {
+    setAppointments((prev) =>
+      sortAppointments(prev.map((a) => (a.id === appointmentId ? postponeMockAppointment(a) : a)))
+    );
+    setSuccessMessage("Sua consulta foi adiada com sucesso.");
+  };
+
+  const handleConfirmRescheduleAppointment = (appointmentId: string) => {
+    setAppointments((prev) =>
+      sortAppointments(prev.map((a) => (a.id === appointmentId ? rescheduleMockAppointment(a) : a)))
+    );
+    setSuccessMessage("Sua consulta foi remarcada com sucesso.");
+  };
+
+  const handleConfirmPendingAction = () => {
+    if (!pendingAction) return;
+    const { type, appointmentId } = pendingAction;
+    if (type === "cancel") handleConfirmCancelAppointment(appointmentId);
+    else if (type === "postpone") handleConfirmPostponeAppointment(appointmentId);
+    else handleConfirmRescheduleAppointment(appointmentId);
+    setPendingAction(null);
+  };
 
   if (ctrl.isLoading) {
     return (
@@ -102,16 +203,17 @@ export function AppointmentsScreen({ onNavigateToProfessionals }: AppointmentsSc
           />
         </View>
 
-        {/* Day appointments */}
-        {ctrl.dayAppointments.length > 0 && (
+        {/* Appointments list */}
+        {appointments.length > 0 && (
           <View className="mb-6 gap-3">
-            <SectionHeader title="Consultas do Dia" />
-            {ctrl.dayAppointments.map((appt) => (
+            <SectionHeader title="Suas Consultas" />
+            {appointments.map((appt) => (
               <AppointmentListCard
                 key={appt.id}
                 appointment={appt}
-                onCancel={ctrl.cancelAppointment}
-                onReschedule={ctrl.rescheduleAppointment}
+                onCancel={handleRequestCancelAppointment}
+                onPostpone={handleRequestPostponeAppointment}
+                onReschedule={handleRequestRescheduleAppointment}
               />
             ))}
           </View>
@@ -163,6 +265,28 @@ export function AppointmentsScreen({ onNavigateToProfessionals }: AppointmentsSc
         message={ctrl.feedback ?? ""}
         actionLabel="Ok"
         onClose={ctrl.clearFeedback}
+      />
+
+      <SuccessModal
+        visible={!!successMessage}
+        type="success"
+        title="Sucesso!"
+        message={successMessage ?? ""}
+        actionLabel="Ok"
+        onClose={() => setSuccessMessage(null)}
+      />
+
+      <ConfirmActionModal
+        visible={!!pendingAction}
+        icon={pendingAction ? CONFIRM_PROMPTS[pendingAction.type].icon : "help-circle-outline"}
+        iconColor={pendingAction?.type === "cancel" ? colors.error : colors.secondary}
+        confirmColor={pendingAction?.type === "cancel" ? colors.error : undefined}
+        title={pendingAction ? CONFIRM_PROMPTS[pendingAction.type].title : ""}
+        description={pendingAction ? CONFIRM_PROMPTS[pendingAction.type].description : ""}
+        confirmLabel={pendingAction ? CONFIRM_PROMPTS[pendingAction.type].confirmLabel : "Confirmar"}
+        cancelLabel="Voltar"
+        onConfirm={handleConfirmPendingAction}
+        onCancel={() => setPendingAction(null)}
       />
     </View>
   );

@@ -20,6 +20,8 @@ import { professionalCalendarService } from "../../../../services/professionalCa
 import { ProfessionalAppointment } from "../../../../types/professionalCalendar";
 import { getInitials, getRiskConfig } from "../../../../utils/patient";
 import { useCallActions } from "../../../../hooks/useCallActions";
+import { setPendingCalendarFocus } from "../../../../state/pendingCalendarFocus";
+import { getTodayDateString } from "../../../../utils/date";
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -172,8 +174,12 @@ export function AppointmentDetailsScreen() {
   // Modals
   const [cancelModal, setCancelModal] = useState(false);
   const [completeModal, setCompleteModal] = useState(false);
+  const [postponeModal, setPostponeModal] = useState(false);
+  const [rescheduleModal, setRescheduleModal] = useState(false);
   const [cancelLoading, setCancelLoading] = useState(false);
   const [completeLoading, setCompleteLoading] = useState(false);
+  const [postponeLoading, setPostponeLoading] = useState(false);
+  const [rescheduleLoading, setRescheduleLoading] = useState(false);
 
   useEffect(() => {
     if (!params.id) {
@@ -194,14 +200,47 @@ export function AppointmentDetailsScreen() {
     setCancelLoading(true);
     try {
       await professionalCalendarService.cancelAppointment(appointment.id);
-      setAppointment((prev) =>
-        prev ? { ...prev, status: "cancelled", statusLabel: "Cancelada" } : prev
-      );
       setCancelModal(false);
+      setPendingCalendarFocus(appointment.date, appointment.id);
+      router.back();
     } catch {
       showModal({ type: "error", title: "Erro", message: "Não foi possível cancelar a consulta." });
     } finally {
       setCancelLoading(false);
+    }
+  };
+
+  const handlePostpone = async () => {
+    if (!appointment) return;
+    setPostponeLoading(true);
+    try {
+      const updated = await professionalCalendarService.postponeAppointment(appointment.id);
+      setPostponeModal(false);
+      if (updated) {
+        setPendingCalendarFocus(updated.date, updated.id);
+        router.back();
+      }
+    } catch {
+      showModal({ type: "error", title: "Erro", message: "Não foi possível adiar a consulta." });
+    } finally {
+      setPostponeLoading(false);
+    }
+  };
+
+  const handleReschedule = async () => {
+    if (!appointment) return;
+    setRescheduleLoading(true);
+    try {
+      const updated = await professionalCalendarService.rescheduleAppointment(appointment.id);
+      setRescheduleModal(false);
+      if (updated) {
+        setPendingCalendarFocus(updated.date, updated.id);
+        router.back();
+      }
+    } catch {
+      showModal({ type: "error", title: "Erro", message: "Não foi possível reagendar a consulta." });
+    } finally {
+      setRescheduleLoading(false);
     }
   };
 
@@ -263,6 +302,8 @@ export function AppointmentDetailsScreen() {
   );
 
   const isActive = appointment.status === "scheduled" || appointment.status === "in_progress";
+  const isCancelled = appointment.status === "cancelled";
+  const isPastDate = appointment.date < getTodayDateString();
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
@@ -480,13 +521,15 @@ export function AppointmentDetailsScreen() {
 
         {/* Actions */}
         <View style={{ marginTop: 4 }}>
-          <ActionButton
+          {!isCancelled && !isPastDate && (
+            <ActionButton
               icon="videocam-outline"
               label="Entrar na chamada"
               onPress={handleOpenCall}
               color={colors.secondary}
               colors={colors}
             />
+          )}
 
           <ActionButton
             icon="person-outline"
@@ -506,25 +549,46 @@ export function AppointmentDetailsScreen() {
           />
 
           {isActive && (
-            <>
-              <ActionButton
-                icon="checkmark-circle-outline"
-                label="Marcar como concluída"
-                onPress={() => setCompleteModal(true)}
-                ghost
-                color="#6DBF7B"
-                colors={colors}
-              />
+            <ActionButton
+              icon="checkmark-circle-outline"
+              label="Marcar como concluída"
+              onPress={() => setCompleteModal(true)}
+              ghost
+              color="#6DBF7B"
+              colors={colors}
+            />
+          )}
 
+          {!isPastDate && (
+            isCancelled ? (
               <ActionButton
-                icon="close-circle-outline"
-                label="Cancelar consulta"
-                onPress={() => setCancelModal(true)}
-                ghost
-                color={colors.error}
+                icon="calendar-outline"
+                label="Reagendar consulta"
+                onPress={() => setRescheduleModal(true)}
+                color={colors.secondary}
                 colors={colors}
               />
-            </>
+            ) : (
+              <>
+                <ActionButton
+                  icon="calendar-outline"
+                  label="Adiar consulta"
+                  onPress={() => setPostponeModal(true)}
+                  ghost
+                  color={colors.secondary}
+                  colors={colors}
+                />
+
+                <ActionButton
+                  icon="close-circle-outline"
+                  label="Cancelar consulta"
+                  onPress={() => setCancelModal(true)}
+                  ghost
+                  color={colors.error}
+                  colors={colors}
+                />
+              </>
+            )
           )}
         </View>
       </ScrollView>
@@ -542,6 +606,36 @@ export function AppointmentDetailsScreen() {
         confirmLabel="Cancelar consulta"
         cancelLabel="Manter"
         confirmColor={colors.error}
+      />
+
+      {/* Postpone modal */}
+      <ConfirmActionModal
+        visible={postponeModal}
+        onConfirm={handlePostpone}
+        onCancel={() => setPostponeModal(false)}
+        isLoading={postponeLoading}
+        icon="calendar-outline"
+        iconColor={colors.secondary}
+        title="Adiar consulta"
+        description={`Deseja adiar a consulta com ${appointment.patientName}?`}
+        confirmLabel="Confirmar adiamento"
+        cancelLabel="Voltar"
+        confirmColor={colors.secondary}
+      />
+
+      {/* Reschedule modal */}
+      <ConfirmActionModal
+        visible={rescheduleModal}
+        onConfirm={handleReschedule}
+        onCancel={() => setRescheduleModal(false)}
+        isLoading={rescheduleLoading}
+        icon="calendar-outline"
+        iconColor={colors.secondary}
+        title="Reagendar consulta"
+        description={`Deseja reagendar a consulta com ${appointment.patientName}?`}
+        confirmLabel="Confirmar reagendamento"
+        cancelLabel="Voltar"
+        confirmColor={colors.secondary}
       />
 
       {/* Complete modal */}

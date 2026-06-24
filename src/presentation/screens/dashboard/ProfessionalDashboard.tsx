@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, FlatList } from "react-native";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import { ScreenContainer } from "../../components/layout/ScreenContainer";
 import { AppText } from "../../components/ui/AppText";
 import { AppCard } from "../../components/ui/AppCard";
 import { SectionHeader } from "../../components/dashboard/SectionHeader";
@@ -18,6 +17,10 @@ import { useTheme } from "../../../core/theme";
 import { useNavigationContext } from "../../context/NavigationContext";
 import { TopBar } from "../../components/navigation/TopBar";
 import { ROUTES } from "../../../core/constants/routes";
+
+// Stable empty array: FlatList is used purely as a scroll container here
+// (content is passed via ListHeaderComponent), so it never renders items.
+const EMPTY_DATA: never[] = [];
 
 interface ProfessionalDashboardProps {
   user: User;
@@ -66,11 +69,8 @@ export function ProfessionalDashboard({
     });
   };
 
-  return (
-    <ScreenContainer scrollable safeArea edges={["bottom"]}>
-      <TopBar title="HealthMind" onMenuPress={openMenu} />
-
-      <View className="px-5 gap-5 pb-6">
+  const content = (
+    <View className="px-5 gap-5 pb-6">
         <GreetingHeader
           greeting={`Olá, ${user.name.split(" ")[0]}`}
           subtitle="Aqui está um resumo do seu dia."
@@ -150,13 +150,26 @@ export function ProfessionalDashboard({
           body={data.professionalInsight}
           variant="professional"
         />
-      </View>
+    </View>
+  );
+
+  return (
+    <View className="flex-1 bg-background dark:bg-background-dark">
+      <TopBar title="HealthMind" onMenuPress={openMenu} />
+
+      <FlatList
+        data={EMPTY_DATA}
+        renderItem={null}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
+        ListHeaderComponent={content}
+      />
 
       <PatientSelectModal
         visible={showPatientModal}
         onClose={() => setShowPatientModal(false)}
         onSelectPatient={handleSelectPatient}
       />
-    </ScreenContainer>
+    </View>
   );
 }

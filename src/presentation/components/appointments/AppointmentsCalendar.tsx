@@ -5,8 +5,11 @@ import { AppText } from "../ui/AppText";
 import { AppCard } from "../ui/AppCard";
 import { CalendarAppointmentDate } from "../../../core/types";
 import { useTheme } from "../../../core/theme";
+import { generateMockUserAppointments } from "../../../data/fake/mockUserAppointments";
 
 interface AppointmentsCalendarProps {
+  // Kept for interface stability; appointment dots are now generated
+  // internally per displayed month instead of coming from this fixed list.
   appointmentDates: CalendarAppointmentDate[];
   selectedDate: string;
   onSelectDate: (date: string) => void;
@@ -31,7 +34,6 @@ function firstWeekdayOf(year: number, month: number) {
 }
 
 export function AppointmentsCalendar({
-  appointmentDates,
   selectedDate,
   onSelectDate,
 }: AppointmentsCalendarProps) {
@@ -42,9 +44,13 @@ export function AppointmentsCalendar({
   const [viewYear, setViewYear] = useState(initialDate.getFullYear());
   const [viewMonth, setViewMonth] = useState(initialDate.getMonth());
 
+  const monthAppointments = useMemo(
+    () => generateMockUserAppointments(viewYear, viewMonth),
+    [viewYear, viewMonth]
+  );
   const apptDateSet = useMemo(
-    () => new Set(appointmentDates.map((d) => d.date)),
-    [appointmentDates]
+    () => new Set(monthAppointments.map((a) => a.date)),
+    [monthAppointments]
   );
 
   const totalDays = daysInMonth(viewYear, viewMonth);

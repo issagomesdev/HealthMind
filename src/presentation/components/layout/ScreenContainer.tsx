@@ -1,7 +1,6 @@
 import React from "react";
 import {
   View,
-  ScrollView,
   KeyboardAvoidingView,
   StatusBar,
   ViewStyle,
@@ -11,9 +10,7 @@ import { useTheme } from "../../../core/theme";
 
 interface ScreenContainerProps {
   children: React.ReactNode;
-  scrollable?: boolean;
   className?: string;
-  contentClassName?: string;
   avoidKeyboard?: boolean;
   keyboardVerticalOffset?: number;
   safeArea?: boolean;
@@ -23,9 +20,7 @@ interface ScreenContainerProps {
 
 export function ScreenContainer({
   children,
-  scrollable = false,
   className,
-  contentClassName,
   avoidKeyboard = false,
   keyboardVerticalOffset = 0,
   safeArea = true,
@@ -34,17 +29,7 @@ export function ScreenContainer({
 }: ScreenContainerProps) {
   const { colors, isDark } = useTheme();
 
-  const inner = scrollable ? (
-    <ScrollView
-      className={`flex-1 bg-background dark:bg-background-dark ${className ?? ""}`}
-      contentContainerClassName={`grow ${contentClassName ?? ""}`}
-      showsVerticalScrollIndicator={false}
-      keyboardShouldPersistTaps="handled"
-      style={style}
-    >
-      {children}
-    </ScrollView>
-  ) : (
+  const inner = (
     <View
       className={`flex-1 bg-background dark:bg-background-dark ${className ?? ""}`}
       style={style}

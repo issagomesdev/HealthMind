@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import { View, FlatList, ActivityIndicator } from "react-native";
+import { View, FlatList, ActivityIndicator, StatusBar } from "react-native";
 import { useFocusEffect } from "expo-router";
-import { ScreenContainer } from "../../components/layout/ScreenContainer";
 import { AppText } from "../../components/ui/AppText";
 import { ActivityHeroCard } from "../../components/activities/ActivityHeroCard";
 import { ActivityListCard } from "../../components/activities/ActivityListCard";
@@ -9,7 +8,7 @@ import { useActivitiesController } from "../../controllers/useActivitiesControll
 import { useTheme } from "../../../core/theme";
 
 export function ActivitiesScreen() {
-  const { colors } = useTheme();
+  const { colors, isDark } = useTheme();
   const { activities, loading, loadActivities } = useActivitiesController();
 
   useFocusEffect(
@@ -19,7 +18,11 @@ export function ActivitiesScreen() {
   );
 
   return (
-    <ScreenContainer safeArea={false}>
+    <View className="flex-1 bg-background dark:bg-background-dark">
+      <StatusBar
+        barStyle={isDark ? "light-content" : "dark-content"}
+        backgroundColor={colors.background}
+      />
       {loading && activities.length === 0 ? (
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator color={colors.secondary} size="large" />
@@ -46,6 +49,6 @@ export function ActivitiesScreen() {
           ItemSeparatorComponent={() => <View className="h-3" />}
         />
       )}
-    </ScreenContainer>
+    </View>
   );
 }

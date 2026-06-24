@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import { View, FlatList, ActivityIndicator } from "react-native";
+import { View, FlatList, ActivityIndicator, StatusBar } from "react-native";
 import { useFocusEffect, useRouter } from "expo-router";
-import { ScreenContainer } from "../../components/layout/ScreenContainer";
 import { TopBar } from "../../components/navigation/TopBar";
 import { AppText } from "../../components/ui/AppText";
 import { FloatingActionButton } from "../../components/ui/FloatingActionButton";
@@ -14,7 +13,7 @@ import { useTheme } from "../../../core/theme";
 export function DiaryListScreen() {
   const router = useRouter();
   const { openMenu } = useNavigationContext();
-  const { colors } = useTheme();
+  const { colors, isDark } = useTheme();
   const { entries, loading, refreshing, loadEntries, refresh, deleteEntry } =
     useDiaryListController();
 
@@ -25,7 +24,11 @@ export function DiaryListScreen() {
   );
 
   return (
-    <ScreenContainer safeArea edges={["bottom"]}>
+    <View className="flex-1 bg-background dark:bg-background-dark">
+      <StatusBar
+        barStyle={isDark ? "light-content" : "dark-content"}
+        backgroundColor={colors.background}
+      />
       <TopBar title="HealthMind" onMenuPress={openMenu} />
 
       {/* Heading */}
@@ -79,6 +82,6 @@ export function DiaryListScreen() {
       <FloatingActionButton
         onPress={() => router.push("/(protected)/diary-create")}
       />
-    </ScreenContainer>
+    </View>
   );
 }

@@ -1,4 +1,5 @@
 import data from "../../data/fake/user_appointments.json";
+import { getMockAppointmentsForDate } from "../../data/fake/mockUserAppointments";
 import {
   UserAppointment,
   CalendarAppointmentDate,
@@ -31,7 +32,7 @@ class AppointmentsModuleService {
   // GET /appointments/date/:date
   async getAppointmentsByDate(date: string): Promise<UserAppointment[]> {
     await delay(200);
-    return appointments.filter((a) => a.date === date && a.status === "scheduled");
+    return getMockAppointmentsForDate(date);
   }
 
   // GET /appointments/calendar

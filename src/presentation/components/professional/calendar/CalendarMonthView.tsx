@@ -4,6 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { AppText } from "../../ui/AppText";
 import { useTheme } from "../../../../core/theme";
 import { CalendarDayData } from "../../../../types/professionalCalendar";
+import { getTodayDateString } from "../../../../utils/date";
 
 const PT_MONTHS = [
   "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
@@ -47,7 +48,7 @@ export function CalendarMonthView({
   onNextMonth,
 }: CalendarMonthViewProps) {
   const { colors } = useTheme();
-  const todayStr = new Date().toISOString().slice(0, 10);
+  const todayStr = getTodayDateString();
 
   const dotMap = useMemo(() => {
     const map = new Map<string, CalendarDayData>();

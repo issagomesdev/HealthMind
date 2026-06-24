@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import {
   View,
   ScrollView,
@@ -6,9 +6,11 @@ import {
   RefreshControl,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { useFocusEffect, useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AppText } from "../../../components/ui/AppText";
+import { consumePendingCalendarFocus } from "../../../../state/pendingCalendarFocus";
+import { toDateString } from "../../../../utils/date";
 import { EmptyState } from "../../../components/ui/EmptyState";
 import { LoadingState } from "../../../components/ui/LoadingState";
 import { TopBar } from "../../../components/navigation/TopBar";
@@ -31,10 +33,10 @@ const PT_MONTHS = [
 function formatSelectedDate(dateStr: string): string {
   const d = new Date(dateStr + "T00:00:00");
   const today = new Date();
-  const todayStr = today.toISOString().slice(0, 10);
+  const todayStr = toDateString(today);
   const tomorrow = new Date(today);
   tomorrow.setDate(today.getDate() + 1);
-  const tomorrowStr = tomorrow.toISOString().slice(0, 10);
+  const tomorrowStr = toDateString(tomorrow);
 
   if (dateStr === todayStr) return "Hoje";
   if (dateStr === tomorrowStr) return "Amanhã";
@@ -70,6 +72,30 @@ export function ProfessionalCalendarScreen() {
     toggleReminder,
   } = useProfessionalCalendar();
 
+  const scrollViewRef = useRef<ScrollView>(null);
+  const appointmentsSectionRef = useRef<View>(null);
+
+  useFocusEffect(
+    useCallback(() => {
+      refresh();
+
+      const pending = consumePendingCalendarFocus();
+      if (!pending) return;
+
+      setSelectedDate(pending.date);
+      // Give the day's appointments time to refetch and render before scrolling.
+      setTimeout(() => {
+        appointmentsSectionRef.current?.measureLayout(
+          scrollViewRef.current as unknown as React.ComponentRef<typeof View>,
+          (_x, y) => {
+            scrollViewRef.current?.scrollTo({ y: Math.max(y - 12, 0), animated: true });
+          },
+          () => {}
+        );
+      }, 600);
+    }, [refresh, setSelectedDate])
+  );
+
   const handlePrevMonth = useCallback(() => {
     if (currentMonth === 1) {
       setCurrentMonth(currentYear - 1, 12);
@@ -96,12 +122,10 @@ export function ProfessionalCalendarScreen() {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
-      <TopBar
-        title="HealthMind"
-        onBackPress={() => router.back()}
-        showNotifications={false}
-      />
+
+      <TopBar title="HealthMind" onMenuPress={openMenu} />
       <ScrollView
+        ref={scrollViewRef}
         style={{ flex: 1 }}
         contentContainerStyle={{ paddingBottom: insets.bottom + 100 }}
         showsVerticalScrollIndicator={false}
@@ -206,7 +230,7 @@ export function ProfessionalCalendarScreen() {
         </View>
 
         {/* Appointments for selected date */}
-        <View style={{ paddingHorizontal: 16, marginTop: 24 }}>
+        <View ref={appointmentsSectionRef} style={{ paddingHorizontal: 16, marginTop: 24 }}>
           <CalendarSectionHeader
             title={`Consultas — ${formatSelectedDate(selectedDate)}`}
             right={
